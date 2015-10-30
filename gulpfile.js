@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 
-var DEST = '',
+var SRC_CSS = 'app/Resources/**/*.css',
+    SRC_JS = 'app/Resources/**/*.js',
+    DEST = '',
     DEST_STATIC = 'compiled/';
 
 // @see: https://github.com/contra/gulp-concat
@@ -10,7 +12,7 @@ gulp.task('compile-css', function () {
     gulp
         .src([
             'node_modules/normalize.css/normalize.css',
-            'app/Resources/Views/blocks/**/*.css'
+            SRC_CSS
         ])
         .pipe(concat('style.css'))
         .pipe(gulp.dest(DEST_STATIC + 'css/'));
@@ -21,7 +23,7 @@ gulp.task('compile-js', function () {
         .src([
             'vendors/underscore-min.js',
             'vendors/backbone-min.js',
-            'app/Resources/Views/blocks/**/*.js'
+            SRC_JS
         ])
         .pipe(concat('script.js'))
         .pipe(gulp.dest(DEST_STATIC + 'js/'));
@@ -52,3 +54,12 @@ gulp.task('build', [
 gulp.task('default', [
     'build'
 ]);
+
+gulp.task('watch', function () {
+    gulp.watch([
+        SRC_CSS,
+        SRC_JS
+    ], [
+        'build'
+    ]);
+});
