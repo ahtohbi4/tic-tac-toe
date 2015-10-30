@@ -422,3 +422,7 @@ td,
 th {
   padding: 0;
 }
+
+body {
+    background: #f0f0f0;
+}
