@@ -1,6 +1,11 @@
 Tic-Tac-Toe
 ===========
 
+[![Travis Build Status][travis-img]][travis]
+
+[travis-img]: https://travis-ci.org/ahtohbi4/tic-tac-toe.svg?branch=master
+[travis]: https://travis-ci.org/ahtohbi4/tic-tac-toe
+
 #### About
 The Tic-tac-toe game.
 
