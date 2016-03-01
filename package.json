@@ -1,0 +1,28 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "Tic-tac-toe game",
+  "main": "index.html",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahtohbi4/tic-tac-toe.git"
+  },
+  "keywords": [
+    "Tic-tac-toe",
+    "React",
+    "JavaScript"
+  ],
+  "author": "Alexandr Antonov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ahtohbi4/tic-tac-toe/issues"
+  },
+  "homepage": "https://github.com/ahtohbi4/tic-tac-toe#readme",
+  "devDependencies": {
+    "babel-eslint": "^5.0.0",
+    "eslint": "^2.2.0",
+  }
+}

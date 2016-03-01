@@ -1,0 +1,17 @@
+language: python
+
+python:
+    - 2.7
+
+before_install:
+    - sudo apt-get update
+    - sudo apt-get install oracle-java8-installer
+    - sudo update-java-alternatives -s java-8-oracle
+
+install:
+    - npm install
+    - pip install html5validator
+
+script:
+    - node_modules/.bin/eslint *.js
+    - html5validator --root ./
