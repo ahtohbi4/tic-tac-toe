@@ -1,11 +1,84 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+<html class="no-js" lang="en">
 <head>
-    <title>Tic-Tac-Toe</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="compiled/css/style.css">
+    <title>Tic-Tac-Toe</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <script src="compiled/js/script.js"></script>
+    <div class="game"></div>
+
+    <script type="text/babel">
+        var MATRIX = [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ];
+
+        var Game = React.createClass({
+            getInitialState: function () {
+                return {
+                    index: 0,
+                    winsCount: 0,
+                    lossesCount: 0
+                };
+            },
+
+            render: function () {
+                return (
+                    <div className="game">
+                        <Score winsCount={this.state.winsCount} lossesCount={this.state.lossesCount}/>
+                        <Board/>
+                    </div>
+                );
+            }
+        });
+
+        var Board = React.createClass({
+            getInitialState: function () {
+                return {
+                    matrix: MATRIX
+                };
+            },
+
+            render: function () {
+                return (
+                    <div className="board">
+                        {
+                            this.state.matrix.map(function (row) {
+                                return row.map(function () {
+                                    return <Cell/>;
+                                });
+                            })
+                        }
+                    </div>
+                );
+            }
+        });
+
+        var Cell = React.createClass({
+            render: function () {
+                return <div className="board__cell"/>;
+            }
+        });
+
+        var Score = React.createClass({
+            render: function () {
+                return <div className="score">{this.props.winsCount}:{this.props.lossesCount}</div>
+            }
+        });
+
+        ReactDOM.render(
+            <Game/>,
+            document.querySelector('.game')
+        );
+    </script>
 </body>
 </html>
