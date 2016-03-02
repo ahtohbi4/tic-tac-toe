@@ -23,6 +23,6 @@
   "homepage": "https://github.com/ahtohbi4/tic-tac-toe#readme",
   "devDependencies": {
     "babel-eslint": "^5.0.0",
-    "eslint": "^2.2.0",
+    "eslint": "^2.2.0"
   }
 }
