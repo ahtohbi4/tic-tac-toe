@@ -14,4 +14,4 @@ install:
 
 script:
     - node_modules/.bin/eslint script.js
-    - html5validator --root ./ --blacklist ./node_modules/*
+    - html5validator --root ./ --blacklist node_modules/
