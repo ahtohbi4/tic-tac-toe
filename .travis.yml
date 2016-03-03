@@ -13,5 +13,5 @@ install:
     - pip install html5validator
 
 script:
-    - node_modules/.bin/eslint script.js
-    - html5validator --root ./ --blacklist [node_modules/]
+    - node_modules/.bin/eslint ./app/*.jsx
+    - html5validator --root ./app/
