@@ -1,10 +1,15 @@
-var MATRIX = [
+'use strict';
+
+let React = require('react');
+let ReactDOM = require('react-dom');
+
+let MATRIX = [
     [0, 0, 0],
     [0, 0, 0],
     [0, 0, 0]
 ];
 
-var Game = React.createClass({
+let Game = React.createClass({
     getInitialState: function () {
         return {
             index: 0,
@@ -23,7 +28,7 @@ var Game = React.createClass({
     }
 });
 
-var Board = React.createClass({
+let Board = React.createClass({
     getInitialState: function () {
         return {
             matrix: MATRIX
@@ -45,13 +50,13 @@ var Board = React.createClass({
     }
 });
 
-var Cell = React.createClass({
+let Cell = React.createClass({
     render: function () {
         return <div className="board__cell"/>;
     }
 });
 
-var Score = React.createClass({
+let Score = React.createClass({
     render: function () {
         return <div className="score">{this.props.winsCount}:{this.props.lossesCount}</div>
     }
@@ -59,5 +64,5 @@ var Score = React.createClass({
 
 ReactDOM.render(
     <Game/>,
-    document.querySelector('.game')
+    document.querySelector('.app')
 );
