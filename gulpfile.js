@@ -77,19 +77,25 @@ gulp.task('default', [
 ]);
 
 // Watchers
-gulp.task('watch:html', function () {
+gulp.task('watch:html', [
+    'html'
+], function () {
     return gulp.watch(PATHS.src.html, [
         'html'
     ]);
 });
 
-gulp.task('watch:css', function () {
+gulp.task('watch:css', [
+    'css'
+], function () {
     return gulp.watch(PATHS.src.css, [
         'css'
     ]);
 });
 
-gulp.task('watch:js', function () {
+gulp.task('watch:js', [
+    'webpack'
+], function () {
     return gulp.watch(PATHS.src.js, [
         'webpack'
     ]);
