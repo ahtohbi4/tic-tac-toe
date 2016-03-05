@@ -62,6 +62,9 @@
 	    [0, 0, 0]
 	];
 
+	/**
+	 * @class Game
+	 */
 	let Game = React.createClass({displayName: "Game",
 	    getInitialState: function () {
 	        return {
@@ -81,6 +84,9 @@
 	    }
 	});
 
+	/**
+	 * @class Board
+	 */
 	let Board = React.createClass({displayName: "Board",
 	    getInitialState: function () {
 	        return {
@@ -92,10 +98,8 @@
 	        return (
 	            React.createElement("div", {className: "board"}, 
 	                
-	                    this.state.matrix.map(function (row) {
-	                        return row.map(function () {
-	                            return React.createElement(Cell, null);
-	                        });
+	                    this.state.matrix.map(function (row, index) {
+	                        return React.createElement(BoardRow, {key: index, y: index, cells: row});
 	                    })
 	                
 	            )
@@ -103,12 +107,37 @@
 	    }
 	});
 
-	let Cell = React.createClass({displayName: "Cell",
+	/**
+	 * @class BoardRow
+	 */
+	let BoardRow = React.createClass({displayName: "BoardRow",
 	    render: function () {
-	        return React.createElement("div", {className: "board__cell"});
+	        let y = this.props.y;
+
+	        return React.createElement("div", {className: "board__row"}, this.props.cells.map(function (cell, index) {
+	            return React.createElement(BoardCell, {key: index, x: index, y: y});
+	        }));
 	    }
 	});
 
+	/**
+	 * @class BoardCell
+	 */
+	let BoardCell = React.createClass({displayName: "BoardCell",
+	    foo : function () {
+	        alert(("x=" + this.props.x + ", y=" + this.props.y));
+	    },
+
+	    render: function () {
+	        return React.createElement("div", {className: "board__cell", onClick: this.foo});
+	    }
+	});
+
+	/**
+	 * @class Score
+	 * @property {number} winsCount
+	 * @property {number} lossesCount
+	 */
 	let Score = React.createClass({displayName: "Score",
 	    render: function () {
 	        return React.createElement("div", {className: "score"}, this.props.winsCount, ":", this.props.lossesCount)
