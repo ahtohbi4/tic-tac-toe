@@ -12,6 +12,7 @@ The Tic-tac-toe game.
 #### Architecture
  * [GitHub](https://github.com/) to host repository;
  * [BEM methodology](https://en.bem.info/method/) for architecture of app;
+ * [Webpack](http://webpack.github.io/docs/) to build JSX and
  * [Gulp](http://gulpjs.com/) to build and compile CSS.
 
 #### Technologies
