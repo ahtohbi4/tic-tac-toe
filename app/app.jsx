@@ -1,9 +1,9 @@
 'use strict';
 
-let React = require('react');
-let ReactDOM = require('react-dom');
+const React = require('react');
+const ReactDOM = require('react-dom');
 
-let MATRIX = [
+const MATRIX = [
     [0, 0, 0],
     [0, 0, 0],
     [0, 0, 0]

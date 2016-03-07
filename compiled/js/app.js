@@ -53,10 +53,10 @@
 
 	/** @jsx React.DOM */'use strict';
 
-	let React = __webpack_require__(2);
-	let ReactDOM = __webpack_require__(3);
+	const React = __webpack_require__(2);
+	const ReactDOM = __webpack_require__(3);
 
-	let MATRIX = [
+	const MATRIX = [
 	    [0, 0, 0],
 	    [0, 0, 0],
 	    [0, 0, 0]
