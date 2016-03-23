@@ -71,12 +71,12 @@ let BoardRow = React.createClass({
  * @class BoardCell
  */
 let BoardCell = React.createClass({
-    foo : function () {
+    getMove: function () {
         alert(`x=${this.props.x}, y=${this.props.y}`);
     },
 
     render: function () {
-        return <div className="board__cell" onClick={this.foo}/>;
+        return <div className="board__cell" onClick={this.getMove}/>;
     }
 });
 

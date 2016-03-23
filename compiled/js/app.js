@@ -124,12 +124,12 @@
 	 * @class BoardCell
 	 */
 	let BoardCell = React.createClass({displayName: "BoardCell",
-	    foo : function () {
+	    getMove: function () {
 	        alert(("x=" + this.props.x + ", y=" + this.props.y));
 	    },
 
 	    render: function () {
-	        return React.createElement("div", {className: "board__cell", onClick: this.foo});
+	        return React.createElement("div", {className: "board__cell", onClick: this.getMove});
 	    }
 	});
 
