@@ -4,13 +4,7 @@ body {
     padding: 0;
 }
 
-.game {
-    display: flex;
-    padding: 18px 10px;
-}
-
 .board {
-    width: 300px;
     max-width: 300px;
     margin: 0 auto;
     padding: 2px;

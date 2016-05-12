@@ -10,38 +10,53 @@ const MATRIX = [
 ];
 
 /**
- * @class Game
+ * @class App
  */
-let Game = React.createClass({
-    getInitialState: function () {
+const App = React.createClass({
+    getInitialState () {
         return {
-            index: 0,
-            winsCount: 0,
-            lossesCount: 0
+            game: {
+                index: 0,
+                countWins: 0,
+                countLosses: 0
+            }
         };
     },
 
-    render: function () {
+    render () {
         return (
             <div className="game">
                 <Score winsCount={this.state.winsCount} lossesCount={this.state.lossesCount}/>
+                <NewGameButton/>
                 <Board/>
             </div>
         );
     }
 });
 
+const Button = React.createClass({
+    render () {
+        return <button className="button {this.props.className || ''}" type="button">{this.props.text}</button>
+    }
+});
+
+const NewGameButton = React.createClass({
+    render () {
+        return <Button text="Foo"/>
+    }
+});
+
 /**
  * @class Board
  */
-let Board = React.createClass({
-    getInitialState: function () {
+const Board = React.createClass({
+    getInitialState () {
         return {
             matrix: MATRIX
         };
     },
 
-    render: function () {
+    render () {
         return (
             <div className="board">
                 {
@@ -57,8 +72,8 @@ let Board = React.createClass({
 /**
  * @class BoardRow
  */
-let BoardRow = React.createClass({
-    render: function () {
+const BoardRow = React.createClass({
+    render () {
         let y = this.props.y;
 
         return <div className="board__row">{this.props.cells.map(function (cell, index) {
@@ -70,12 +85,12 @@ let BoardRow = React.createClass({
 /**
  * @class BoardCell
  */
-let BoardCell = React.createClass({
-    getMove: function () {
+const BoardCell = React.createClass({
+    getMove () {
         alert(`x=${this.props.x}, y=${this.props.y}`);
     },
 
-    render: function () {
+    render () {
         return <div className="board__cell" onClick={this.getMove}/>;
     }
 });
@@ -85,8 +100,8 @@ let BoardCell = React.createClass({
  * @property {number} winsCount
  * @property {number} lossesCount
  */
-let Score = React.createClass({
-    render: function () {
+const Score = React.createClass({
+    render () {
         return <div className="score">{this.props.winsCount}:{this.props.lossesCount}</div>
     }
 });

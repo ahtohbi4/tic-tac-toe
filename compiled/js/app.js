@@ -63,38 +63,53 @@
 	];
 
 	/**
-	 * @class Game
+	 * @class App
 	 */
-	let Game = React.createClass({displayName: "Game",
-	    getInitialState: function () {
+	const App = React.createClass({displayName: "App",
+	    getInitialState:function () {
 	        return {
-	            index: 0,
-	            winsCount: 0,
-	            lossesCount: 0
+	            game: {
+	                index: 0,
+	                countWins: 0,
+	                countLosses: 0
+	            }
 	        };
 	    },
 
-	    render: function () {
+	    render:function () {
 	        return (
 	            React.createElement("div", {className: "game"}, 
 	                React.createElement(Score, {winsCount: this.state.winsCount, lossesCount: this.state.lossesCount}), 
+	                React.createElement(NewGameButton, null), 
 	                React.createElement(Board, null)
 	            )
 	        );
 	    }
 	});
 
+	const Button = React.createClass({displayName: "Button",
+	    render:function () {
+	        return React.createElement("button", {className: "button {this.props.className || ''}", type: "button"}, this.props.text)
+	    }
+	});
+
+	const NewGameButton = React.createClass({displayName: "NewGameButton",
+	    render:function () {
+	        return React.createElement(Button, {text: "Foo"})
+	    }
+	});
+
 	/**
 	 * @class Board
 	 */
-	let Board = React.createClass({displayName: "Board",
-	    getInitialState: function () {
+	const Board = React.createClass({displayName: "Board",
+	    getInitialState:function () {
 	        return {
 	            matrix: MATRIX
 	        };
 	    },
 
-	    render: function () {
+	    render:function () {
 	        return (
 	            React.createElement("div", {className: "board"}, 
 	                
@@ -110,8 +125,8 @@
 	/**
 	 * @class BoardRow
 	 */
-	let BoardRow = React.createClass({displayName: "BoardRow",
-	    render: function () {
+	const BoardRow = React.createClass({displayName: "BoardRow",
+	    render:function () {
 	        let y = this.props.y;
 
 	        return React.createElement("div", {className: "board__row"}, this.props.cells.map(function (cell, index) {
@@ -123,12 +138,12 @@
 	/**
 	 * @class BoardCell
 	 */
-	let BoardCell = React.createClass({displayName: "BoardCell",
-	    getMove: function () {
+	const BoardCell = React.createClass({displayName: "BoardCell",
+	    getMove:function () {
 	        alert(("x=" + this.props.x + ", y=" + this.props.y));
 	    },
 
-	    render: function () {
+	    render:function () {
 	        return React.createElement("div", {className: "board__cell", onClick: this.getMove});
 	    }
 	});
@@ -138,8 +153,8 @@
 	 * @property {number} winsCount
 	 * @property {number} lossesCount
 	 */
-	let Score = React.createClass({displayName: "Score",
-	    render: function () {
+	const Score = React.createClass({displayName: "Score",
+	    render:function () {
 	        return React.createElement("div", {className: "score"}, this.props.winsCount, ":", this.props.lossesCount)
 	    }
 	});
