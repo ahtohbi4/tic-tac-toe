@@ -17,8 +17,8 @@ const App = React.createClass({
         return {
             game: {
                 index: 0,
-                countWins: 0,
-                countLosses: 0
+                winsCount: 0,
+                lossesCount: 0
             }
         };
     },
@@ -26,23 +26,13 @@ const App = React.createClass({
     render () {
         return (
             <div className="game">
+                <h1>Tic-Tac-Toe</h1>
+
                 <Score winsCount={this.state.winsCount} lossesCount={this.state.lossesCount}/>
-                <NewGameButton/>
+
                 <Board/>
             </div>
         );
-    }
-});
-
-const Button = React.createClass({
-    render () {
-        return <button className="button {this.props.className || ''}" type="button">{this.props.text}</button>
-    }
-});
-
-const NewGameButton = React.createClass({
-    render () {
-        return <Button text="Foo"/>
     }
 });
 
@@ -59,11 +49,9 @@ const Board = React.createClass({
     render () {
         return (
             <div className="board">
-                {
-                    this.state.matrix.map(function (row, index) {
-                        return <BoardRow key={index} y={index} cells={row}/>;
-                    })
-                }
+                {this.state.matrix.map(function (row, index) {
+                    return <BoardRow key={index} y={index} cells={row}/>;
+                })}
             </div>
         );
     }
@@ -106,7 +94,4 @@ const Score = React.createClass({
     }
 });
 
-ReactDOM.render(
-    <Game/>,
-    document.querySelector('.app')
-);
+ReactDOM.render(<Game/>, document.querySelector('.app'));
