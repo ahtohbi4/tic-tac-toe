@@ -70,8 +70,8 @@
 	        return {
 	            game: {
 	                index: 0,
-	                countWins: 0,
-	                countLosses: 0
+	                winsCount: 0,
+	                lossesCount: 0
 	            }
 	        };
 	    },
@@ -79,23 +79,13 @@
 	    render:function () {
 	        return (
 	            React.createElement("div", {className: "game"}, 
+	                React.createElement("h1", null, "Tic-Tac-Toe"), 
+
 	                React.createElement(Score, {winsCount: this.state.winsCount, lossesCount: this.state.lossesCount}), 
-	                React.createElement(NewGameButton, null), 
+
 	                React.createElement(Board, null)
 	            )
 	        );
-	    }
-	});
-
-	const Button = React.createClass({displayName: "Button",
-	    render:function () {
-	        return React.createElement("button", {className: "button {this.props.className || ''}", type: "button"}, this.props.text)
-	    }
-	});
-
-	const NewGameButton = React.createClass({displayName: "NewGameButton",
-	    render:function () {
-	        return React.createElement(Button, {text: "Foo"})
 	    }
 	});
 
@@ -112,11 +102,9 @@
 	    render:function () {
 	        return (
 	            React.createElement("div", {className: "board"}, 
-	                
-	                    this.state.matrix.map(function (row, index) {
-	                        return React.createElement(BoardRow, {key: index, y: index, cells: row});
-	                    })
-	                
+	                this.state.matrix.map(function (row, index) {
+	                    return React.createElement(BoardRow, {key: index, y: index, cells: row});
+	                })
 	            )
 	        );
 	    }
@@ -159,10 +147,7 @@
 	    }
 	});
 
-	ReactDOM.render(
-	    React.createElement(Game, null),
-	    document.querySelector('.app')
-	);
+	ReactDOM.render(React.createElement(Game, null), document.querySelector('.app'));
 
 
 /***/ },
