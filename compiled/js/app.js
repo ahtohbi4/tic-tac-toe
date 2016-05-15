@@ -66,7 +66,7 @@
 	 * @class App
 	 */
 	const App = React.createClass({displayName: "App",
-	    getInitialState:function () {
+	    getInitialState:function() {
 	        return {
 	            game: {
 	                index: 0,
@@ -76,7 +76,7 @@
 	        };
 	    },
 
-	    render:function () {
+	    render:function() {
 	        return (
 	            React.createElement("div", {className: "game"}, 
 	                React.createElement("h1", null, "Tic-Tac-Toe"), 
@@ -93,13 +93,13 @@
 	 * @class Board
 	 */
 	const Board = React.createClass({displayName: "Board",
-	    getInitialState:function () {
+	    getInitialState:function() {
 	        return {
 	            matrix: MATRIX
 	        };
 	    },
 
-	    render:function () {
+	    render:function() {
 	        return (
 	            React.createElement("div", {className: "board"}, 
 	                this.state.matrix.map(function (row, index) {
@@ -114,7 +114,7 @@
 	 * @class BoardRow
 	 */
 	const BoardRow = React.createClass({displayName: "BoardRow",
-	    render:function () {
+	    render:function() {
 	        let y = this.props.y;
 
 	        return React.createElement("div", {className: "board__row"}, this.props.cells.map(function (cell, index) {
@@ -127,11 +127,11 @@
 	 * @class BoardCell
 	 */
 	const BoardCell = React.createClass({displayName: "BoardCell",
-	    getMove:function () {
+	    getMove:function() {
 	        alert(("x=" + this.props.x + ", y=" + this.props.y));
 	    },
 
-	    render:function () {
+	    render:function() {
 	        return React.createElement("div", {className: "board__cell", onClick: this.getMove});
 	    }
 	});
@@ -142,8 +142,20 @@
 	 * @property {number} lossesCount
 	 */
 	const Score = React.createClass({displayName: "Score",
-	    render:function () {
-	        return React.createElement("div", {className: "score"}, this.props.winsCount, ":", this.props.lossesCount)
+	    render:function() {
+	        return React.createElement("div", {className: "score"}, this.props.winsCount, ":", this.props.lossesCount);
+	    }
+	});
+
+	const Popup = React.createClass({displayName: "Popup",
+	    render:function() {
+	        return React.createElement("div", {className: "popup"}, this.props.content);
+	    }
+	});
+
+	const Disabler = React.createClass({displayName: "Disabler",
+	    render:function() {
+	        return React.createElement("div", {className: "disabler"});
 	    }
 	});
 

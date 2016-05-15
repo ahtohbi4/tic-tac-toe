@@ -13,7 +13,7 @@ const MATRIX = [
  * @class App
  */
 const App = React.createClass({
-    getInitialState () {
+    getInitialState() {
         return {
             game: {
                 index: 0,
@@ -23,7 +23,7 @@ const App = React.createClass({
         };
     },
 
-    render () {
+    render() {
         return (
             <div className="game">
                 <h1>Tic-Tac-Toe</h1>
@@ -40,13 +40,13 @@ const App = React.createClass({
  * @class Board
  */
 const Board = React.createClass({
-    getInitialState () {
+    getInitialState() {
         return {
             matrix: MATRIX
         };
     },
 
-    render () {
+    render() {
         return (
             <div className="board">
                 {this.state.matrix.map(function (row, index) {
@@ -61,7 +61,7 @@ const Board = React.createClass({
  * @class BoardRow
  */
 const BoardRow = React.createClass({
-    render () {
+    render() {
         let y = this.props.y;
 
         return <div className="board__row">{this.props.cells.map(function (cell, index) {
@@ -74,11 +74,11 @@ const BoardRow = React.createClass({
  * @class BoardCell
  */
 const BoardCell = React.createClass({
-    getMove () {
+    getMove() {
         alert(`x=${this.props.x}, y=${this.props.y}`);
     },
 
-    render () {
+    render() {
         return <div className="board__cell" onClick={this.getMove}/>;
     }
 });
@@ -89,8 +89,20 @@ const BoardCell = React.createClass({
  * @property {number} lossesCount
  */
 const Score = React.createClass({
-    render () {
-        return <div className="score">{this.props.winsCount}:{this.props.lossesCount}</div>
+    render() {
+        return <div className="score">{this.props.winsCount}:{this.props.lossesCount}</div>;
+    }
+});
+
+const Popup = React.createClass({
+    render() {
+        return <div className="popup">{this.props.content}</div>;
+    }
+});
+
+const Disabler = React.createClass({
+    render() {
+        return <div className="disabler"></div>;
     }
 });
 
