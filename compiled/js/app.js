@@ -68,22 +68,37 @@
 	const Game = React.createClass({displayName: "Game",
 	    getInitialState:function() {
 	        return {
-	            game: {
+	            history: {
 	                index: 0,
 	                winsCount: 0,
 	                lossesCount: 0
+	            },
+	            game: {
+	                matrix: MATRIX
 	            }
 	        };
+	    },
+
+	    _toMove:function() {
+	        alert(("Click!"));
 	    },
 
 	    render:function() {
 	        return (
 	            React.createElement("div", {className: "game"}, 
-	                React.createElement("h1", {className: "text__h1"}, "Tic-Tac-Toe"), 
+	                React.createElement(Score, {winsCount: this.state.history.winsCount, lossesCount: this.state.history.lossesCount}), 
 
-	                React.createElement(Score, {winsCount: this.state.game.winsCount, lossesCount: this.state.game.lossesCount}), 
-
-	                React.createElement(Board, null)
+	                React.createElement(Board, null, 
+	                    this.state.game.matrix.map(function(row, y)  {
+	                        return (
+	                            React.createElement(BoardRow, {key: y}, 
+	                                row.map(function(value, x)  {
+	                                    return React.createElement(BoardCell, {key: x, value: value, onClick: this._toMove});
+	                                }.bind(this))
+	                            )
+	                        );
+	                    }.bind(this))
+	                )
 	            )
 	        );
 	    }
@@ -93,34 +108,9 @@
 	 * @class Board
 	 */
 	const Board = React.createClass({displayName: "Board",
-	    getInitialState:function() {
-	        return {
-	            matrix: MATRIX
-	        };
-	    },
-
-	    _toMove:function($__0 ) {var x=$__0.x,y=$__0.y;
-	        return function()  {
-	            console.log(("Click on " + x + ":" + y + "."));
-	        };
-	    },
-
 	    render:function() {
 	        return (
-	            React.createElement("div", {className: "board"}, 
-	                this.state.matrix.map(function(row, y)  {
-	                    return (
-	                        React.createElement(BoardRow, {key: y}, 
-	                            row.map(function(cell, x)  {
-	                                return React.createElement(BoardCell, {key: x, x: x, y: y, onClick: this._toMove({
-	                                    x: x,
-	                                    y: y
-	                                })});
-	                            }.bind(this))
-	                        )
-	                    );
-	                }.bind(this))
-	            )
+	            React.createElement("div", {className: "board"}, this.props.children)
 	        );
 	    }
 	});
@@ -138,8 +128,23 @@
 	 * @class BoardCell
 	 */
 	const BoardCell = React.createClass({displayName: "BoardCell",
+	    /**
+	     * @param [value=0]
+	     */
+	    getInitialState:function() {
+	        return {
+	            value: this.props.value || 0
+	        };
+	    },
+
+	    _setValue:function() {
+	        if (this.props.setValue) {
+	            this.props.setValue('Message from child');
+	        }
+	    },
+
 	    render:function() {
-	        return React.createElement("div", {className: "board__cell"});
+	        return React.createElement("div", {className: "board__cell", onClick: this._setValue});
 	    }
 	});
 

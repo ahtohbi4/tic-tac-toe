@@ -15,22 +15,37 @@ const MATRIX = [
 const Game = React.createClass({
     getInitialState() {
         return {
-            game: {
+            history: {
                 index: 0,
                 winsCount: 0,
                 lossesCount: 0
+            },
+            game: {
+                matrix: MATRIX
             }
         };
+    },
+
+    _toMove() {
+        alert(`Click!`);
     },
 
     render() {
         return (
             <div className="game">
-                <h1 className="text__h1">Tic-Tac-Toe</h1>
+                <Score winsCount={this.state.history.winsCount} lossesCount={this.state.history.lossesCount}/>
 
-                <Score winsCount={this.state.game.winsCount} lossesCount={this.state.game.lossesCount}/>
-
-                <Board/>
+                <Board>
+                    {this.state.game.matrix.map((row, y) => {
+                        return (
+                            <BoardRow key={y}>
+                                {row.map((value, x) => {
+                                    return <BoardCell key={x} value={value} onClick={this._toMove}/>;
+                                })}
+                            </BoardRow>
+                        );
+                    })}
+                </Board>
             </div>
         );
     }
@@ -40,34 +55,9 @@ const Game = React.createClass({
  * @class Board
  */
 const Board = React.createClass({
-    getInitialState() {
-        return {
-            matrix: MATRIX
-        };
-    },
-
-    _toMove({x, y}) {
-        return () => {
-            console.log(`Click on ${x}:${y}.`);
-        };
-    },
-
     render() {
         return (
-            <div className="board">
-                {this.state.matrix.map((row, y) => {
-                    return (
-                        <BoardRow key={y}>
-                            {row.map((cell, x) => {
-                                return <BoardCell key={x} x={x} y={y} onClick={this._toMove({
-                                    x: x,
-                                    y: y
-                                })}/>;
-                            })}
-                        </BoardRow>
-                    );
-                })}
-            </div>
+            <div className="board">{this.props.children}</div>
         );
     }
 });
@@ -85,8 +75,23 @@ const BoardRow = React.createClass({
  * @class BoardCell
  */
 const BoardCell = React.createClass({
+    /**
+     * @param [value=0]
+     */
+    getInitialState() {
+        return {
+            value: this.props.value || 0
+        };
+    },
+
+    _setValue() {
+        if (this.props.setValue) {
+            this.props.setValue('Message from child');
+        }
+    },
+
     render() {
-        return <div className="board__cell"></div>;
+        return <div className="board__cell" onClick={this._setValue}></div>;
     }
 });
 
