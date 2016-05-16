@@ -33,23 +33,12 @@ body {
     background: red;
 }
 
-.popup {
-    position: absolute;
+.score {
+    margin: 0 0 18px;
+    text-align: center;
 }
 
-.disabler {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
-    background: #fff;
-    opacity: 0;
-    transition: opacity 1s;
-}
-.disabler_active {
-    display: block;
-    opacity: .5;
+.text__h1 {
+    margin: 0 0 18px;
+    font: 100 24px/36px Arial;
 }

@@ -10,9 +10,9 @@ const MATRIX = [
 ];
 
 /**
- * @class App
+ * @class Game
  */
-const App = React.createClass({
+const Game = React.createClass({
     getInitialState() {
         return {
             game: {
@@ -26,7 +26,7 @@ const App = React.createClass({
     render() {
         return (
             <div className="game">
-                <h1>Tic-Tac-Toe</h1>
+                <h1 className="text__h1">Tic-Tac-Toe</h1>
 
                 <Score winsCount={this.state.winsCount} lossesCount={this.state.lossesCount}/>
 
@@ -91,18 +91,6 @@ const BoardCell = React.createClass({
 const Score = React.createClass({
     render() {
         return <div className="score">{this.props.winsCount}:{this.props.lossesCount}</div>;
-    }
-});
-
-const Popup = React.createClass({
-    render() {
-        return <div className="popup">{this.props.content}</div>;
-    }
-});
-
-const Disabler = React.createClass({
-    render() {
-        return <div className="disabler"></div>;
     }
 });
 

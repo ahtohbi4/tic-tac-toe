@@ -63,9 +63,9 @@
 	];
 
 	/**
-	 * @class App
+	 * @class Game
 	 */
-	const App = React.createClass({displayName: "App",
+	const Game = React.createClass({displayName: "Game",
 	    getInitialState:function() {
 	        return {
 	            game: {
@@ -79,7 +79,7 @@
 	    render:function() {
 	        return (
 	            React.createElement("div", {className: "game"}, 
-	                React.createElement("h1", null, "Tic-Tac-Toe"), 
+	                React.createElement("h1", {className: "text__h1"}, "Tic-Tac-Toe"), 
 
 	                React.createElement(Score, {winsCount: this.state.winsCount, lossesCount: this.state.lossesCount}), 
 
@@ -144,18 +144,6 @@
 	const Score = React.createClass({displayName: "Score",
 	    render:function() {
 	        return React.createElement("div", {className: "score"}, this.props.winsCount, ":", this.props.lossesCount);
-	    }
-	});
-
-	const Popup = React.createClass({displayName: "Popup",
-	    render:function() {
-	        return React.createElement("div", {className: "popup"}, this.props.content);
-	    }
-	});
-
-	const Disabler = React.createClass({displayName: "Disabler",
-	    render:function() {
-	        return React.createElement("div", {className: "disabler"});
 	    }
 	});
 
