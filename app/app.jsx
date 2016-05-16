@@ -28,7 +28,7 @@ const Game = React.createClass({
             <div className="game">
                 <h1 className="text__h1">Tic-Tac-Toe</h1>
 
-                <Score winsCount={this.state.winsCount} lossesCount={this.state.lossesCount}/>
+                <Score winsCount={this.state.game.winsCount} lossesCount={this.state.game.lossesCount}/>
 
                 <Board/>
             </div>
@@ -46,11 +46,26 @@ const Board = React.createClass({
         };
     },
 
+    _toMove({x, y}) {
+        return () => {
+            console.log(`Click on ${x}:${y}.`);
+        };
+    },
+
     render() {
         return (
             <div className="board">
-                {this.state.matrix.map(function (row, index) {
-                    return <BoardRow key={index} y={index} cells={row}/>;
+                {this.state.matrix.map((row, y) => {
+                    return (
+                        <BoardRow key={y}>
+                            {row.map((cell, x) => {
+                                return <BoardCell key={x} x={x} y={y} onClick={this._toMove({
+                                    x: x,
+                                    y: y
+                                })}/>;
+                            })}
+                        </BoardRow>
+                    );
                 })}
             </div>
         );
@@ -62,11 +77,7 @@ const Board = React.createClass({
  */
 const BoardRow = React.createClass({
     render() {
-        let y = this.props.y;
-
-        return <div className="board__row">{this.props.cells.map(function (cell, index) {
-            return <BoardCell key={index} x={index} y={y}/>;
-        })}</div>;
+        return <div className="board__row">{this.props.children}</div>;
     }
 });
 
@@ -74,12 +85,8 @@ const BoardRow = React.createClass({
  * @class BoardCell
  */
 const BoardCell = React.createClass({
-    getMove() {
-        alert(`x=${this.props.x}, y=${this.props.y}`);
-    },
-
     render() {
-        return <div className="board__cell" onClick={this.getMove}/>;
+        return <div className="board__cell"></div>;
     }
 });
 
