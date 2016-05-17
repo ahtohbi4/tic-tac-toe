@@ -168,12 +168,15 @@
 	    },
 
 	    componentWillReceiveProps:function(nextProps) {
-	        const valueAliases = {};
+	        const valueAliases = {
+	            '-1': 'o',
+	            1: 'x'
+	        };
 
-	        if (nextProps.value !== 0) {
+	        if (valueAliases.hasOwnProperty(nextProps.value)) {
 	            this.setState({
 	                mods: {
-	                    value: ("board__cell_value_" + ((nextProps.value === 1) ? 'x' : 'o'))
+	                    value: ("board__cell_value_" + valueAliases[nextProps.value])
 	                }
 	            });
 	        }

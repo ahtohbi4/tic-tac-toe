@@ -116,14 +116,14 @@ const BoardCell = React.createClass({
 
     componentWillReceiveProps(nextProps) {
         const valueAliases = {
-            -1: 'o',
+            '-1': 'o',
             1: 'x'
         };
 
         if (valueAliases.hasOwnProperty(nextProps.value)) {
             this.setState({
                 mods: {
-                    value: `board__cell_value_${valueAliases(nextProps.value)}`
+                    value: `board__cell_value_${valueAliases[nextProps.value]}`
                 }
             });
         }
