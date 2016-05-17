@@ -29,8 +29,11 @@ body {
     background: #f0f0f0;
     content: '';
 }
-.board__cell_checked::before {
-    background: red;
+.board__cell_value_x::before {
+    background: #490;
+}
+.board__cell_value_o::before {
+    background: #f30;
 }
 
 .score {

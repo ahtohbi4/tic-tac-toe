@@ -73,14 +73,37 @@
 	                winsCount: 0,
 	                lossesCount: 0
 	            },
-	            game: {
-	                matrix: MATRIX
-	            }
+	            matrix: MATRIX,
+	            player: 'man'
 	        };
 	    },
 
-	    _toMove:function() {
-	        alert(("Click!"));
+	    _toMove:function(event) {
+	        let cell = event.target;
+
+	        // alert(cell.className);
+
+	        this._changePlayer();
+	    },
+
+	    _changePlayer:function() {
+	        let player;
+
+	        switch (this.state.player) {
+	            case 'man':
+	                player = 'pc';
+	                break;
+	            case 'pc':
+	                player = 'man';
+	                break;
+	            default:
+	                player = this.state.player;
+	                break;
+	        }
+
+	        this.setState({
+	            player: player
+	        });
 	    },
 
 	    render:function() {
@@ -89,16 +112,21 @@
 	                React.createElement(Score, {winsCount: this.state.history.winsCount, lossesCount: this.state.history.lossesCount}), 
 
 	                React.createElement(Board, null, 
-	                    this.state.game.matrix.map(function(row, y)  {
+	                    this.state.matrix.map(function(row, y)  {
 	                        return (
 	                            React.createElement(BoardRow, {key: y}, 
-	                                row.map(function(value, x)  {
-	                                    return React.createElement(BoardCell, {key: x, value: value, onClick: this._toMove});
+	                                row.map(function(v, x)  {
+	                                    let value = this.state.matrix[y][x];
+	                                    let action = (this.state.player === 'man') ? this._toMove : null;
+
+	                                    return React.createElement(BoardCell, {key: x, value: value, onClick: action});
 	                                }.bind(this))
 	                            )
 	                        );
 	                    }.bind(this))
-	                )
+	                ), 
+
+	                React.createElement(Player, {value: this.state.player})
 	            )
 	        );
 	    }
@@ -133,18 +161,32 @@
 	     */
 	    getInitialState:function() {
 	        return {
-	            value: this.props.value || 0
+	            mods: {
+	                value: ''
+	            }
 	        };
 	    },
 
-	    _setValue:function() {
-	        if (this.props.setValue) {
-	            this.props.setValue('Message from child');
+	    componentWillReceiveProps:function(nextProps) {
+	        const valueAliases = {};
+
+	        if (nextProps.value !== 0) {
+	            this.setState({
+	                mods: {
+	                    value: ("board__cell_value_" + ((nextProps.value === 1) ? 'x' : 'o'))
+	                }
+	            });
 	        }
 	    },
 
 	    render:function() {
-	        return React.createElement("div", {className: "board__cell", onClick: this._setValue});
+	        return React.createElement("div", {className: ("board__cell " + this.state.mods.value).trim(), onClick: this.props.onClick});
+	    }
+	});
+
+	const Player = React.createClass({displayName: "Player",
+	    render:function() {
+	        return React.createElement("div", null, this.props.value);
 	    }
 	});
 
