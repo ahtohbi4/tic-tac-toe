@@ -3,12 +3,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-const MATRIX = [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0]
-];
-
 /**
  * @class Game
  */
@@ -20,7 +14,11 @@ const Game = React.createClass({
                 winsCount: 0,
                 lossesCount: 0
             },
-            matrix: MATRIX,
+            matrix: [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0]
+            ],
             player: 'man'
         };
     },

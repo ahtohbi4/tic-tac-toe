@@ -56,12 +56,6 @@
 	const React = __webpack_require__(2);
 	const ReactDOM = __webpack_require__(3);
 
-	const MATRIX = [
-	    [0, 0, 0],
-	    [0, 0, 0],
-	    [0, 0, 0]
-	];
-
 	/**
 	 * @class Game
 	 */
@@ -73,7 +67,11 @@
 	                winsCount: 0,
 	                lossesCount: 0
 	            },
-	            matrix: MATRIX,
+	            matrix: [
+	                [0, 0, 0],
+	                [0, 0, 0],
+	                [0, 0, 0]
+	            ],
 	            player: 'man'
 	        };
 	    },
