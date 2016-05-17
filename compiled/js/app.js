@@ -85,19 +85,7 @@
 	    },
 
 	    _changePlayer:function() {
-	        let player;
-
-	        switch (this.state.player) {
-	            case 'man':
-	                player = 'pc';
-	                break;
-	            case 'pc':
-	                player = 'man';
-	                break;
-	            default:
-	                player = this.state.player;
-	                break;
-	        }
+	        let player = (this.state.player === 'man') ? 'pc' : 'man';
 
 	        this.setState({
 	            player: player
