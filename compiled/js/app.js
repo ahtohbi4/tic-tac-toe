@@ -157,7 +157,8 @@
 	 */
 	const BoardCell = React.createClass({displayName: "BoardCell",
 	    /**
-	     * @param [value=0]
+	     * @param [mods]
+	     * @param [mods.value='']
 	     */
 	    getInitialState:function() {
 	        return {

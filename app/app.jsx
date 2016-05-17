@@ -104,7 +104,8 @@ const BoardRow = React.createClass({
  */
 const BoardCell = React.createClass({
     /**
-     * @param [value=0]
+     * @param [mods]
+     * @param [mods.value='']
      */
     getInitialState() {
         return {
