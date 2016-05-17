@@ -70,9 +70,7 @@ const Game = React.createClass({
  */
 const Board = React.createClass({
     render() {
-        return (
-            <div className="board">{this.props.children}</div>
-        );
+        return <div className="board">{this.props.children}</div>;
     }
 });
 

@@ -123,9 +123,7 @@
 	 */
 	const Board = React.createClass({displayName: "Board",
 	    render:function() {
-	        return (
-	            React.createElement("div", {className: "board"}, this.props.children)
-	        );
+	        return React.createElement("div", {className: "board"}, this.props.children);
 	    }
 	});
 
