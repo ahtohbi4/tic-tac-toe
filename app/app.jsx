@@ -64,7 +64,7 @@ const Game = React.createClass({
                             <BoardRow key={y}>
                                 {row.map((v, x) => {
                                     let value = this.state.matrix[y][x];
-                                    let action = (this.state.player === 'man') ? this._toMove : null;
+                                    let action = (this.state.player === 'man') ? this._toMove : false;
 
                                     return <BoardCell key={x} value={value} onClick={action}/>;
                                 })}

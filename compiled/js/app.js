@@ -117,7 +117,7 @@
 	                            React.createElement(BoardRow, {key: y}, 
 	                                row.map(function(v, x)  {
 	                                    let value = this.state.matrix[y][x];
-	                                    let action = (this.state.player === 'man') ? this._toMove : null;
+	                                    let action = (this.state.player === 'man') ? this._toMove : false;
 
 	                                    return React.createElement(BoardCell, {key: x, value: value, onClick: action});
 	                                }.bind(this))
