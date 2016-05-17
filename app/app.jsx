@@ -134,9 +134,12 @@ const BoardCell = React.createClass({
     }
 });
 
+/**
+ * @class Player
+ */
 const Player = React.createClass({
     render() {
-        return <div>{this.props.value}</div>;
+        return <div className="player">{this.props.value}</div>;
     }
 });
 

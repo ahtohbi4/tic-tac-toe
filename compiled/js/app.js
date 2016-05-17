@@ -187,9 +187,12 @@
 	    }
 	});
 
+	/**
+	 * @class Player
+	 */
 	const Player = React.createClass({displayName: "Player",
 	    render:function() {
-	        return React.createElement("div", null, this.props.value);
+	        return React.createElement("div", {className: "player"}, this.props.value);
 	    }
 	});
 
