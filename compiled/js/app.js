@@ -170,7 +170,9 @@
 	    },
 
 	    render:function() {
-	        return React.createElement("div", {className: ("board__cell " + this.state.mods.value).trim(), onClick: this.props.onClick});
+	        let className = ("board__cell " + this.state.mods.value).trim();
+
+	        return React.createElement("div", {className: className, onClick: this.props.onClick});
 	    }
 	});
 

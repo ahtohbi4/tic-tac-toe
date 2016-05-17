@@ -117,7 +117,9 @@ const BoardCell = React.createClass({
     },
 
     render() {
-        return <div className={`board__cell ${this.state.mods.value}`.trim()} onClick={this.props.onClick}></div>;
+        let className = `board__cell ${this.state.mods.value}`.trim();
+
+        return <div className={className} onClick={this.props.onClick}></div>;
     }
 });
 
