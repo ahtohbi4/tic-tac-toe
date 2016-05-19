@@ -77,9 +77,26 @@
 	        };
 	    },
 
-	    _toMove:function(x, y) {
+	    _playerValue:function() {
+	        return {
+	            'man': 1,
+	            'pc': -1
+	        }[this.state.player];
+	    },
+
+	    _move:function(x, y) {
 	        return function()  {
+	            let matrix = this.state.matrix;
+
+	            if (matrix[y][x] === 0) {
+	                matrix[y][x] = this._playerValue();
+	            }
+
 	            this._changePlayer();
+
+	            if (this.state.player === 'pc') {
+	                this._move(1, 2);
+	            }
 	        }.bind(this);
 	    },
 
@@ -119,8 +136,8 @@
 	                            React.createElement(BoardRow, {key: y}, 
 	                                row.map(function(v, x)  {
 	                                    let value = this.state.matrix[y][x];
-	                                    // let action = (this.state.player === 'man') ? this._toMove(x, y) : false;
-	                                    let action = (value === 0) ? this._toMove(x, y) : false;
+	                                    // let action = (this.state.player === 'man') ? this._move(x, y) : false;
+	                                    let action = (value === 0) ? this._move(x, y) : false;
 
 	                                    return React.createElement(BoardCell, {key: x, value: value, onClick: action});
 	                                }.bind(this))
