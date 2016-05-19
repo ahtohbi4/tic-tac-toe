@@ -11,9 +11,6 @@ body {
 .board {
     max-width: 300px;
     margin: 0 auto;
-    padding: 2px;
-    border-radius: 3px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, .2), 0 0 10px rgba(0, 0, 0, .15);
 }
 .board__row {
     display: flex;
@@ -21,12 +18,23 @@ body {
 .board__cell {
     flex: 1 1 auto;
     box-sizing: border-box;
-    border: 1px solid transparent;
+    border: 1px solid #333;
+}
+.board__row:first-child .board__cell {
+    border-top: 0;
+}
+.board__row:last-child .board__cell {
+    border-bottom: 0;
+}
+.board__cell:first-child {
+    border-left: 0;
+}
+.board__cell:last-child {
+    border-right: 0;
 }
 .board__cell::before {
     display: block;
     padding-top: 100%;
-    background: #f0f0f0;
     content: '';
 }
 .board__cell_value_x::before {
