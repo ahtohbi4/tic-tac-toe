@@ -19,16 +19,32 @@ const Game = React.createClass({
                 [0, 0, 0],
                 [0, 0, 0]
             ],
+            lineLength: 3,
             player: 'man'
         };
     },
 
-    _toMove(event) {
-        let cell = event.target;
+    _toMove(x, y) {
+        return () => {
+            this._changePlayer();
+        };
+    },
 
-        // alert(cell.className);
+    _calculate() {
+        // vertical
+        let count = 0;
 
-        this._changePlayer();
+        this.state.matrix.forEach((line) => {
+            line.forEach((value, index) => {
+                if (index > 0 && line[index - 1] === value) {
+                    count =+ value;
+                } else {
+                    count = 0;
+                }
+            });
+        });
+
+        return count;
     },
 
     _changePlayer() {
@@ -50,7 +66,8 @@ const Game = React.createClass({
                             <BoardRow key={y}>
                                 {row.map((v, x) => {
                                     let value = this.state.matrix[y][x];
-                                    let action = (this.state.player === 'man') ? this._toMove : false;
+                                    // let action = (this.state.player === 'man') ? this._toMove(x, y) : false;
+                                    let action = (value === 0) ? this._toMove(x, y) : false;
 
                                     return <BoardCell key={x} value={value} onClick={action}/>;
                                 })}
