@@ -39,15 +39,18 @@ const Game = React.createClass({
                 matrix[y][x] = this._playerValue();
             }
 
-            this._changePlayer();
-
-            if (this.state.player === 'pc') {
-                this._move(1, 2);
+            if (/* Check a winner */true) {
+                // Congratulate
+            } else {
+                // Continue
+                this._changePlayer();
             }
         };
     },
 
-    _calculate() {
+    _hasWinner() {
+        let line;
+
         // vertical
         let count = 0;
 
@@ -60,8 +63,6 @@ const Game = React.createClass({
                 }
             });
         });
-
-        return count;
     },
 
     _changePlayer() {

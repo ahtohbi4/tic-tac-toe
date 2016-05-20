@@ -92,13 +92,16 @@
 	                matrix[y][x] = this._playerValue();
 	            }
 
-	            this._changePlayer();
+	            // Check a winner
 
-	            if (this.state.player === 'pc') {
-	                this._move(1, 2);
-	            }
+	            // Reset game if winner
+
+	            // Change player if no winner
+	            this._changePlayer();
 	        }.bind(this);
 	    },
+
+	    _hasWinner:function() {},
 
 	    _calculate:function() {
 	        // vertical
