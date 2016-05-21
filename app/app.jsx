@@ -41,6 +41,7 @@ const Game = React.createClass({
 
             if (/* Check a winner */true) {
                 // Congratulate
+                this._reset();
             } else {
                 // Continue
                 this._changePlayer();
@@ -70,6 +71,19 @@ const Game = React.createClass({
 
         this.setState({
             player: player
+        });
+    },
+
+    _reset() {
+        this.setState({
+            matrix: [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0]
+            ],
+            history: {
+                index: this.state.history.index + 1
+            }
         });
     },
 

@@ -92,18 +92,19 @@
 	                matrix[y][x] = this._playerValue();
 	            }
 
-	            // Check a winner
-
-	            // Reset game if winner
-
-	            // Change player if no winner
-	            this._changePlayer();
+	            if (/* Check a winner */true) {
+	                // Congratulate
+	                this._reset();
+	            } else {
+	                // Continue
+	                this._changePlayer();
+	            }
 	        }.bind(this);
 	    },
 
-	    _hasWinner:function() {},
+	    _hasWinner:function() {
+	        let line;
 
-	    _calculate:function() {
 	        // vertical
 	        let count = 0;
 
@@ -116,8 +117,6 @@
 	                }
 	            });
 	        });
-
-	        return count;
 	    },
 
 	    _changePlayer:function() {
@@ -125,6 +124,19 @@
 
 	        this.setState({
 	            player: player
+	        });
+	    },
+
+	    _reset:function() {
+	        this.setState({
+	            matrix: [
+	                [0, 0, 0],
+	                [0, 0, 0],
+	                [0, 0, 0]
+	            ],
+	            history: {
+	                index: this.state.history.index + 1
+	            }
 	        });
 	    },
 
