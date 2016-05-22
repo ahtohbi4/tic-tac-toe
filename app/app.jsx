@@ -7,6 +7,17 @@ const ReactDOM = require('react-dom');
  * @class Game
  */
 const Game = React.createClass({
+    getDefaultProps() {
+        return {
+            matrix: [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0]
+            ],
+            chainsLengthForVictory: 3
+        };
+    },
+
     getInitialState() {
         return {
             history: {
@@ -14,12 +25,8 @@ const Game = React.createClass({
                 winsCount: 0,
                 lossesCount: 0
             },
-            matrix: [
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0]
-            ],
-            lineLength: 3,
+            matrix: this.props.matrix,
+            chainsLengthForVictory: this.props.chainsLengthForVictory,
             player: 'man'
         };
     },
@@ -56,7 +63,7 @@ const Game = React.createClass({
      * @privet
      */
     _isFitInHorizontal() {
-        return this.state.lineLength <= this.state.matrix[0].length;
+        return this.state.chainsLengthForVictory <= this.state.matrix[0].length;
     },
 
     /**
@@ -64,7 +71,7 @@ const Game = React.createClass({
      * @privet
      */
     _isFitIntVertical() {
-        return this.state.lineLength <= this.state.matrix.length;
+        return this.state.chainsLengthForVictory <= this.state.matrix.length;
     },
 
     /**
@@ -93,7 +100,7 @@ const Game = React.createClass({
                     } else if (row[index - 1] === value) {
                         chain += value;
 
-                        if (Math.abs(chain) === this.state.lineLength) {
+                        if (Math.abs(chain) === this.state.chainsLengthForVictory) {
                             result = true;
 
                             return true;
@@ -124,7 +131,7 @@ const Game = React.createClass({
                     } else if (matrix[j - 1][i] === value) {
                         chain += value;
 
-                        if (Math.abs(chain) === this.state.lineLength) {
+                        if (Math.abs(chain) === this.state.chainsLengthForVictory) {
                             result = true;
 
                             break;

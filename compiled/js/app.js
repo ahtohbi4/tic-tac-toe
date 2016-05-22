@@ -60,6 +60,17 @@
 	 * @class Game
 	 */
 	const Game = React.createClass({displayName: "Game",
+	    getDefaultProps:function() {
+	        return {
+	            matrix: [
+	                [0, 0, 0],
+	                [0, 0, 0],
+	                [0, 0, 0]
+	            ],
+	            chainsLengthForVictory: 3
+	        };
+	    },
+
 	    getInitialState:function() {
 	        return {
 	            history: {
@@ -67,12 +78,8 @@
 	                winsCount: 0,
 	                lossesCount: 0
 	            },
-	            matrix: [
-	                [0, 0, 0],
-	                [0, 0, 0],
-	                [0, 0, 0]
-	            ],
-	            lineLength: 3,
+	            matrix: this.props.matrix,
+	            chainsLengthForVictory: this.props.chainsLengthForVictory,
 	            player: 'man'
 	        };
 	    },
@@ -109,7 +116,7 @@
 	     * @privet
 	     */
 	    _isFitInHorizontal:function() {
-	        return this.state.lineLength <= this.state.matrix[0].length;
+	        return this.state.chainsLengthForVictory <= this.state.matrix[0].length;
 	    },
 
 	    /**
@@ -117,7 +124,7 @@
 	     * @privet
 	     */
 	    _isFitIntVertical:function() {
-	        return this.state.lineLength <= this.state.matrix.length;
+	        return this.state.chainsLengthForVictory <= this.state.matrix.length;
 	    },
 
 	    /**
@@ -146,7 +153,7 @@
 	                    } else if (row[index - 1] === value) {
 	                        chain += value;
 
-	                        if (Math.abs(chain) === this.state.lineLength) {
+	                        if (Math.abs(chain) === this.state.chainsLengthForVictory) {
 	                            result = true;
 
 	                            return true;
@@ -177,7 +184,7 @@
 	                    } else if (matrix[j - 1][i] === value) {
 	                        chain += value;
 
-	                        if (Math.abs(chain) === this.state.lineLength) {
+	                        if (Math.abs(chain) === this.state.chainsLengthForVictory) {
 	                            result = true;
 
 	                            break;
