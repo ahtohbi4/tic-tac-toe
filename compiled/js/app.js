@@ -104,9 +104,31 @@
 	        }.bind(this);
 	    },
 
-	    _hasWinner:function() {
-	        let line;
+	    /**
+	     * @return boolean
+	     * @privet
+	     */
+	    _isFitInHorizontal:function() {
+	        return this.state.lineLength <= this.state.matrix[0].length;
+	    },
 
+	    /**
+	     * @return boolean
+	     * @privet
+	     */
+	    _isFitIntVertical:function() {
+	        return this.state.lineLength <= this.state.matrix.length;
+	    },
+
+	    /**
+	     * @return boolean
+	     * @privet
+	     */
+	    _isFitIntoDiagonal:function() {
+	        return this._isFitInHorizontal() && this._isFitIntVertical();
+	    },
+
+	    _hasWinner:function() {
 	        // vertical
 	        let count = 0;
 

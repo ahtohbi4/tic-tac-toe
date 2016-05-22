@@ -51,9 +51,31 @@ const Game = React.createClass({
         };
     },
 
-    _hasWinner() {
-        let line;
+    /**
+     * @return boolean
+     * @privet
+     */
+    _isFitInHorizontal() {
+        return this.state.lineLength <= this.state.matrix[0].length;
+    },
 
+    /**
+     * @return boolean
+     * @privet
+     */
+    _isFitIntVertical() {
+        return this.state.lineLength <= this.state.matrix.length;
+    },
+
+    /**
+     * @return boolean
+     * @privet
+     */
+    _isFitIntoDiagonal() {
+        return this._isFitInHorizontal() && this._isFitIntVertical();
+    },
+
+    _hasWinner() {
         // vertical
         let count = 0;
 
