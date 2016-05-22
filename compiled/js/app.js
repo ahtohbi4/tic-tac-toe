@@ -92,12 +92,14 @@
 	                matrix[y][x] = this._playerValue();
 	            }
 
-	            if (/* Check a winner */true) {
+	            if (/* Check a winner */ true) {
 	                // Congratulate
 	                this._reset();
-	            } else {
+	            } else if (/* Check available to move cells */ true) {
 	                // Continue
 	                this._changePlayer();
+	            } else {
+	                // Dead heat
 	            }
 	        }.bind(this);
 	    },
@@ -128,16 +130,6 @@
 	    },
 
 	    _reset:function() {
-	        this.setState({
-	            matrix: [
-	                [0, 0, 0],
-	                [0, 0, 0],
-	                [0, 0, 0]
-	            ],
-	            history: {
-	                index: this.state.history.index + 1
-	            }
-	        });
 	    },
 
 	    render:function() {
