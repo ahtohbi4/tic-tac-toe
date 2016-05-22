@@ -97,9 +97,13 @@
 
 	            if (matrix[y][x] === 0) {
 	                matrix[y][x] = this._playerValue();
+
+	                this.setState({
+	                    matrix: matrix
+	                });
 	            }
 
-	            if (/* Check a winner */ true) {
+	            if (/* Check a winner */ this._hasWinner()) {
 	                // Congratulate
 	                this._reset();
 	            } else if (/* Check available to move cells */ true) {
