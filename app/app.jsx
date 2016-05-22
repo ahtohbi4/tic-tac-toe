@@ -75,9 +75,14 @@ const Game = React.createClass({
         return this._isFitInHorizontal() && this._isFitIntVertical();
     },
 
+    /**
+     * @return boolean
+     * @privet
+     */
     _hasWinner() {
         let result = false;
 
+        // By horizontal
         if (this._isFitInHorizontal()) {
             this.state.matrix.forEach((row) => {
                 let chain;
@@ -104,9 +109,38 @@ const Game = React.createClass({
             });
         }
 
+        // By vertical
         if (this._isFitIntVertical()) {
+            let matrix = this.state.matrix;
+
+            for (let i = 0; i < matrix[0].length; i++) {
+                let chain;
+
+                for (let j = 0; j < matrix.length; j++) {
+                    let value = matrix[j][i];
+
+                    if (j === 0) {
+                        chain = value;
+                    } else if (matrix[j - 1][i] === value) {
+                        chain += value;
+
+                        if (Math.abs(chain) === this.state.lineLength) {
+                            result = true;
+
+                            break;
+                        }
+                    } else {
+                        chain = 0;
+                    }
+                }
+
+                if (result) {
+                    break;
+                }
+            }
         }
 
+        // By diagonal
         if (this._isFitIntoDiagonal()) {
         }
 
