@@ -129,18 +129,41 @@
 	    },
 
 	    _hasWinner:function() {
-	        // vertical
-	        let count = 0;
+	        let result = false;
 
-	        this.state.matrix.forEach(function(line)  {
-	            line.forEach(function(value, index)  {
-	                if (index > 0 && line[index - 1] === value) {
-	                    count =+ value;
-	                } else {
-	                    count = 0;
+	        if (this._isFitInHorizontal()) {
+	            this.state.matrix.forEach(function(row)  {
+	                let chain;
+
+	                row.forEach(function(value, index)  {
+	                    if (index === 0) {
+	                        chain = value;
+	                    } else if (row[index - 1] === value) {
+	                        chain += value;
+
+	                        if (Math.abs(chain) === this.state.lineLength) {
+	                            result = true;
+
+	                            return true;
+	                        }
+	                    } else {
+	                        chain = 0;
+	                    }
+	                }.bind(this));
+
+	                if (result) {
+	                    return true;
 	                }
-	            });
-	        });
+	            }.bind(this));
+	        }
+
+	        if (this._isFitIntVertical()) {
+	        }
+
+	        if (this._isFitIntoDiagonal()) {
+	        }
+
+	        return result;
 	    },
 
 	    _changePlayer:function() {

@@ -76,18 +76,41 @@ const Game = React.createClass({
     },
 
     _hasWinner() {
-        // vertical
-        let count = 0;
+        let result = false;
 
-        this.state.matrix.forEach((line) => {
-            line.forEach((value, index) => {
-                if (index > 0 && line[index - 1] === value) {
-                    count =+ value;
-                } else {
-                    count = 0;
+        if (this._isFitInHorizontal()) {
+            this.state.matrix.forEach((row) => {
+                let chain;
+
+                row.forEach((value, index) => {
+                    if (index === 0) {
+                        chain = value;
+                    } else if (row[index - 1] === value) {
+                        chain += value;
+
+                        if (Math.abs(chain) === this.state.lineLength) {
+                            result = true;
+
+                            return true;
+                        }
+                    } else {
+                        chain = 0;
+                    }
+                });
+
+                if (result) {
+                    return true;
                 }
             });
-        });
+        }
+
+        if (this._isFitIntVertical()) {
+        }
+
+        if (this._isFitIntoDiagonal()) {
+        }
+
+        return result;
     },
 
     _changePlayer() {
