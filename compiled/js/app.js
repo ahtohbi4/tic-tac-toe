@@ -127,7 +127,7 @@
 	     * @return boolean
 	     * @privet
 	     */
-	    _isFitIntVertical:function() {
+	    _isFitInVertical:function() {
 	        return this.state.chainsLengthForVictory <= this.state.matrix.length;
 	    },
 
@@ -135,7 +135,7 @@
 	     * @return boolean
 	     * @privet
 	     */
-	    _isFitIntoDiagonal:function() {
+	    _isFitInDiagonal:function() {
 	        return this._isFitInHorizontal() && this._isFitIntVertical();
 	    },
 
@@ -174,7 +174,7 @@
 	        }
 
 	        // By vertical
-	        if (this._isFitIntVertical()) {
+	        if (this._isFitInVertical()) {
 	            let matrix = this.state.matrix;
 
 	            for (let i = 0; i < matrix[0].length; i++) {
@@ -205,7 +205,9 @@
 	        }
 
 	        // By diagonal
-	        if (this._isFitIntoDiagonal()) {
+	        if (this._isFitInDiagonal()) {
+	            // Primary diagonal
+	            // Secondary diagonal
 	        }
 
 	        return result;

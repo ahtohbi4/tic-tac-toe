@@ -74,7 +74,7 @@ const Game = React.createClass({
      * @return boolean
      * @privet
      */
-    _isFitIntVertical() {
+    _isFitInVertical() {
         return this.state.chainsLengthForVictory <= this.state.matrix.length;
     },
 
@@ -82,7 +82,7 @@ const Game = React.createClass({
      * @return boolean
      * @privet
      */
-    _isFitIntoDiagonal() {
+    _isFitInDiagonal() {
         return this._isFitInHorizontal() && this._isFitIntVertical();
     },
 
@@ -121,7 +121,7 @@ const Game = React.createClass({
         }
 
         // By vertical
-        if (this._isFitIntVertical()) {
+        if (this._isFitInVertical()) {
             let matrix = this.state.matrix;
 
             for (let i = 0; i < matrix[0].length; i++) {
@@ -152,7 +152,9 @@ const Game = React.createClass({
         }
 
         // By diagonal
-        if (this._isFitIntoDiagonal()) {
+        if (this._isFitInDiagonal()) {
+            // Primary diagonal
+            // Secondary diagonal
         }
 
         return result;
