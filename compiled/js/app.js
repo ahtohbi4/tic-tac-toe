@@ -56,6 +56,8 @@
 	const React = __webpack_require__(2);
 	const ReactDOM = __webpack_require__(3);
 
+	const Matrix = __webpack_require__(149);
+
 	/**
 	 * @class Game
 	 */
@@ -116,101 +118,43 @@
 	    },
 
 	    /**
-	     * @return boolean
+	     * @returns {array}
 	     * @privet
 	     */
-	    _isFitInHorizontal:function() {
-	        return this.state.chainsLengthForVictory <= this.state.matrix[0].length;
+	    _getLines:function() {
+	        let result;
+	        const matrix = new Matrix(this.props.matrix);
+
+	        result = [].concat(matrix.getRows(), matrix.getColumns(), matrix.getDiagonalsMaj(), matrix.getDiagonalsMin());
+	        result = result.filter(function(line)  {
+	            return (line.length >= this.props.chainsLengthForVictory);
+	        }.bind(this));
+
+	        return result;
 	    },
 
 	    /**
-	     * @return boolean
-	     * @privet
-	     */
-	    _isFitInVertical:function() {
-	        return this.state.chainsLengthForVictory <= this.state.matrix.length;
-	    },
-
-	    /**
-	     * @return boolean
-	     * @privet
-	     */
-	    _isFitInDiagonal:function() {
-	        return this._isFitInHorizontal() && this._isFitIntVertical();
-	    },
-
-	    /**
-	     * @return boolean
+	     * @returns {boolean}
 	     * @privet
 	     */
 	    _hasWinner:function() {
-	        let result = false;
+	        return this._getLines().some(function(line)  {
+	            let chain;
 
-	        // By horizontal
-	        if (this._isFitInHorizontal()) {
-	            this.state.matrix.forEach(function(row)  {
-	                let chain;
+	            return line.some(function(value, i)  {
+	                if (i === 0) {
+	                    chain = value;
+	                } else if (line[i - 1] === value) {
+	                    chain += value; // debugger;
 
-	                row.forEach(function(value, index)  {
-	                    if (index === 0) {
-	                        chain = value;
-	                    } else if (row[index - 1] === value) {
-	                        chain += value;
-
-	                        if (Math.abs(chain) === this.state.chainsLengthForVictory) {
-	                            result = true;
-
-	                            return true;
-	                        }
-	                    } else {
-	                        chain = 0;
+	                    if (Math.abs(chain) === this.state.chainsLengthForVictory) {
+	                        return true;
 	                    }
-	                }.bind(this));
-
-	                if (result) {
-	                    return true;
+	                } else {
+	                    chain = 0;
 	                }
 	            }.bind(this));
-	        }
-
-	        // By vertical
-	        if (this._isFitInVertical()) {
-	            let matrix = this.state.matrix;
-
-	            for (let i = 0; i < matrix[0].length; i++) {
-	                let chain;
-
-	                for (let j = 0; j < matrix.length; j++) {
-	                    let value = matrix[j][i];
-
-	                    if (j === 0) {
-	                        chain = value;
-	                    } else if (matrix[j - 1][i] === value) {
-	                        chain += value;
-
-	                        if (Math.abs(chain) === this.state.chainsLengthForVictory) {
-	                            result = true;
-
-	                            break;
-	                        }
-	                    } else {
-	                        chain = 0;
-	                    }
-	                }
-
-	                if (result) {
-	                    break;
-	                }
-	            }
-	        }
-
-	        // By diagonal
-	        if (this._isFitInDiagonal()) {
-	            // Primary diagonal
-	            // Secondary diagonal
-	        }
-
-	        return result;
+	        }.bind(this));
 	    },
 
 	    _changePlayer:function() {
@@ -18943,6 +18887,233 @@
 	var ReactMount = __webpack_require__(29);
 
 	module.exports = ReactMount.renderSubtreeIntoContainer;
+
+/***/ },
+/* 149 */
+/***/ function(module, exports) {
+
+	(() => {
+	    'use strict';
+
+	    /**
+	     * @class
+	     */
+	    class Matrix {
+	        /**
+	         * @param {array} matrix
+	         */
+	        constructor(matrix) {
+	            if (Array.isArray(matrix) && matrix.every((row, i, m) => {
+	                return Array.isArray(row) && m[0].length === row.length;
+	            })) {
+	                this.matrix = matrix;
+
+	                this.size = {
+	                    width: this.matrix[0].length,
+	                    height: this.matrix.length,
+	                    diagonal: this.matrix[0].length + this.matrix.length - 1
+	                };
+	            } else {
+	                throw new Error(`"${matrix}" is not correct matrix.`);
+	            }
+	        }
+
+	        /**
+	         * @returns {array}
+	         */
+	        get() {
+	            return this.matrix;
+	        }
+
+	        /**
+	         * @param {number} number
+	         * @returns {array}
+	         */
+	        getRow(number) {
+	            return this.matrix[number];
+	        }
+
+	        /**
+	         * @param {number} [begin=0]
+	         * @param {number} [end=<rows amount>]
+	         * @returns {array}
+	         */
+	        getRows(begin, end) {
+	            let result;
+
+	            begin = begin || 0;
+	            begin = (begin >= 0) ? begin : this.size.height + begin;
+
+	            end = end || this.size.height;
+	            end = (end >= 0) ? end : this.size.height + end;
+
+	            for (let i = begin; i < end; i++) {
+	                result = result || [];
+	                result.push(this.getRow(i));
+	            }
+
+	            return result;
+	        }
+
+	        /**
+	         * @param {number} number
+	         * @returns {array}
+	         */
+	        getColumn(number) {
+	            let result;
+
+	            if (typeof this.matrix[0][number] !== 'undefined') {
+	                result = this.matrix.map((row) => {
+	                    return row[number];
+	                });
+	            }
+
+	            return result;
+	        }
+
+	        /**
+	         * @param {number} [begin=0]
+	         * @param {number} [end=<columns amount>]
+	         * @returns {array}
+	         */
+	        getColumns(begin, end) {
+	            let result;
+
+	            begin = begin || 0;
+	            begin = (begin >= 0) ? begin : this.size.width + begin;
+
+	            end = end || this.size.width;
+	            end = (end >= 0) ? end : this.size.width + end;
+
+	            for (let i = begin; i < end; i++) {
+	                result = result || [];
+	                result.push(this.getColumn(i));
+	            }
+
+	            return result;
+	        }
+
+	        /**
+	         * @param {number} number
+	         * @returns {array}
+	         */
+	        getDiagonalMaj(number) {
+	            let result;
+
+	            if (number >= 0 && number < this.size.diagonal) {
+	                result = [];
+	                let i, j;
+
+	                if (number < this.size.width) {
+	                    // Above major diagonal
+	                    i = this.size.width - number - 1;
+	                    j = 0;
+	                } else {
+	                    // Below major diagonal
+	                    i = 0;
+	                    j = number - this.size.width + 1;
+	                }
+
+	                while (i < this.size.width && j < this.size.height) {
+	                    result.push(this.matrix[j][i]);
+	                    i++; j++;
+	                }
+	            }
+
+	            return result;
+	        }
+
+	        /**
+	         * @param {number} [begin=0]
+	         * @param {number} [end=<parallel diagonals amount>]
+	         * @returns {array}
+	         */
+	        getDiagonalsMaj(begin, end) {
+	            let result;
+
+	            begin = begin || 0;
+	            begin = (begin >= 0) ? begin : this.size.diagonal + begin;
+
+	            end = end || this.size.diagonal;
+	            end = (end >= 0) ? end : this.size.diagonal + end;
+
+	            for (let i = begin; i < end; i++) {
+	                result = result || [];
+	                result.push(this.getDiagonalMaj(i));
+	            }
+
+	            return result;
+	        }
+
+	        /**
+	         * @param {number} number
+	         * @returns {array}
+	         */
+	        getDiagonalMin(number) {
+	            let result;
+
+	            if (number >= 0 && number < this.size.diagonal) {
+	                result = [];
+	                let i, j;
+
+	                if (number < this.size.width) {
+	                    // Above minor diagonal
+	                    i = number;
+	                    j = 0;
+	                } else {
+	                    // Below minor diagonal
+	                    i = this.size.width - 1;
+	                    j = number - this.size.width + 1;
+	                }
+
+	                while (i >= 0 && j < this.size.height) {
+	                    result.push(this.matrix[j][i]);
+	                    i--; j++;
+	                }
+	            }
+
+	            return result;
+	        }
+
+	        /**
+	         * @param {number} [begin=0]
+	         * @param {number} [end=<parallel diagonals amount>]
+	         * @returns {array}
+	         */
+	        getDiagonalsMin(begin, end) {
+	            let result;
+
+	            begin = begin || 0;
+	            begin = (begin >= 0) ? begin : this.size.diagonal + begin;
+
+	            end = end || this.size.diagonal;
+	            end = (end >= 0) ? end : this.size.diagonal + end;
+
+	            for (let i = begin; i < end; i++) {
+	                result = result || [];
+	                result.push(this.getDiagonalMin(i));
+	            }
+
+	            return result;
+	        }
+	    }
+
+	    if (typeof define === 'function') {
+	        // Define Matrix for AMD loaders
+	        define(function() {
+	            return Matrix;
+	        });
+
+	    } else if (typeof module !== 'undefined' && module.exports) {
+	        // Expose Matrix for node
+	        module.exports = Matrix;
+
+	    } else {
+	        // Otherwise write to window
+	        window.Matrix = Matrix;
+	    }
+	})();
+
 
 /***/ }
 /******/ ]);

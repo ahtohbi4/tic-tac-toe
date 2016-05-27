@@ -3,6 +3,8 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
+const Matrix = require('../lib/matrix/');
+
 /**
  * @class Game
  */
@@ -63,101 +65,43 @@ const Game = React.createClass({
     },
 
     /**
-     * @return boolean
+     * @returns {array}
      * @privet
      */
-    _isFitInHorizontal() {
-        return this.state.chainsLengthForVictory <= this.state.matrix[0].length;
+    _getLines() {
+        let result;
+        const matrix = new Matrix(this.props.matrix);
+
+        result = [].concat(matrix.getRows(), matrix.getColumns(), matrix.getDiagonalsMaj(), matrix.getDiagonalsMin());
+        result = result.filter((line) => {
+            return (line.length >= this.props.chainsLengthForVictory);
+        });
+
+        return result;
     },
 
     /**
-     * @return boolean
-     * @privet
-     */
-    _isFitInVertical() {
-        return this.state.chainsLengthForVictory <= this.state.matrix.length;
-    },
-
-    /**
-     * @return boolean
-     * @privet
-     */
-    _isFitInDiagonal() {
-        return this._isFitInHorizontal() && this._isFitIntVertical();
-    },
-
-    /**
-     * @return boolean
+     * @returns {boolean}
      * @privet
      */
     _hasWinner() {
-        let result = false;
+        return this._getLines().some((line) => {
+            let chain;
 
-        // By horizontal
-        if (this._isFitInHorizontal()) {
-            this.state.matrix.forEach((row) => {
-                let chain;
+            return line.some((value, i) => {
+                if (i === 0) {
+                    chain = value;
+                } else if (line[i - 1] === value) {
+                    chain += value; // debugger;
 
-                row.forEach((value, index) => {
-                    if (index === 0) {
-                        chain = value;
-                    } else if (row[index - 1] === value) {
-                        chain += value;
-
-                        if (Math.abs(chain) === this.state.chainsLengthForVictory) {
-                            result = true;
-
-                            return true;
-                        }
-                    } else {
-                        chain = 0;
+                    if (Math.abs(chain) === this.state.chainsLengthForVictory) {
+                        return true;
                     }
-                });
-
-                if (result) {
-                    return true;
+                } else {
+                    chain = 0;
                 }
             });
-        }
-
-        // By vertical
-        if (this._isFitInVertical()) {
-            let matrix = this.state.matrix;
-
-            for (let i = 0; i < matrix[0].length; i++) {
-                let chain;
-
-                for (let j = 0; j < matrix.length; j++) {
-                    let value = matrix[j][i];
-
-                    if (j === 0) {
-                        chain = value;
-                    } else if (matrix[j - 1][i] === value) {
-                        chain += value;
-
-                        if (Math.abs(chain) === this.state.chainsLengthForVictory) {
-                            result = true;
-
-                            break;
-                        }
-                    } else {
-                        chain = 0;
-                    }
-                }
-
-                if (result) {
-                    break;
-                }
-            }
-        }
-
-        // By diagonal
-        if (this._isFitInDiagonal()) {
-            // Primary diagonal
-            // Secondary diagonal
-        }
-
-        return result;
+        });
     },
 
     _changePlayer() {
