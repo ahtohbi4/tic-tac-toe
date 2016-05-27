@@ -52,10 +52,10 @@ const Game = React.createClass({
                 });
             }
 
-            if (/* Check a winner */ this._hasWinner()) {
+            if (/** Check a winner */ this._hasWinner()) {
                 // Congratulate
                 this._reset();
-            } else if (/* Check available to move cells */ true) {
+            } else if (/** Check available to move cells */ true) {
                 // Continue
                 this._changePlayer();
             } else {
@@ -89,16 +89,14 @@ const Game = React.createClass({
             let chain;
 
             return line.some((value, i) => {
-                if (i === 0) {
-                    chain = value;
-                } else if (line[i - 1] === value) {
+                if (i !== 0 && line[i - 1] === value) {
                     chain += value; // debugger;
 
                     if (Math.abs(chain) === this.state.chainsLengthForVictory) {
                         return true;
                     }
                 } else {
-                    chain = 0;
+                    chain = value;
                 }
             });
         });
