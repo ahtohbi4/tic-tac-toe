@@ -5,6 +5,58 @@ const ReactDOM = require('react-dom');
 
 const Matrix = require('../lib/matrix/');
 
+const App = React.createClass({
+    getInitialState() {
+        return {
+            matrix: [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0]
+            ],
+            chainsLengthForVictory: 3
+        };
+    },
+
+    _newGame() {
+        this.setState({
+            matrix: [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0]
+            ],
+            chainsLengthForVictory: 2
+        });
+    },
+
+    render() {
+        return <div className="app">
+            <h1></h1>
+
+            <Game matrix={this.state.matrix} chainsLengthForVictory={this.state.chainsLengthForVictory}/>
+
+            <PopupContainer/>
+        </div>;
+    }
+});
+
+const PopupContainer = React.createClass({
+    getDefaultProps() {
+        return {
+            popups: []
+        };
+    },
+
+    render() {
+        if (this.props.popups.length) {
+            return <div className="popup-container">{this.props.popups.map((popup) => {
+                return 'dddd';
+            })}</div>;
+        } else {
+            return false;
+        }
+    }
+});
+
 /**
  * @class Game
  */
@@ -216,4 +268,4 @@ const Score = React.createClass({
     }
 });
 
-ReactDOM.render(<Game/>, document.querySelector('.app'));
+ReactDOM.render(<App/>, document.querySelector('.app'));

@@ -58,6 +58,58 @@
 
 	const Matrix = __webpack_require__(149);
 
+	const App = React.createClass({displayName: "App",
+	    getInitialState:function() {
+	        return {
+	            matrix: [
+	                [0, 0, 0],
+	                [0, 0, 0],
+	                [0, 0, 0]
+	            ],
+	            chainsLengthForVictory: 3
+	        };
+	    },
+
+	    _newGame:function() {
+	        this.setState({
+	            matrix: [
+	                [0, 0, 0],
+	                [0, 0, 0],
+	                [0, 0, 0]
+	            ],
+	            chainsLengthForVictory: 2
+	        });
+	    },
+
+	    render:function() {
+	        return React.createElement("div", {className: "app"}, 
+	            React.createElement("h1", null), 
+
+	            React.createElement(Game, {matrix: this.state.matrix, chainsLengthForVictory: this.state.chainsLengthForVictory}), 
+
+	            React.createElement(PopupContainer, null)
+	        );
+	    }
+	});
+
+	const PopupContainer = React.createClass({displayName: "PopupContainer",
+	    getDefaultProps:function() {
+	        return {
+	            popups: []
+	        };
+	    },
+
+	    render:function() {
+	        if (this.props.popups.length) {
+	            return React.createElement("div", {className: "popup-container"}, this.props.popups.map(function(popup)  {
+	                return 'dddd';
+	            }));
+	        } else {
+	            return false;
+	        }
+	    }
+	});
+
 	/**
 	 * @class Game
 	 */
@@ -269,7 +321,7 @@
 	    }
 	});
 
-	ReactDOM.render(React.createElement(Game, null), document.querySelector('.app'));
+	ReactDOM.render(React.createElement(App, null), document.querySelector('.app'));
 
 
 /***/ },
