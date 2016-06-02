@@ -106,6 +106,7 @@ const Game = React.createClass({
 
             if (/** Check a winner */ this._hasWinner()) {
                 // Congratulate
+                console.log('Winner!');
                 this._reset();
             } else if (/** Check available to move cells */ true) {
                 // Continue
