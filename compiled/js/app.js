@@ -117,9 +117,11 @@
 	    getDefaultProps:function() {
 	        return {
 	            matrix: [
-	                [0, 0, 0],
-	                [0, 0, 0],
-	                [0, 0, 0]
+	                [0, 0, 0, 0, 0],
+	                [0, 0, 0, 0, 0],
+	                [0, 0, 0, 0, 0],
+	                [0, 0, 0, 0, 0],
+	                [0, 0, 0, 0, 0]
 	            ],
 	            chainsLengthForVictory: 3
 	        };
