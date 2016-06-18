@@ -1,6 +1,7 @@
 'use strict';
 
-let ENV = 'development';
+const ENV = process.env.ENV || 'development';
+const isDev = ENV === 'development';
 
 const gulp = require('gulp');
 const webpackStream = require('webpack-stream');
@@ -45,7 +46,7 @@ gulp.task('webpack', function () {
                 }
             ]
         },
-        watch: (ENV === 'development') ? true : false,
+        watch: isDev ? true : false,
         externals: {
             'react': 'React'
         },
