@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Tic-tac-toe game",
   "main": "index.html",
-  "scripts": {},
+  "scripts": {
+    "build:watch": "ENV=prod gulp watch"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ahtohbi4/tic-tac-toe.git"
