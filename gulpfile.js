@@ -27,7 +27,7 @@ const PATHS = {
     }
 };
 
-gulp.task('html', function () {
+gulp.task('html', () => {
     return gulp.src(PATHS.src.html)
         .pipe(rename('index.html'))
         .pipe(htmlmin({
@@ -36,7 +36,7 @@ gulp.task('html', function () {
         .pipe(gulp.dest(PATHS.dest.html));
 });
 
-gulp.task('webpack', function () {
+gulp.task('webpack', () => {
     let config = {
         module: {
             loaders: [
@@ -65,7 +65,7 @@ gulp.task('webpack', function () {
         .pipe(gulp.dest(PATHS.dest.js));
 });
 
-gulp.task('css', function () {
+gulp.task('css', () => {
     return gulp.src(PATHS.src.css)
         .pipe(named())
         .pipe(gulp.dest(PATHS.dest.css));
@@ -80,7 +80,7 @@ gulp.task('default', [
 // Watchers
 gulp.task('watch:html', [
     'html'
-], function () {
+], () => {
     return gulp.watch(PATHS.src.html, [
         'html'
     ]);
@@ -88,7 +88,7 @@ gulp.task('watch:html', [
 
 gulp.task('watch:css', [
     'css'
-], function () {
+], () => {
     return gulp.watch(PATHS.src.css, [
         'css'
     ]);
@@ -96,7 +96,7 @@ gulp.task('watch:css', [
 
 gulp.task('watch:js', [
     'webpack'
-], function () {
+], () => {
     return gulp.watch(PATHS.src.js, [
         'webpack'
     ]);
