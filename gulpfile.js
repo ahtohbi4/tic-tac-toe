@@ -1,7 +1,11 @@
 'use strict';
 
-const ENV = process.env.ENV || 'development';
-const isDev = ENV === 'development';
+/**
+ * @type {string} ENV - Mode of deployment. Available 'dev' and 'prod' values.
+ * @example '$ ENV=prod gulp'
+ */
+const ENV = process.env.ENV || 'dev';
+const isDev = ENV === 'dev';
 
 const gulp = require('gulp');
 const webpackStream = require('webpack-stream');
