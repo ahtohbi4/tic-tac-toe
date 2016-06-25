@@ -73,6 +73,7 @@ gulp.task('css', () => {
     return gulp.src(PATHS.src.css)
         .pipe(sourcemaps.init())
         .pipe(postcss([
+            require('postcss-import'),
             require('autoprefixer')
         ]))
         .pipe(sourcemaps.write('.'))
