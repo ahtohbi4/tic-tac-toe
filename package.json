@@ -32,6 +32,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
     "jsx-loader": "^0.13.2",
+    "postcss-csso": "^1.1.2",
     "postcss-import": "^8.1.2",
     "vinyl-named": "^1.1.0",
     "webpack-stream": "^3.1.0"
