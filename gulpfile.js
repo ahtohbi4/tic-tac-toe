@@ -18,10 +18,7 @@ const htmlmin = require('gulp-htmlmin');
 const PATHS = {
     src: {
         html: 'app/*.html',
-        css: [
-            'lib/normalize.css/*.css',
-            'app/*.css'
-        ],
+        css: 'app/*.css',
         js: 'app/*.jsx'
     },
     dest: {
@@ -70,8 +67,15 @@ gulp.task('webpack', () => {
 });
 
 gulp.task('css', () => {
+    const postcss = require('gulp-postcss');
+    const sourcemaps = require('gulp-sourcemaps');
+
     return gulp.src(PATHS.src.css)
-        .pipe(named())
+        .pipe(sourcemaps.init())
+        .pipe(postcss([
+            require('autoprefixer')
+        ]))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(PATHS.dest.css));
 });
 
