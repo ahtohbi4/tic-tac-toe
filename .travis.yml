@@ -1,8 +1,12 @@
+language: node_js
+
+node_js:
+    - 5
+
 language: python
 
-python: 2.7
-
-node_js: 5
+python:
+    - 2.7
 
 before_install:
     - sudo apt-get update
