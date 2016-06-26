@@ -70,13 +70,17 @@ gulp.task('css', () => {
     const postcss = require('gulp-postcss');
     const sourcemaps = require('gulp-sourcemaps');
 
+    const plugins = [
+        require('postcss-import'),
+        require('autoprefixer'),
+        (!isDev ? require('postcss-csso') : null)
+    ].filter((plugin) => {
+        return plugin;
+    });
+
     return gulp.src(PATHS.src.css)
         .pipe(sourcemaps.init())
-        .pipe(postcss([
-            require('postcss-import'),
-            require('autoprefixer'),
-            require('postcss-csso')
-        ]))
+        .pipe(postcss(plugins))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(PATHS.dest.css));
 });
