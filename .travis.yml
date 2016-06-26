@@ -1,4 +1,9 @@
-language: python
+language:
+    - node_js
+    - python
+
+node_js:
+    - 5
 
 python:
     - 2.7
