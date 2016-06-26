@@ -1,14 +1,10 @@
-sudo: required
-
-language: node_js
-
-node_js:
-    - 5
+language: python
 
 python:
     - 2.7
 
 before_install:
+    - nvm install 5
     - sudo apt-get update
     - sudo apt-get install oracle-java8-installer
     - sudo update-java-alternatives -s java-8-oracle
