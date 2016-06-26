@@ -24,7 +24,7 @@
   "homepage": "https://github.com/ahtohbi4/tic-tac-toe#readme",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
-    "babel-eslint": "^5.0.0",
+    "babel-eslint": "^6.1.0",
     "eslint": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-htmlmin": "^1.3.0",
