@@ -30,12 +30,18 @@ const App = React.createClass({
 
     render() {
         return <div className="app">
-            <h1></h1>
+            <h1>Tic-tac-toe</h1>
 
             <Game matrix={this.state.matrix} chainsLengthForVictory={this.state.chainsLengthForVictory}/>
 
-            <PopupContainer/>
+            <PopupContainer popups={this.state.popups}/>
         </div>;
+    }
+});
+
+const Popup = React.createClass({
+    render() {
+        return <div className="popup">{this.props.content}</div>
     }
 });
 
@@ -49,7 +55,7 @@ const PopupContainer = React.createClass({
     render() {
         if (this.props.popups.length) {
             return <div className="popup-container">{this.props.popups.map((popup) => {
-                return 'dddd';
+                return alert('Popup was created!');
             })}</div>;
         } else {
             return false;

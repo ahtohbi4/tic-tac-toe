@@ -83,12 +83,18 @@
 
 	    render:function() {
 	        return React.createElement("div", {className: "app"}, 
-	            React.createElement("h1", null), 
+	            React.createElement("h1", null, "Tic-tac-toe"), 
 
 	            React.createElement(Game, {matrix: this.state.matrix, chainsLengthForVictory: this.state.chainsLengthForVictory}), 
 
-	            React.createElement(PopupContainer, null)
+	            React.createElement(PopupContainer, {popups: this.state.popups})
 	        );
+	    }
+	});
+
+	const Popup = React.createClass({displayName: "Popup",
+	    render:function() {
+	        return React.createElement("div", {className: "popup"}, this.props.content)
 	    }
 	});
 
@@ -102,7 +108,7 @@
 	    render:function() {
 	        if (this.props.popups.length) {
 	            return React.createElement("div", {className: "popup-container"}, this.props.popups.map(function(popup)  {
-	                return 'dddd';
+	                return alert('Popup was created!');
 	            }));
 	        } else {
 	            return false;
