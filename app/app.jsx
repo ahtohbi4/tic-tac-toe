@@ -3,7 +3,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-const Matrix = require('../lib/matrix/');
+const Matrix = require('../lib/matrix-slicer/');
 
 const App = React.createClass({
     getInitialState() {

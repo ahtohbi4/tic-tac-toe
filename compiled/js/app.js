@@ -56,7 +56,7 @@
 	const React = __webpack_require__(2);
 	const ReactDOM = __webpack_require__(3);
 
-	const Matrix = __webpack_require__(149);
+	const Matrix = __webpack_require__(150);
 
 	const App = React.createClass({displayName: "App",
 	    getInitialState:function() {
@@ -18980,7 +18980,8 @@
 	module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ },
-/* 149 */
+/* 149 */,
+/* 150 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;(() => {

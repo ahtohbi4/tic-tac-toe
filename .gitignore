@@ -1,3 +1,7 @@
 .project
 
 node_modules/
+
+npm-debug.log
+
+compiled/**/*.map
