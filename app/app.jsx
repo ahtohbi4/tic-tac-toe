@@ -28,23 +28,52 @@ const App = React.createClass({
         });
     },
 
+    _onWinner() {
+        this.setState({
+            popups: [
+                {
+                    title: 'YeH! We have the Winner!',
+                    content: <Button>New Game</Button>
+                }
+            ]
+        });
+    },
+
     render() {
         return <div className="app">
             <h1>Tic-tac-toe</h1>
 
-            <Game matrix={this.state.matrix} chainsLengthForVictory={this.state.chainsLengthForVictory}/>
+            <Game matrix={this.state.matrix} onWinner={this._onWinner} chainsLengthForVictory={this.state.chainsLengthForVictory}/>
 
             <PopupContainer popups={this.state.popups}/>
         </div>;
     }
 });
 
-const Popup = React.createClass({
+/**
+ * @class Button
+ */
+const Button = React.createClass({
     render() {
-        return <div className="popup">{this.props.content}</div>
+        return <button>{this.props.children}</button>;
     }
 });
 
+/**
+ * @class Popup
+ */
+const Popup = React.createClass({
+    render() {
+        return <div className="popup">
+            <h3>{this.props.title}</h3>
+            {this.props.content}
+        </div>;
+    }
+});
+
+/**
+ * @class PopupContainer
+ */
 const PopupContainer = React.createClass({
     getDefaultProps() {
         return {
@@ -54,8 +83,8 @@ const PopupContainer = React.createClass({
 
     render() {
         if (this.props.popups.length) {
-            return <div className="popup-container">{this.props.popups.map((popup) => {
-                return alert('Popup was created!');
+            return <div className="popup-container">{this.props.popups.map((popup, i) => {
+                return <Popup key={i} title={popup.title} content={popup.content}/>;
             })}</div>;
         } else {
             return false;
@@ -114,7 +143,7 @@ const Game = React.createClass({
 
             if (/** Check a winner */ this._hasWinner()) {
                 // Congratulate
-                console.log('Winner!');
+                this.props.onWinner();
                 this._reset();
             } else if (/** Check available to move cells */ true) {
                 // Continue

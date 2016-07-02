@@ -56,7 +56,7 @@
 	const React = __webpack_require__(2);
 	const ReactDOM = __webpack_require__(3);
 
-	const Matrix = __webpack_require__(150);
+	const Matrix = __webpack_require__(149);
 
 	const App = React.createClass({displayName: "App",
 	    getInitialState:function() {
@@ -81,23 +81,52 @@
 	        });
 	    },
 
+	    _onWinner:function() {
+	        this.setState({
+	            popups: [
+	                {
+	                    title: 'YeH! We have the Winner!',
+	                    content: React.createElement(Button, null, "New Game")
+	                }
+	            ]
+	        });
+	    },
+
 	    render:function() {
 	        return React.createElement("div", {className: "app"}, 
 	            React.createElement("h1", null, "Tic-tac-toe"), 
 
-	            React.createElement(Game, {matrix: this.state.matrix, chainsLengthForVictory: this.state.chainsLengthForVictory}), 
+	            React.createElement(Game, {matrix: this.state.matrix, onWinner: this._onWinner, chainsLengthForVictory: this.state.chainsLengthForVictory}), 
 
 	            React.createElement(PopupContainer, {popups: this.state.popups})
 	        );
 	    }
 	});
 
-	const Popup = React.createClass({displayName: "Popup",
+	/**
+	 * @class Button
+	 */
+	const Button = React.createClass({displayName: "Button",
 	    render:function() {
-	        return React.createElement("div", {className: "popup"}, this.props.content)
+	        return React.createElement("button", null, this.props.children);
 	    }
 	});
 
+	/**
+	 * @class Popup
+	 */
+	const Popup = React.createClass({displayName: "Popup",
+	    render:function() {
+	        return React.createElement("div", {className: "popup"}, 
+	            React.createElement("h3", null, this.props.title), 
+	            this.props.content
+	        );
+	    }
+	});
+
+	/**
+	 * @class PopupContainer
+	 */
 	const PopupContainer = React.createClass({displayName: "PopupContainer",
 	    getDefaultProps:function() {
 	        return {
@@ -107,8 +136,8 @@
 
 	    render:function() {
 	        if (this.props.popups.length) {
-	            return React.createElement("div", {className: "popup-container"}, this.props.popups.map(function(popup)  {
-	                return alert('Popup was created!');
+	            return React.createElement("div", {className: "popup-container"}, this.props.popups.map(function(popup, i)  {
+	                return React.createElement(Popup, {key: i, title: popup.title, content: popup.content});
 	            }));
 	        } else {
 	            return false;
@@ -167,7 +196,7 @@
 
 	            if (/** Check a winner */ this._hasWinner()) {
 	                // Congratulate
-	                console.log('Winner!');
+	                this.props.onWinner();
 	                this._reset();
 	            } else if (/** Check available to move cells */ true) {
 	                // Continue
@@ -18980,8 +19009,7 @@
 	module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ },
-/* 149 */,
-/* 150 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;(() => {
