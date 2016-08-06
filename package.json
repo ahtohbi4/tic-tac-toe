@@ -4,8 +4,8 @@
   "description": "Tic-tac-toe game",
   "main": "index.html",
   "scripts": {
-    "start": "node server.js",
-    "build": "rm -rf build/ && ENV=prod webpack"
+    "start": "ENV=dev node server.js",
+    "build": "rm -rf build/ && webpack"
   },
   "repository": {
     "type": "git",

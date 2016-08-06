@@ -2,8 +2,10 @@
 
 const path = require('path');
 const webpack = require('webpack');
+
+const __DEV__ = (process.env.ENV === 'dev');
 const devFlagPlugin = new webpack.DefinePlugin({
-    __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
+    __DEV__: __DEV__
 });
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -17,6 +19,8 @@ const PORT = 8080;
 
 module.exports = {
     devtool: 'eval',
+
+    watch: __DEV__,
 
     entry: [
         `webpack-dev-server/client?http://${HOST}:${PORT}`,
