@@ -17,7 +17,14 @@ const autoprefixer = require('autoprefixer');
 const HOST = 'localhost';
 const PORT = 8080;
 
-let plugins = [];
+let entry = [
+    './app/resources/pages/index'
+];
+let plugins = [
+    devFlagPlugin,
+    extractHTML,
+    extractCSS
+];
 let loaders = [
     {
         test: /\.css$/,
@@ -30,6 +37,9 @@ let loaders = [
 ];
 
 if (__DEV__) {
+    entry.push(`webpack-dev-server/client?http://${HOST}:${PORT}`);
+    entry.push('webpack/hot/only-dev-server');
+
     plugins.push(new webpack.HotModuleReplacementPlugin());
     plugins.push(new webpack.NoErrorsPlugin());
 
@@ -52,18 +62,12 @@ if (__DEV__) {
     });
 }
 
-plugins.push(devFlagPlugin, extractHTML, extractCSS);
-
 module.exports = {
     devtool: __DEV__ ? 'eval' : false,
 
     watch: __DEV__,
 
-    entry: [
-        `webpack-dev-server/client?http://${HOST}:${PORT}`,
-        'webpack/hot/only-dev-server',
-        './app/resources/pages/index'
-    ],
+    entry: entry,
 
     output: {
         filename: '[name].js',
