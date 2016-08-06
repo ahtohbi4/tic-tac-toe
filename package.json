@@ -4,6 +4,7 @@
   "description": "Tic-tac-toe game",
   "main": "index.html",
   "scripts": {
+    "start": "node server.js",
     "build": "ENV=prod gulp",
     "build:watch": "gulp watch"
   },
@@ -24,17 +25,26 @@
   "homepage": "https://github.com/ahtohbi4/tic-tac-toe#readme",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
+    "babel-core": "^6.11.4",
     "babel-eslint": "^6.1.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-3": "^6.11.0",
+    "css-loader": "^0.23.1",
     "eslint": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-htmlmin": "^1.3.0",
     "gulp-postcss": "^6.1.1",
-    "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
-    "jsx-loader": "^0.13.2",
     "postcss-csso": "^1.1.2",
     "postcss-import": "^8.1.2",
+    "postcss-loader": "^0.9.1",
+    "react-hot-loader": "^1.3.0",
+    "style-loader": "^0.13.1",
     "vinyl-named": "^1.1.0",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1",
     "webpack-stream": "^3.1.0"
   },
   "dependencies": {

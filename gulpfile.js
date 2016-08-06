@@ -12,29 +12,22 @@ const webpackStream = require('webpack-stream');
 const webpack = webpackStream.webpack;
 
 const named = require('vinyl-named');
-const rename = require('gulp-rename');
 const htmlmin = require('gulp-htmlmin');
 
 const PATHS = {
     src: {
-        html: 'app/*.html',
-        css: 'app/*.css',
-        js: 'app/*.jsx'
+        html: 'app/resources/pages/index.html',
+        css: 'app/resources/pages/index.css'
     },
-    dest: {
-        html: './',
-        css: 'compiled/css',
-        js: 'compiled/js'
-    }
+    dest: 'build/'
 };
 
 gulp.task('html', () => {
     return gulp.src(PATHS.src.html)
-        .pipe(rename('index.html'))
         .pipe(htmlmin({
             collapseWhitespace: true
         }))
-        .pipe(gulp.dest(PATHS.dest.html));
+        .pipe(gulp.dest(PATHS.dest));
 });
 
 gulp.task('webpack', () => {
@@ -63,7 +56,7 @@ gulp.task('webpack', () => {
     return gulp.src(PATHS.src.js)
         .pipe(named())
         .pipe(webpackStream(config))
-        .pipe(gulp.dest(PATHS.dest.js));
+        .pipe(gulp.dest(PATHS.dest));
 });
 
 gulp.task('css', () => {
@@ -82,7 +75,7 @@ gulp.task('css', () => {
         .pipe(sourcemaps.init())
         .pipe(postcss(plugins))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(PATHS.dest.css));
+        .pipe(gulp.dest(PATHS.dest));
 });
 
 gulp.task('default', [
