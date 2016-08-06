@@ -1,8 +1,14 @@
+'use strict'
+
 const path = require('path');
 const webpack = require('webpack');
 const devFlagPlugin = new webpack.DefinePlugin({
     __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
 });
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+let extractHTML = new ExtractTextPlugin('index.html');
+let extractCSS = new ExtractTextPlugin('[name].css');
 
 const autoprefixer = require('autoprefixer');
 
@@ -19,7 +25,7 @@ module.exports = {
     ],
 
     output: {
-        filename: 'index.js',
+        filename: '[name].js',
         path: path.join(__dirname, 'build'),
         publicPath: '/build/'
     },
@@ -27,19 +33,25 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        devFlagPlugin
+        devFlagPlugin,
+        extractHTML,
+        extractCSS
     ],
 
     module: {
         loaders: [
             {
+                test: /\.css$/,
+                loader: extractCSS.extract('css!postcss')
+            },
+            {
+                test: /\.html$/,
+                loader: extractHTML.extract('raw!html-minify')
+            },
+            {
                 test: /\.jsx?$/,
                 loaders: ['react-hot', 'babel'],
                 include: path.join(__dirname, 'app/resources/')
-            },
-            {
-                test: /\.css$/,
-                loader: 'style-loader!css-loader!postcss-loader'
             }
         ]
     },
