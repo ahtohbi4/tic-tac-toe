@@ -17,8 +17,45 @@ const autoprefixer = require('autoprefixer');
 const HOST = 'localhost';
 const PORT = 8080;
 
+let plugins = [];
+let loaders = [
+    {
+        test: /\.css$/,
+        loader: extractCSS.extract('css!postcss')
+    },
+    {
+        test: /\.html$/,
+        loader: extractHTML.extract('raw!html-minify')
+    }
+];
+
+if (__DEV__) {
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+    plugins.push(new webpack.NoErrorsPlugin());
+
+    loaders.push({
+        test: /\.jsx?$/,
+        loaders: ['react-hot', 'babel'],
+        include: path.join(__dirname, 'app/resources/')
+    });
+} else {
+    plugins.push(new webpack.optimize.DedupePlugin());
+    plugins.push(new webpack.optimize.OccurenceOrderPlugin());
+    plugins.push(new webpack.optimize.UglifyJsPlugin({
+        acorn: true
+    }));
+
+    loaders.push({
+        test: /\.jsx?$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, 'app/resources/')
+    });
+}
+
+plugins.push(devFlagPlugin, extractHTML, extractCSS);
+
 module.exports = {
-    devtool: 'eval',
+    devtool: __DEV__ ? 'eval' : false,
 
     watch: __DEV__,
 
@@ -34,30 +71,10 @@ module.exports = {
         publicPath: '/build/'
     },
 
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-        devFlagPlugin,
-        extractHTML,
-        extractCSS
-    ],
+    plugins: plugins,
 
     module: {
-        loaders: [
-            {
-                test: /\.css$/,
-                loader: extractCSS.extract('css!postcss')
-            },
-            {
-                test: /\.html$/,
-                loader: extractHTML.extract('raw!html-minify')
-            },
-            {
-                test: /\.jsx?$/,
-                loaders: ['react-hot', 'babel'],
-                include: path.join(__dirname, 'app/resources/')
-            }
-        ]
+        loaders: loaders
     },
 
     postcss: () => {
