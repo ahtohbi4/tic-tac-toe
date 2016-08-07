@@ -1,0 +1,27 @@
+.score {
+    margin: 0 0 27px;
+    clear: both;
+    text-align: center;
+}
+
+.score__wins,
+.score__defeats {
+    display: inline-block;
+}
+.score__wins::before,
+.score__defeats::after {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    vertical-align: bottom;
+}
+.score__wins::before {
+    content: url(./score__wins.svg);
+}
+.score__defeats::after {
+    content: url(./score__defeats.svg);
+}
+
+.score__delimiter {
+    margin: 0 5px;
+}

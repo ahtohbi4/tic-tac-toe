@@ -8,4 +8,5 @@ body {
 
 @import url(../blocks/app/app.css);
 @import url(../blocks/game/game.css);
+@import url(../blocks/score/score.css);
 @import url(../blocks/settings/settings.css);
