@@ -4,6 +4,10 @@ import Game from '../game/game';
 import Score from '../score/score';
 import SettingsControl from '../settings/settings__control';
 
+/**
+ * @class
+ * @extends Component
+ */
 export default class App extends Component {
     render() {
         return <div className="app">
