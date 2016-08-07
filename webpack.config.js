@@ -49,7 +49,9 @@ if (__DEV__) {
 
     loaders.push({
         test: /\.jsx?$/,
-        loaders: ['react-hot', 'babel'],
+        loaders: [
+            'react-hot', 'babel'
+        ],
         include: path.join(__dirname, 'app/resources/')
     });
 } else {
