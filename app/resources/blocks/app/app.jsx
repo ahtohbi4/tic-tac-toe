@@ -16,6 +16,8 @@ export default class App extends Component {
             <h1 className="app__title">Tic-Tac-Toe</h1>
 
             <Score/>
+
+            <Game/>
         </div>;
     }
 }
