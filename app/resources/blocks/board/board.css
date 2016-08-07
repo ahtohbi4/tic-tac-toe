@@ -1,0 +1,32 @@
+.board {
+    max-width: 500px;
+    margin: 0 auto 18px;
+}
+
+/* @elem row */
+.board__row {
+    display: flex;
+}
+
+/* @elem cell */
+.board__cell {
+    flex-grow: 1;
+}
+.board__cell::before {
+    display: block;
+    padding-top: 100%;
+    border: 1px solid red;
+    content: '';
+}
+.board__cell:first-child::before {
+    border-left-color: transparent;
+}
+.board__cell:last-child::before {
+    border-right-color: transparent;
+}
+.board__row:first-child .board__cell::before {
+    border-top-color: transparent;
+}
+.board__row:last-child .board__cell::before {
+    border-bottom-color: transparent;
+}
