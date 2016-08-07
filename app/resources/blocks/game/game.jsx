@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Matrix from 'matrix-slicer';
 
 import Board from '../board/board';
 
