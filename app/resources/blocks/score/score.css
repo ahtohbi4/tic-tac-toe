@@ -1,6 +1,8 @@
 .score {
     margin: 0 0 27px;
     clear: both;
+    font-size: 36px;
+    line-height: 36px;
     text-align: center;
 }
 
@@ -12,14 +14,17 @@
 .score__defeats::after {
     display: inline-block;
     width: 32px;
-    height: 32px;
+    height: 36px;
     vertical-align: bottom;
+    content: '';
 }
 .score__wins::before {
-    content: url(./score__wins.svg);
+    margin-right: 5px;
+    background: url(./score__wins.svg) 50% 50% no-repeat;
 }
 .score__defeats::after {
-    content: url(./score__defeats.svg);
+    margin-left: 5px;
+    background: url(./score__defeats.svg) 50% 50% no-repeat;
 }
 
 .score__delimiter {
