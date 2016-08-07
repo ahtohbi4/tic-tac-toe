@@ -1,0 +1,9 @@
+.app {
+    margin: 9px 10px;
+    padding: 0;
+}
+
+.app__title {
+    margin: 0 0 36px 46px;
+    font: 100 27px/36px Arial;
+}

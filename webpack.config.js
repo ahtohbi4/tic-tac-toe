@@ -33,6 +33,10 @@ let loaders = [
     {
         test: /\.html$/,
         loader: extractHTML.extract('raw!html-minify')
+    },
+    {
+        test: /\.(jpg|png|svg)$/,
+        loader: 'file?name=[hash].[ext]'
     }
 ];
 

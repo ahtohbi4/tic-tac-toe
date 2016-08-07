@@ -1,0 +1,11 @@
+@import url(~normalize.css/normalize.css);
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+@import url(../blocks/app/app.css);
+@import url(../blocks/game/game.css);
+@import url(../blocks/settings/settings.css);

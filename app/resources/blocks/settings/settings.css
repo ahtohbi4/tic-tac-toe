@@ -1,0 +1,7 @@
+.settings__control {
+    float: left;
+    width: 36px;
+    height: 36px;
+    background: transparent url(./settings__control.svg) 50% 50% no-repeat;
+    border: 0;
+}
