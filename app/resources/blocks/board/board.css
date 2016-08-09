@@ -30,3 +30,10 @@
 .board__row:last-child .board__cell::before {
     border-bottom-color: transparent;
 }
+
+/* @elem cell; @mod clickable */
+.board__cell_clickable {
+    cursor: pointer;
+
+    background: red;
+}

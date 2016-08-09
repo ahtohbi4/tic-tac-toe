@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
 import classnames from 'classnames';
 
 /**
@@ -11,7 +13,7 @@ export default class Board extends Component {
             {this.props.matrix.map((row, y) => {
                 return <BoardRow key={y}>
                     {row.map((cell, x) => {
-                        return <BoardCell key={x}/>
+                        return <BoardCellConnect key={x} x={x} y={y}/>
                     })}
                 </BoardRow>;
             })}
@@ -32,10 +34,17 @@ export class BoardRow extends Component {
 /**
  * @class
  * @extends Component
+ *
+ * @props {number} x
+ * @props {number} y
  */
-export class BoardCell extends Component {
+class BoardCell extends Component {
     state = {
-        clickable: true
+        clickable: (this.props.game.matrix[this.props.y][this.props.x] === 0 ? true : false)
+    }
+
+    _getMove() {
+        console.log('Get move!');
     }
 
     render() {
@@ -43,6 +52,14 @@ export class BoardCell extends Component {
             board__cell_clickable: this.state.clickable
         });
 
-        return <div className={className}></div>
+        return <div className={className} onClick={this._getMove}></div>
     }
 }
+
+export let BoardCellConnect = connect(
+    (state) => {
+        return {
+            game: state.game
+        };
+    }
+)(BoardCell);
