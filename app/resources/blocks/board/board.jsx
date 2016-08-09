@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import classnames from 'classnames';
 
 /**
  * @class
@@ -33,7 +34,15 @@ export class BoardRow extends Component {
  * @extends Component
  */
 export class BoardCell extends Component {
+    state = {
+        clickable: true
+    }
+
     render() {
-        return <div className="board__cell"></div>
+        let className = classnames('board__cell', {
+            board__cell_clickable: this.state.clickable
+        });
+
+        return <div className={className}></div>
     }
 }

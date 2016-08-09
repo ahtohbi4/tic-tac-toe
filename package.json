@@ -46,6 +46,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "matrix-slicer": "^2.4.0",
     "normalize.css": "^4.1.1",
     "react": "^0.14.7",
