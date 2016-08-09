@@ -8,6 +8,22 @@ import React, {Component} from 'react';
  * @props {number} [wins=0]
  */
 export default class Score extends Component {
+    /**
+     * @static
+     */
+    static propTypes = {
+        defeats: React.PropTypes.number,
+        wins: React.PropTypes.number
+    }
+
+    /**
+     * @static
+     */
+    static defaultProps = {
+        defeats: 0,
+        wins: 0
+    }
+
     render() {
         return <div className="score">
             <span className="score__wins">{this.props.wins}</span>
@@ -16,19 +32,3 @@ export default class Score extends Component {
         </div>;
     }
 }
-
-/**
- * @static
- */
-Score.propTypes = {
-    defeats: React.PropTypes.number,
-    wins: React.PropTypes.number
-};
-
-/**
- * @static
- */
-Score.defaultProps = {
-    defeats: 0,
-    wins: 0
-};

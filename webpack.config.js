@@ -48,11 +48,11 @@ if (__DEV__) {
     plugins.push(new webpack.NoErrorsPlugin());
 
     loaders.push({
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         loaders: [
             'react-hot', 'babel'
         ],
-        include: path.join(__dirname, 'app/resources/')
+        include: path.join(__dirname, 'app/')
     });
 } else {
     plugins.push(new webpack.optimize.DedupePlugin());
@@ -62,9 +62,9 @@ if (__DEV__) {
     }));
 
     loaders.push({
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'app/resources/')
+        include: path.join(__dirname, 'app/')
     });
 }
 
