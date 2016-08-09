@@ -39,12 +39,18 @@ export class BoardRow extends Component {
  * @props {number} y
  */
 class BoardCell extends Component {
-    state = {
-        clickable: (this.props.game.matrix[this.props.y][this.props.x] === 0 ? true : false)
+    constructor() {
+        super();
+
+        this.state = {
+            clickable: true
+        };
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    _getMove() {
-        console.log('Get move!');
+    handleClick() {
+        console.log(`Click on ${this.props.x}:${this.props.y}`);
     }
 
     render() {
@@ -52,7 +58,7 @@ class BoardCell extends Component {
             board__cell_clickable: this.state.clickable
         });
 
-        return <div className={className} onClick={this._getMove}></div>
+        return <div className={className} onClick={this.handleClick}></div>
     }
 }
 
