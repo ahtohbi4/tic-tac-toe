@@ -1,6 +1,8 @@
 const initialState = {
-    wins: 0,
-    defeats: 0,
+    history: {
+        wins: 0,
+        defeats: 0
+    },
     game: {
         matrix: [
             [0, 0, 0],
@@ -35,13 +37,13 @@ export default function (state = initialState, action) {
         case 'INCREASE_COUNTER_OF_WINS':
             return {
                 ...state,
-                wins: state.wins + 1
+                wins: state.history.wins + 1
             };
 
         case 'INCREASE_COUNTER_OF_DEFEATS':
             return {
                 ...state,
-                defeats: state.defeats + 1
+                defeats: state.history.defeats + 1
             };
 
         default:

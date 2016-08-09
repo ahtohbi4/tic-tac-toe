@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 /**
  * @class
@@ -7,7 +8,7 @@ import React, {Component} from 'react';
  * @props {number} [defeats=0]
  * @props {number} [wins=0]
  */
-export default class Score extends Component {
+class Score extends Component {
     /**
      * @static
      */
@@ -26,9 +27,17 @@ export default class Score extends Component {
 
     render() {
         return <div className="score">
-            <span className="score__wins">{this.props.wins}</span>
+            <span className="score__wins">{this.props.history.wins}</span>
             <span className="score__delimiter">:</span>
-            <span className="score__defeats">{this.props.defeats}</span>
+            <span className="score__defeats">{this.props.history.defeats}</span>
         </div>;
     }
 }
+
+export default connect(
+    (state) => {
+        return {
+            history: state.history
+        };
+    }
+)(Score);
