@@ -50,7 +50,13 @@ class BoardCell extends Component {
     }
 
     handleClick() {
-        console.log(`Click on ${this.props.x}:${this.props.y}`);
+        if (this.state.clickable) {
+            this.props.setMatrixValue(this.props.x, this.props.y, 1);
+
+            this.setState({
+                clickable: false
+            });
+        }
     }
 
     render() {
@@ -62,10 +68,26 @@ class BoardCell extends Component {
     }
 }
 
-export let BoardCellConnect = connect(
-    (state) => {
-        return {
-            game: state.game
-        };
+function mapStateToProps(state) {
+    return {
+        game: state.game
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        setMatrixValue: (x, y, value) => {
+            dispatch({
+                type: 'SET_MATRIX_VALUE',
+                x,
+                y,
+                value
+            });
+        }
     }
+}
+
+export let BoardCellConnect = connect(
+    mapStateToProps,
+    mapDispatchToProps
 )(BoardCell);
