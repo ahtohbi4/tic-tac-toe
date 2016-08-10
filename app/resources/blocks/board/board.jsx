@@ -54,14 +54,17 @@ class BoardCell extends Component {
             this.props.setMatrixValue(this.props.x, this.props.y, 1);
 
             this.setState({
-                clickable: false
+                clickable: false,
+                type: 1
             });
         }
     }
 
     render() {
         let className = classnames('board__cell', {
-            board__cell_clickable: this.state.clickable
+            board__cell_clickable: this.state.clickable,
+            board__cell_type_x: (this.state.type === 1),
+            board__cell_type_o: (this.state.type === -1)
         });
 
         return <div className={className} onClick={this.handleClick}></div>
