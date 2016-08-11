@@ -85,7 +85,7 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export let BoardCellConnect = connect(
+export const BoardCellConnect = connect(
     mapStateToProps,
     mapDispatchToProps
 )(BoardCell);
