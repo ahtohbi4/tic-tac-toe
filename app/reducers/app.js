@@ -47,6 +47,12 @@ export default function (state = initialState, action) {
                 defeats: state.history.defeats + 1
             };
 
+        case 'ACTIVATE_POPUP':
+            return {
+                ...state,
+                isActivePopup: action.activate || true
+            };
+
         default:
             return state;
     }
