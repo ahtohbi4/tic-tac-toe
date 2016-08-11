@@ -1,15 +1,16 @@
 const initialState = {
-    history: {
-        wins: 0,
-        defeats: 0
-    },
+    isActivePopup: false,
     game: {
+        hasWinner: false,
         matrix: [
             [0, 0, 0],
             [0, 0, 0],
             [0, 0, 0]
-        ],
-        hasWinner: false
+        ]
+    },
+    history: {
+        defeats: 0,
+        wins: 0
     }
 };
 
