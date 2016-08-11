@@ -19,10 +19,12 @@ class Game extends Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        game: state.game
+    };
+}
+
 export default connect(
-    (state) => {
-        return {
-            game: state.game
-        };
-    }
+    mapStateToProps
 )(Game);

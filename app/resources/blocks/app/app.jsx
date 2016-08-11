@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import reducers from '../../../reducers';
 
-let store = createStore(reducers);
+import reducers from '../../../reducers';
+const store = createStore(reducers);
 
 import Game from '../game/game';
 import Score from '../score/score';
