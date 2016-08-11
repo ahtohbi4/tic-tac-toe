@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import classnames from 'classnames';
 
+import {setMatrixValue} from '../../../actions/';
+
 /**
  * @class
  * @extends Component
@@ -79,14 +81,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        setMatrixValue: (x, y, value) => {
-            dispatch({
-                type: 'SET_MATRIX_VALUE',
-                x,
-                y,
-                value
-            });
-        }
+        setMatrixValue
     }
 }
 
