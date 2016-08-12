@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 
 import Game from '../game/game';
 import Score from '../score/score';
-import SettingsControl from '../settings/settings__control';
-import Popup from '../popup/popup';
+import Settings, {SettingsControl} from '../settings/settings';
 
 /**
  * @class
@@ -21,12 +20,9 @@ class App extends Component {
                 <Score/>
 
                 <Game/>
-                matrix = {this.props.game.matrix.map((row) => {
-                    return row.join(',');
-                })}
             </div>
 
-            {this.props.isActivePopup ? <Popup/> : null}
+            {this.props.isActivePopup ? <Settings/> : null}
         </div>;
     }
 }

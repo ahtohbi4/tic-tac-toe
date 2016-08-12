@@ -1,13 +1,30 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import {activatePopup} from '../../../actions/';
+
+import Popup from '../popup/popup';
 
 /**
  * @class
  * @extends Component
  */
-class SettingsControl extends Component {
+export default class Settings extends Component {
+    render() {
+        return <Popup title="Game Settings">
+            <form action="">
+                <input type="checkbox"/>
+            </form>
+        </Popup>;
+    }
+}
+
+/**
+ * @class
+ * @extends Component
+ */
+class SettingsControlBlank extends Component {
     constructor() {
         super();
 
@@ -25,11 +42,11 @@ class SettingsControl extends Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        activatePopup
+        activatePopup: bindActionCreators(activatePopup, dispatch)
     }
 }
 
-export default connect(
+export const SettingsControl = connect(
     null,
     mapDispatchToProps
-)(SettingsControl);
+)(SettingsControlBlank);
