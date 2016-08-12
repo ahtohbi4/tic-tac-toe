@@ -12,6 +12,8 @@ export default class Popup extends Component {
 
                 <div className="popup__content">{this.props.children}</div>
             </div>
+
+            <div className="popup__cover"></div>
         </div>
     }
 }

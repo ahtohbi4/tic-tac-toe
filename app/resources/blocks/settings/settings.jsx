@@ -20,7 +20,9 @@ export default class Settings extends Component {
                 <label>height:</label>
                 <input/>
 
-                <button type="submit">Save</button>
+                <button type="reset">Resume</button>
+
+                <button type="submit">Apply</button>
             </form>
         </Popup>;
     }
