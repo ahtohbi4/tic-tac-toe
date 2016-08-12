@@ -87,11 +87,13 @@ module.exports = {
         loaders: loaders
     },
 
-    postcss: () => {
-        return [
-            autoprefixer
-        ];
-    },
+    postcss: [
+        autoprefixer({
+            browsers: [
+                'last 2 versions'
+            ]
+        })
+    ],
 
     resolve: {
         extensions: [
