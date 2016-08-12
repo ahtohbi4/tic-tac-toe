@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
+import DevTools from '../../utils/DevTools';
 
 import reducers from '../../reducers';
-const store = createStore(reducers);
+const store = createStore(reducers, DevTools.instrument());
 
 import App from '../blocks/app/app';
 
@@ -18,7 +19,10 @@ import './index.css';
 class Root extends Component {
     render() {
         return <Provider store={store}>
-            <App/>
+            <div>
+                <App/>
+                <DevTools/>
+            </div>
         </Provider>
     }
 }
