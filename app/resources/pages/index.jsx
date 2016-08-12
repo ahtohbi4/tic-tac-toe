@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import DevTools from '../../utils/DevTools';
@@ -27,4 +27,7 @@ class Root extends Component {
     }
 }
 
-ReactDOM.render(<Root/>, document.getElementById('root'));
+render(
+    <Root/>,
+    document.getElementById('root')
+);
