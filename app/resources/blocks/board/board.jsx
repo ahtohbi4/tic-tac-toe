@@ -53,11 +53,14 @@ class BoardCell extends Component {
 
     handleClick() {
         if (this.state.clickable) {
-            this.props.setMatrixValue(this.props.x, this.props.y, 1);
+            const {x, y} = this.props;
+
+            this.props.setMatrixValue(x, y, 1);
 
             this.setState({
+                ...this.state,
                 clickable: false,
-                type: 1
+                type: this.props.game.matrix[y][x]
             });
         }
     }
