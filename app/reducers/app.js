@@ -24,33 +24,39 @@ export default function (state = initialState, action) {
 
             return {
                 ...state,
-                matrix: state.game.matrix.map((row, y) => {
-                    return row.map((value, x) => {
-                        if (y === action.y && x === action.x) {
-                            return action.value;
-                        } else {
-                            return value;
-                        }
-                    });
-                })
+                game: {
+                    matrix: state.game.matrix.map((row, y) => {
+                        return row.map((value, x) => {
+                            if (y === action.y && x === action.x) {
+                                return action.value;
+                            } else {
+                                return value;
+                            }
+                        });
+                    })
+                }
             };
 
         case 'INCREASE_COUNTER_OF_WINS':
             return {
                 ...state,
-                wins: state.history.wins + 1
+                history: {
+                    wins: state.history.wins + 1
+                }
             };
 
         case 'INCREASE_COUNTER_OF_DEFEATS':
             return {
                 ...state,
-                defeats: state.history.defeats + 1
+                history: {
+                    defeats: state.history.defeats + 1
+                }
             };
 
         case 'ACTIVATE_POPUP':
             return {
                 ...state,
-                isActivePopup: action.activate || true
+                isActivePopup: (action.activate === null || action.activate === undefined) ? true : action.activate
             };
 
         default:
