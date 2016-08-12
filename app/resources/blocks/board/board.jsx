@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import classnames from 'classnames';
 
@@ -15,7 +16,7 @@ export default class Board extends Component {
             {this.props.matrix.map((row, y) => {
                 return <BoardRow key={y}>
                     {row.map((cell, x) => {
-                        return <BoardCellConnect key={x} x={x} y={y}/>
+                        return <BoardCell key={x} x={x} y={y}/>
                     })}
                 </BoardRow>;
             })}
@@ -29,7 +30,7 @@ export default class Board extends Component {
  */
 export class BoardRow extends Component {
     render() {
-        return <div className="board__row">{this.props.children}</div>
+        return <div className="board__row">{this.props.children}</div>;
     }
 }
 
@@ -40,7 +41,7 @@ export class BoardRow extends Component {
  * @props {number} x
  * @props {number} y
  */
-class BoardCell extends Component {
+class BoardCellBlank extends Component {
     constructor() {
         super();
 
@@ -72,7 +73,7 @@ class BoardCell extends Component {
             board__cell_type_o: (this.state.type === -1)
         });
 
-        return <div className={className} onClick={this.handleClick}></div>
+        return <div className={className} onClick={this.handleClick}></div>;
     }
 }
 
@@ -84,11 +85,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        setMatrixValue
+        setMatrixValue: bindActionCreators(setMatrixValue, dispatch)
     }
 }
 
-export const BoardCellConnect = connect(
+export const BoardCell = connect(
     mapStateToProps,
     mapDispatchToProps
-)(BoardCell);
+)(BoardCellBlank);
