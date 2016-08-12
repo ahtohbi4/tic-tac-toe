@@ -17,7 +17,9 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case 'SET_MATRIX_VALUE':
-            if (!state.game.matrix[action.y] || !state.game.matrix[action.y][action.x] || Math.abs(action.value) > 1) {
+            if (state.game.matrix[action.y] === undefined ||
+                state.game.matrix[action.y][action.x] === undefined ||
+                Math.abs(action.value) > 1) {
                 // Not valid
                 return state;
             }
@@ -25,6 +27,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 game: {
+                    ...state.game,
                     matrix: state.game.matrix.map((row, y) => {
                         return row.map((value, x) => {
                             if (y === action.y && x === action.x) {
@@ -41,6 +44,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 history: {
+                    ...state.history,
                     wins: state.history.wins + 1
                 }
             };
@@ -49,6 +53,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 history: {
+                    ...state.history,
                     defeats: state.history.defeats + 1
                 }
             };
