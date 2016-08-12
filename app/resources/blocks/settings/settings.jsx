@@ -14,7 +14,13 @@ export default class Settings extends Component {
     render() {
         return <Popup title="Game Settings">
             <form action="">
-                <input type="checkbox"/>
+                <label>width:</label>
+                <input/>
+
+                <label>height:</label>
+                <input/>
+
+                <button type="submit">Save</button>
             </form>
         </Popup>;
     }

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import classnames from 'classnames';
+
 import Game from '../game/game';
 import Score from '../score/score';
 import Settings, {SettingsControl} from '../settings/settings';
@@ -11,7 +13,12 @@ import Settings, {SettingsControl} from '../settings/settings';
  */
 class App extends Component {
     render() {
-        return <div className="app">
+        return <div className={classnames(
+            'app',
+            {
+                'app_with-popup': this.props.isActivePopup
+            }
+        )}>
             <div className="app__content">
                 <SettingsControl/>
 

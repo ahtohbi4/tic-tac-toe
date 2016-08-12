@@ -7,3 +7,11 @@
     margin: 0 0 36px 46px;
     font: 100 27px/36px Arial;
 }
+
+/* @mod with-popup */
+.app_with-popup .app__content {
+    /* @todo remove this hard code */
+    -webkit-filter: blur(10px);
+    filter: blur(10px);
+    transition: all .5s linear;
+}
