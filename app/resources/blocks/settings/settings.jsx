@@ -10,16 +10,16 @@ import Popup from '../popup/popup';
  * @class
  * @extends Component
  */
-export default class Settings extends Component {
+class SettingsBlank extends Component {
     render() {
         return (
             <Popup title="Game Settings">
                 <form action="">
                     <label>width:</label>
-                    <input/>
+                    <input value={this.props.game.matrix[0].length}/>
 
                     <label>height:</label>
-                    <input/>
+                    <input value={this.props.game.matrix.length}/>
 
                     <button type="reset">Resume</button>
 
@@ -29,6 +29,16 @@ export default class Settings extends Component {
         );
     }
 };
+
+function mapStateToProps(state) {
+    return {
+        game: state.game
+    };
+}
+
+export default connect(
+    mapStateToProps
+)(SettingsBlank);
 
 /**
  * @class
