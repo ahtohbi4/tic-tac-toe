@@ -22,7 +22,7 @@ export default class Board extends Component {
             })}
         </div>;
     }
-}
+};
 
 /**
  * @class
@@ -34,7 +34,7 @@ export class BoardRow extends Component {
             <div className="board__row">{this.props.children}</div>
         );
     }
-}
+};
 
 /**
  * @class
