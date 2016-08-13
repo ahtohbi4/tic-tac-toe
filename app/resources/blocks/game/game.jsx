@@ -13,9 +13,11 @@ import Board from '../board/board';
  */
 class Game extends Component {
     render() {
-        return <div className="game">
-            <Board matrix={this.props.game.matrix}/>
-        </div>;
+        return (
+            <div className="game">
+                <Board matrix={this.props.game.matrix}/>
+            </div>
+        );
     }
 }
 

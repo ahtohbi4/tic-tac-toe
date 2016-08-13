@@ -12,19 +12,21 @@ import Popup from '../popup/popup';
  */
 export default class Settings extends Component {
     render() {
-        return <Popup title="Game Settings">
-            <form action="">
-                <label>width:</label>
-                <input/>
+        return (
+            <Popup title="Game Settings">
+                <form action="">
+                    <label>width:</label>
+                    <input/>
 
-                <label>height:</label>
-                <input/>
+                    <label>height:</label>
+                    <input/>
 
-                <button type="reset">Resume</button>
+                    <button type="reset">Resume</button>
 
-                <button type="submit">Apply</button>
-            </form>
-        </Popup>;
+                    <button type="submit">Apply</button>
+                </form>
+            </Popup>
+        );
     }
 }
 
@@ -44,7 +46,9 @@ class SettingsControlBlank extends Component {
     }
 
     render() {
-        return <button className="settings__control" onClick={this.handleClick} type="button"></button>;
+        return (
+            <button className="settings__control" onClick={this.handleClick} type="button"></button>
+        );
     }
 }
 

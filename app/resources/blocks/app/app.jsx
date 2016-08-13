@@ -13,24 +13,26 @@ import Settings, {SettingsControl} from '../settings/settings';
  */
 class App extends Component {
     render() {
-        return <div className={classnames(
-            'app',
-            {
-                'app_with-popup': this.props.isActivePopup
-            }
-        )}>
-            <div className="app__content">
-                <SettingsControl/>
+        return (
+            <div className={classnames(
+                'app',
+                {
+                    'app_with-popup': this.props.isActivePopup
+                }
+            )}>
+                <div className="app__content">
+                    <SettingsControl/>
 
-                <h1 className="app__title">Tic-Tac-Toe</h1>
+                    <h1 className="app__title">Tic-Tac-Toe</h1>
 
-                <Score/>
+                    <Score/>
 
-                <Game/>
+                    <Game/>
+                </div>
+
+                {this.props.isActivePopup ? <Settings/> : null}
             </div>
-
-            {this.props.isActivePopup ? <Settings/> : null}
-        </div>;
+        );
     }
 }
 

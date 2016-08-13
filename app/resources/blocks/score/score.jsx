@@ -26,11 +26,13 @@ class Score extends Component {
     }
 
     render() {
-        return <div className="score">
-            <span className="score__wins">{this.props.history.wins}</span>
-            <span className="score__delimiter">:</span>
-            <span className="score__defeats">{this.props.history.defeats}</span>
-        </div>;
+        return (
+            <div className="score">
+                <span className="score__wins">{this.props.history.wins}</span>
+                <span className="score__delimiter">:</span>
+                <span className="score__defeats">{this.props.history.defeats}</span>
+            </div>
+        );
     }
 }
 
