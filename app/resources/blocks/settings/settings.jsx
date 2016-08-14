@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 
 import {activatePopup} from '../../../actions/';
 
+import InputNumber from '../input-number/input-number';
 import Popup from '../popup/popup';
 
 /**
@@ -12,18 +13,27 @@ import Popup from '../popup/popup';
  */
 class SettingsBlank extends Component {
     render() {
+        const width = this.props.game.matrix[0].length;
+        const height = this.props.game.matrix.length;
+
         return (
             <Popup title="Game Settings">
                 <form action="">
-                    <label>width:</label>
-                    <input value={this.props.game.matrix[0].length}/>
+                    <div>
+                        <label>width:</label>
+                        <InputNumber value={width} minValue="3"/>
+                    </div>
 
-                    <label>height:</label>
-                    <input value={this.props.game.matrix.length}/>
+                    <div>
+                        <label>height:</label>
+                        <InputNumber value={height} minValue="3"/>
+                    </div>
 
-                    <button type="reset">Resume</button>
+                    <div>
+                        <button type="reset">Resume</button>
 
-                    <button type="submit">Apply</button>
+                        <button type="submit">Apply</button>
+                    </div>
                 </form>
             </Popup>
         );
