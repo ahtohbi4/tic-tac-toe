@@ -6,6 +6,7 @@ import {activatePopup} from '../../../actions/';
 
 import InputNumber from '../input-number/input-number';
 import Popup from '../popup/popup';
+import Radio, {RadioItem} from '../radio/radio';
 
 /**
  * @class
@@ -27,6 +28,20 @@ class SettingsBlank extends Component {
                     <div>
                         <label>height:</label>
                         <InputNumber value={height} minValue="3"/>
+                    </div>
+
+                    <div>
+                        <label>rival:</label>
+                        <Radio name="rival" items={[
+                                {
+                                    value: 'cpu',
+                                    label: 'CPU'
+                                },
+                                {
+                                    value: 'man',
+                                    label: 'MAN'
+                                }
+                            ]}/>
                     </div>
 
                     <div>

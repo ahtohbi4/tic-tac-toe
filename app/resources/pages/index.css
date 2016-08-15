@@ -10,5 +10,6 @@ body {
 @import url(../blocks/board/board.css);
 @import url(../blocks/game/game.css);
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/radio/radio.css);
 @import url(../blocks/score/score.css);
 @import url(../blocks/settings/settings.css);
