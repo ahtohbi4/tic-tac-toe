@@ -7,6 +7,7 @@ const initialState = {
             [0, 0, 0],
             [0, 0, 0]
         ],
+        victoryChainsLength: 3,
         player: 1
     },
     history: {

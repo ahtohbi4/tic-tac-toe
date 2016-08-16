@@ -31,6 +31,11 @@ class SettingsBlank extends Component {
                     </div>
 
                     <div>
+                        <label>Length of the wins Chain:</label>
+                        <InputNumber value={this.props.game.victoryChainsLength} minValue="3"/>
+                    </div>
+
+                    <div>
                         <label>rival:</label>
                         <Radio name="rival" items={[
                             {
