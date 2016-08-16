@@ -64,7 +64,10 @@ if (__DEV__) {
     loaders.push({
         test: /\.(js|jsx)$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'app/')
+        include: [
+            path.join(__dirname, 'app/'),
+            path.join(__dirname, 'node_modules/matrix-slicer/')
+        ]
     });
 }
 
