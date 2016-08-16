@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 
 import classnames from 'classnames';
 
-import {setMatrixValue} from '../../../actions/';
+import {changePlayer, setMatrixValue} from '../../../actions/';
 
 /**
  * @class
@@ -12,15 +12,17 @@ import {setMatrixValue} from '../../../actions/';
  */
 export default class Board extends Component {
     render() {
-        return <div className="board">
-            {this.props.matrix.map((row, y) => {
-                return <BoardRow key={y}>
-                    {row.map((cell, x) => {
-                        return <BoardCell key={x} x={x} y={y}/>
-                    })}
-                </BoardRow>;
-            })}
-        </div>;
+        return (
+            <div className="board">
+                {this.props.matrix.map((row, y) => {
+                    return <BoardRow key={y}>
+                        {row.map((cell, x) => {
+                            return <BoardCell key={x} x={x} y={y}/>
+                        })}
+                    </BoardRow>;
+                })}
+            </div>
+        );
     }
 };
 
@@ -63,8 +65,10 @@ class BoardCellBlank extends Component {
             this.setState({
                 ...this.state,
                 clickable: false,
-                type: 1
+                type: this.props.game.player
             });
+
+            this.props.changePlayer();
         }
     }
 
@@ -89,6 +93,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
+        changePlayer: bindActionCreators(changePlayer, dispatch),
         setMatrixValue: bindActionCreators(setMatrixValue, dispatch)
     }
 }

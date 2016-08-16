@@ -16,6 +16,15 @@ export const setMatrixValue = (x, y, value) => {
 /**
  * @returns {object}
  */
+export const changePlayer = () => {
+    return {
+        type: 'CHANGE_PLAYER'
+    };
+}
+
+/**
+ * @returns {object}
+ */
 export const increaseCounterOfWins = () => {
     return {
         type: 'INCREASE_COUNTER_OF_WINS'

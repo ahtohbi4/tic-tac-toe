@@ -6,7 +6,8 @@ const initialState = {
             [0, 0, 0],
             [0, 0, 0],
             [0, 0, 0]
-        ]
+        ],
+        player: 1
     },
     history: {
         defeats: 0,
@@ -37,6 +38,15 @@ export default function (state = initialState, action) {
                             }
                         });
                     })
+                }
+            };
+
+        case 'CHANGE_PLAYER':
+            return {
+                ...state,
+                game: {
+                    ...state.game,
+                    player: state.game.player * (-1)
                 }
             };
 

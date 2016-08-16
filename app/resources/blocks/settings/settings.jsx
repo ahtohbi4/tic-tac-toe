@@ -33,15 +33,15 @@ class SettingsBlank extends Component {
                     <div>
                         <label>rival:</label>
                         <Radio name="rival" items={[
-                                {
-                                    value: 'cpu',
-                                    label: 'CPU'
-                                },
-                                {
-                                    value: 'man',
-                                    label: 'MAN'
-                                }
-                            ]}/>
+                            {
+                                value: 'cpu',
+                                label: 'CPU'
+                            },
+                            {
+                                value: 'man',
+                                label: 'MAN'
+                            }
+                        ]}/>
                     </div>
 
                     <div>
