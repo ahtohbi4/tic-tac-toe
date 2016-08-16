@@ -9,6 +9,7 @@ body {
 @import url(../blocks/app/app.css);
 @import url(../blocks/board/board.css);
 @import url(../blocks/game/game.css);
+@import url(../blocks/input-number/input-number.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/radio/radio.css);
 @import url(../blocks/score/score.css);
