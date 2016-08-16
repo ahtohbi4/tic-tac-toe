@@ -22,17 +22,17 @@ class SettingsBlank extends Component {
                 <form action="">
                     <div>
                         <label>width:</label>
-                        <InputNumber value={width} minValue="3"/>
+                        <InputNumber value={width} minValue={3}/>
                     </div>
 
                     <div>
                         <label>height:</label>
-                        <InputNumber value={height} minValue="3"/>
+                        <InputNumber value={height} minValue={3}/>
                     </div>
 
                     <div>
                         <label>Length of the wins Chain:</label>
-                        <InputNumber value={this.props.game.victoryChainsLength} minValue="3"/>
+                        <InputNumber value={this.props.game.victoryChainsLength} minValue={3}/>
                     </div>
 
                     <div>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 /**
  * @class
@@ -23,6 +23,11 @@ export default class InputNumber extends Component {
         this.increaseValue = this.increaseValue.bind(this);
     }
 
+    static propTypes = {
+        minValue: PropTypes.number,
+        maxValue: PropTypes.number
+    }
+
     decreaseValue() {
         if (this.state.minValue === undefined || this.state.value > this.state.minValue) {
             this.setState({
@@ -44,11 +49,11 @@ export default class InputNumber extends Component {
             <span className="input-number">
                 <input className="input-number__input" type="hidden" name={this.props.name} value={this.state.value}/>
 
-                <button className="input-number__control input-number__control_down" onClick={this.increaseValue} type="button">Up</button>
+                <button className="input-number__control input-number__control_down" onClick={this.decreaseValue} disabled={this.state.value <= this.state.minValue} type="button">Down</button>
 
                 <span className="input-number__value">{this.state.value}</span>
 
-                <button className="input-number__control input-number__control_up" onClick={this.decreaseValue} type="button">Down</button>
+                <button className="input-number__control input-number__control_up" onClick={this.increaseValue} disabled={this.state.value >= this.state.maxValue} type="button">Up</button>
             </span>
         );
     }
