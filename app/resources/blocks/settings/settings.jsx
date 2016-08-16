@@ -13,6 +13,16 @@ import Radio, {RadioItem} from '../radio/radio';
  * @extends Component
  */
 class SettingsBlank extends Component {
+    constructor() {
+        super();
+
+        this.resume = this.resume.bind(this);
+    }
+
+    resume() {
+        this.props.activatePopup(false);
+    }
+
     render() {
         const width = this.props.game.matrix[0].length;
         const height = this.props.game.matrix.length;
@@ -50,7 +60,7 @@ class SettingsBlank extends Component {
                     </div>
 
                     <div>
-                        <button type="reset">Resume</button>
+                        <button onClick={this.resume} type="reset">Resume</button>
 
                         <button type="submit">Apply</button>
                     </div>
@@ -66,8 +76,15 @@ function mapStateToProps(state) {
     };
 }
 
+function mapDispatchToProps(dispatch) {
+    return {
+        activatePopup: bindActionCreators(activatePopup, dispatch)
+    }
+}
+
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(SettingsBlank);
 
 /**
