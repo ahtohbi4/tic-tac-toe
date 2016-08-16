@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {activatePopup} from '../../../actions/';
+import {activatePopup, setMatrix} from '../../../actions/';
+
+import Matrix from 'matrix-slicer';
 
 import InputNumber from '../input-number/input-number';
 import Popup from '../popup/popup';
@@ -16,10 +18,21 @@ class SettingsBlank extends Component {
     constructor() {
         super();
 
-        this.resume = this.resume.bind(this);
+        this.handleResume = this.handleResume.bind(this);
+        this.handleApply = this.handleApply.bind(this);
     }
 
-    resume() {
+    handleResume() {
+        this.props.activatePopup(false);
+    }
+
+    handleApply(e) {
+        e.preventDefault();
+
+        const m = new Matrix(this._inputWidth.state.value, this._inputHeight.state.value);
+
+        this.props.setMatrix(m.get());
+
         this.props.activatePopup(false);
     }
 
@@ -32,12 +45,12 @@ class SettingsBlank extends Component {
                 <form action="">
                     <div>
                         <label>width:</label>
-                        <InputNumber value={width} minValue={3} maxValue={10}/>
+                        <InputNumber value={width} minValue={3} maxValue={10} ref={c => this._inputWidth = c}/>
                     </div>
 
                     <div>
                         <label>height:</label>
-                        <InputNumber value={height} minValue={3} maxValue={10}/>
+                        <InputNumber value={height} minValue={3} maxValue={10} ref={c => this._inputHeight = c}/>
                     </div>
 
                     <div>
@@ -60,9 +73,9 @@ class SettingsBlank extends Component {
                     </div>
 
                     <div>
-                        <button onClick={this.resume} type="reset">Resume</button>
+                        <button onClick={this.handleResume} type="reset">Resume</button>
 
-                        <button type="submit">Apply</button>
+                        <button onClick={this.handleApply} type="submit">Apply</button>
                     </div>
                 </form>
             </Popup>
@@ -70,21 +83,18 @@ class SettingsBlank extends Component {
     }
 };
 
-function mapStateToProps(state) {
-    return {
-        game: state.game
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        activatePopup: bindActionCreators(activatePopup, dispatch)
-    }
-}
-
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    (state) => {
+        return {
+            game: state.game
+        };
+    },
+    (dispatch) => {
+        return {
+            activatePopup: bindActionCreators(activatePopup, dispatch),
+            setMatrix: bindActionCreators(setMatrix, dispatch)
+        }
+    }
 )(SettingsBlank);
 
 /**
@@ -109,13 +119,11 @@ class SettingsControlBlank extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        activatePopup: bindActionCreators(activatePopup, dispatch)
-    }
-}
-
 export const SettingsControl = connect(
     null,
-    mapDispatchToProps
+    (dispatch) => {
+        return {
+            activatePopup: bindActionCreators(activatePopup, dispatch)
+        }
+    }
 )(SettingsControlBlank);

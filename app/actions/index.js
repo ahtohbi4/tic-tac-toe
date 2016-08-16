@@ -1,4 +1,15 @@
 /**
+ * @param {object} matrix
+ * @returns {object}
+ */
+export const setMatrix = (matrix) => {
+    return {
+        type: 'SET_MATRIX',
+        matrix
+    };
+}
+
+/**
  * @param {number} x
  * @param {number} y
  * @param {number} value

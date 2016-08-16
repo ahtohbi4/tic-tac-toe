@@ -18,6 +18,22 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
+        case 'SET_MATRIX':
+            if (!Array.isArray(action.matrix) || !action.matrix.every((row, i, matrix) => {
+                return Array.isArray(row) && matrix[0].length === row.length;
+            })) {
+                // Not valid
+                return state;
+            }
+
+            return {
+                ...state,
+                game: {
+                    ...state.game,
+                    matrix: action.matrix
+                }
+            };
+
         case 'SET_MATRIX_VALUE':
             if (state.game.matrix[action.y] === undefined ||
                 state.game.matrix[action.y][action.x] === undefined ||
