@@ -44,12 +44,12 @@ class SettingsBlank extends Component {
             <Popup title="Game Settings">
                 <form action="">
                     <div>
-                        <label>width:</label>
+                        <label>Width:</label>
                         <InputNumber value={width} minValue={3} maxValue={10} ref={c => this._inputWidth = c}/>
                     </div>
 
                     <div>
-                        <label>height:</label>
+                        <label>Height:</label>
                         <InputNumber value={height} minValue={3} maxValue={10} ref={c => this._inputHeight = c}/>
                     </div>
 
@@ -59,7 +59,7 @@ class SettingsBlank extends Component {
                     </div>
 
                     <div>
-                        <label>rival:</label>
+                        <label>Rival:</label>
                         <Radio name="rival" items={[
                             {
                                 value: 'cpu',

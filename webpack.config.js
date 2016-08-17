@@ -50,7 +50,8 @@ if (__DEV__) {
     loaders.push({
         test: /\.(js|jsx)$/,
         loaders: [
-            'react-hot', 'babel'
+            'react-hot',
+            'babel'
         ],
         include: path.join(__dirname, 'app/')
     });
@@ -63,7 +64,9 @@ if (__DEV__) {
 
     loaders.push({
         test: /\.(js|jsx)$/,
-        loaders: ['babel'],
+        loaders: [
+            'babel'
+        ],
         include: [
             path.join(__dirname, 'app/'),
             path.join(__dirname, 'node_modules/matrix-slicer/')

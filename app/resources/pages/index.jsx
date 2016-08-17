@@ -22,7 +22,7 @@ class Root extends Component {
             <Provider store={store}>
                 <div>
                     <App/>
-                    <DevTools/>
+                    {__DEV__ ? <DevTools/> : null}
                 </div>
             </Provider>
         );
