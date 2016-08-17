@@ -14,7 +14,7 @@ export default class Board extends Component {
                 {this.props.matrix.map((row, y) => {
                     return <BoardRow key={y}>
                         {row.map((cell, x) => {
-                            return <BoardCell key={x} x={x} y={y} getMove={this.props.getMove}/>
+                            return <BoardCell key={x} x={x} y={y} makeAMove={this.props.makeAMove}/>
                         })}
                     </BoardRow>;
                 })}
@@ -57,7 +57,7 @@ class BoardCellBlank extends Component {
         if (this.state.clickable) {
             const {x, y} = this.props;
 
-            this.props.getMove(x, y);
+            this.props.makeAMove(x, y);
 
             this.setState({
                 ...this.state,
