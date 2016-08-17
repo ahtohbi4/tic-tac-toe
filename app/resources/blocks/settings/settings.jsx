@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {activatePopup, setMatrix} from '../../../actions/';
+import {activatePopup, setMatrix, setVictoryChainsLength} from '../../../actions/';
 
 import Matrix from 'matrix-slicer';
 
@@ -29,9 +29,10 @@ class SettingsBlank extends Component {
     handleApply(e) {
         e.preventDefault();
 
-        const m = new Matrix(this._inputWidth.state.value, this._inputHeight.state.value);
+        const matrix = new Matrix(this._inputWidth.state.value, this._inputHeight.state.value);
 
-        this.props.setMatrix(m.get());
+        this.props.setMatrix(matrix.get());
+        this.props.setVictoryChainsLength(this._inputVictoryChainsLength.state.value);
 
         this.props.activatePopup(false);
     }
@@ -55,7 +56,7 @@ class SettingsBlank extends Component {
 
                     <div>
                         <label>Length of the wins Chain:</label>
-                        <InputNumber value={this.props.game.victoryChainsLength} minValue={3} maxValue={10}/>
+                        <InputNumber value={this.props.game.victoryChainsLength} ref={c => this._inputVictoryChainsLength = c} minValue={3} maxValue={10}/>
                     </div>
 
                     <div>
@@ -92,7 +93,8 @@ export default connect(
     (dispatch) => {
         return {
             activatePopup: bindActionCreators(activatePopup, dispatch),
-            setMatrix: bindActionCreators(setMatrix, dispatch)
+            setMatrix: bindActionCreators(setMatrix, dispatch),
+            setVictoryChainsLength: bindActionCreators(setVictoryChainsLength, dispatch)
         }
     }
 )(SettingsBlank);

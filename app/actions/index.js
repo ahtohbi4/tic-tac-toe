@@ -25,6 +25,17 @@ export const setMatrixValue = (x, y, value) => {
 }
 
 /**
+ * @param {object} matrix
+ * @returns {object}
+ */
+export const setVictoryChainsLength = (value) => {
+    return {
+        type: 'SET_VICTORY_CHAINS_LENGTH',
+        value
+    };
+}
+
+/**
  * @returns {object}
  */
 export const changePlayer = () => {

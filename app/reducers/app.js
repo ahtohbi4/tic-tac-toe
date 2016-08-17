@@ -58,6 +58,20 @@ export default function (state = initialState, action) {
                 }
             };
 
+        case 'SET_VICTORY_CHAINS_LENGTH':
+            if (action.value < 3) {
+                // Not valid
+                return state;
+            }
+
+            return {
+                ...state,
+                game: {
+                    ...state.game,
+                    victoryChainsLength: action.value
+                }
+            };
+
         case 'CHANGE_PLAYER':
             return {
                 ...state,
