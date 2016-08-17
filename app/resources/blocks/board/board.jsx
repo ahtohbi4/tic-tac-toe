@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 import classnames from 'classnames';
-
-import {changePlayer, setMatrixValue} from '../../../actions/';
 
 /**
  * @class
@@ -17,7 +14,7 @@ export default class Board extends Component {
                 {this.props.matrix.map((row, y) => {
                     return <BoardRow key={y}>
                         {row.map((cell, x) => {
-                            return <BoardCell key={x} x={x} y={y}/>
+                            return <BoardCell key={x} x={x} y={y} getMove={this.props.getMove}/>
                         })}
                     </BoardRow>;
                 })}
@@ -60,15 +57,13 @@ class BoardCellBlank extends Component {
         if (this.state.clickable) {
             const {x, y} = this.props;
 
-            this.props.setMatrixValue(x, y, 1);
+            this.props.getMove(x, y);
 
             this.setState({
                 ...this.state,
                 clickable: false,
                 type: this.props.game.player
             });
-
-            this.props.changePlayer();
         }
     }
 
@@ -85,20 +80,10 @@ class BoardCellBlank extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        game: state.game
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        changePlayer: bindActionCreators(changePlayer, dispatch),
-        setMatrixValue: bindActionCreators(setMatrixValue, dispatch)
-    }
-}
-
 export const BoardCell = connect(
-    mapStateToProps,
-    mapDispatchToProps
+    (state) => {
+        return {
+            game: state.game
+        };
+    }
 )(BoardCellBlank);
