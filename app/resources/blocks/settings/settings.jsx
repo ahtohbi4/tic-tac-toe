@@ -40,6 +40,7 @@ class SettingsBlank extends Component {
     render() {
         const width = this.props.game.matrix[0].length;
         const height = this.props.game.matrix.length;
+        const victoryChainsLength = this.props.game.victoryChainsLength;
 
         return (
             <Popup title="Game Settings">
@@ -56,7 +57,7 @@ class SettingsBlank extends Component {
 
                     <div>
                         <label>Length of the wins Chain:</label>
-                        <InputNumber value={this.props.game.victoryChainsLength} ref={c => this._inputVictoryChainsLength = c} minValue={3} maxValue={10}/>
+                        <InputNumber value={victoryChainsLength} minValue={3} maxValue={10} ref={c => this._inputVictoryChainsLength = c}/>
                     </div>
 
                     <div>
