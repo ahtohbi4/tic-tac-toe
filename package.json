@@ -4,7 +4,7 @@
   "description": "Tic-tac-toe game",
   "main": "index.html",
   "scripts": {
-    "start": "node server.js",
+    "start": "DEBUG=true node server.js",
     "build": "rm -rf build/ && webpack"
   },
   "repository": {

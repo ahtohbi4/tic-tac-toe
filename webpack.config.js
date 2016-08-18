@@ -3,7 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const __DEV__ = JSON.stringify(JSON.parse(process.env.DEBUG || 'false'));
+const __DEV__ = JSON.stringify(JSON.parse(process.env.DEBUG || 'false')) === 'true';
 const devFlagPlugin = new webpack.DefinePlugin({
     __DEV__: __DEV__
 });
