@@ -47,6 +47,16 @@ export const changePlayer = () => {
 /**
  * @returns {object}
  */
+export const setAWinner = (value) => {
+    return {
+        type: 'SET_A_WINNER',
+        value
+    };
+}
+
+/**
+ * @returns {object}
+ */
 export const increaseCounterOfWins = () => {
     return {
         type: 'INCREASE_COUNTER_OF_WINS'

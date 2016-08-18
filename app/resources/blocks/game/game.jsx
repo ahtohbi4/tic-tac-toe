@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 
 import Matrix from 'matrix-slicer';
 
-import {changePlayer, setMatrixValue} from '../../../actions/';
+import {changePlayer, setAWinner, setMatrixValue} from '../../../actions/';
 
 import Board from '../board/board';
 
@@ -31,7 +31,7 @@ class Game extends Component {
         this.props.setMatrixValue(x, y, this.props.game.player);
 
         if (this.hasAWinner) {
-            console.log('We have a winner!');
+            this.props.setAWinner(true);
         }
 
         this.props.changePlayer();
@@ -95,6 +95,7 @@ export default connect(
     (dispatch) => {
         return {
             changePlayer: bindActionCreators(changePlayer, dispatch),
+            setAWinner: bindActionCreators(setAWinner, dispatch),
             setMatrixValue: bindActionCreators(setMatrixValue, dispatch)
         };
     }

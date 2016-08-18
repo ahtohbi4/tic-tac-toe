@@ -1,7 +1,7 @@
 const initialState = {
     isActivePopup: false,
     game: {
-        hasWinner: false,
+        hasAWinner: false,
         matrix: [
             [0, 0, 0],
             [0, 0, 0],
@@ -78,6 +78,15 @@ export default function (state = initialState, action) {
                 game: {
                     ...state.game,
                     player: state.game.player * (-1)
+                }
+            };
+
+        case 'SET_A_WINNER':
+            return {
+                ...state,
+                game: {
+                    ...state.game,
+                    hasAWinner: Boolean(action.value)
                 }
             };
 
