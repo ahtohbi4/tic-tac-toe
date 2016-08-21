@@ -66,6 +66,15 @@ export const setAWinner = (value) => {
 /**
  * @returns {object}
  */
+export const resetWinner = () => {
+    return {
+        type: 'RESET_WINNER'
+    };
+};
+
+/**
+ * @returns {object}
+ */
 export const increaseCounterOfWins = () => {
     return {
         type: 'INCREASE_COUNTER_OF_WINS'

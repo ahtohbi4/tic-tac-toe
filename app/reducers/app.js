@@ -103,6 +103,15 @@ export default function (state = initialState, action) {
                 }
             };
 
+        case 'RESET_WINNER':
+            return {
+                ...state,
+                game: {
+                    ...state.game,
+                    hasAWinner: false
+                }
+            };
+
         case 'INCREASE_COUNTER_OF_WINS':
             return {
                 ...state,
