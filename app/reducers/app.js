@@ -94,6 +94,15 @@ export default function (state = initialState, action) {
                 }
             };
 
+        case 'RESET_PLAYER':
+            return {
+                ...state,
+                game: {
+                    ...state.game,
+                    player: 1
+                }
+            };
+
         case 'SET_A_WINNER':
             return {
                 ...state,
