@@ -7,7 +7,7 @@ export const setMatrix = (matrix) => {
         type: 'SET_MATRIX',
         matrix
     };
-}
+};
 
 /**
  * @param {number} x
@@ -22,7 +22,7 @@ export const setMatrixValue = (x, y, value) => {
         y,
         value
     };
-}
+};
 
 export const resetMatrix = () => {
     return {
@@ -39,7 +39,7 @@ export const setVictoryChainsLength = (value) => {
         type: 'SET_VICTORY_CHAINS_LENGTH',
         value
     };
-}
+};
 
 /**
  * @returns {object}
@@ -48,7 +48,7 @@ export const changePlayer = () => {
     return {
         type: 'CHANGE_PLAYER'
     };
-}
+};
 
 /**
  * @returns {object}
@@ -58,7 +58,7 @@ export const setAWinner = (value) => {
         type: 'SET_A_WINNER',
         value
     };
-}
+};
 
 /**
  * @returns {object}
@@ -67,7 +67,7 @@ export const increaseCounterOfWins = () => {
     return {
         type: 'INCREASE_COUNTER_OF_WINS'
     };
-}
+};
 
 /**
  * @returns {object}
@@ -76,7 +76,7 @@ export const increaseCounterOfDefeats = () => {
     return {
         type: 'INCREASE_COUNTER_OF_DEFEATS'
     };
-}
+};
 
 /**
  * @param {boolean} activate
@@ -87,4 +87,4 @@ export const activatePopup = (activate) => {
         type: 'ACTIVATE_POPUP',
         activate
     };
-}
+};

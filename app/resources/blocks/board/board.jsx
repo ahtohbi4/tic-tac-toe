@@ -68,14 +68,12 @@ class BoardCellBlank extends Component {
     }
 
     render() {
-        const className = classnames('board__cell', {
-            board__cell_clickable: this.state.clickable,
-            board__cell_type_x: (this.state.type === 1),
-            board__cell_type_o: (this.state.type === -1)
-        });
-
         return (
-            <div className={className} onClick={this.handleClick}></div>
+            <div className={classnames('board__cell', {
+                board__cell_clickable: this.state.clickable,
+                board__cell_type_x: (this.state.type === 1),
+                board__cell_type_o: (this.state.type === -1)
+            })} onClick={this.handleClick}></div>
         );
     }
 }
