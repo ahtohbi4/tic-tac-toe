@@ -1,4 +1,18 @@
-const initialState = {
+/**
+ * Storage
+ *
+ * @type {object}
+ * @member {boolean} isActivePopup
+ * @member {object} game
+ * @member {boolean} game.hasAWinner
+ * @member {array} game.matrix
+ * @member {number} game.victoryChainsLength
+ * @member {number} game.player
+ * @member {object} history
+ * @member {number} history.defeats
+ * @member {number} history.wins
+ */
+const INITIAL_STATE = {
     isActivePopup: false,
     game: {
         hasAWinner: false,
@@ -16,7 +30,7 @@ const initialState = {
     }
 };
 
-export default function (state = initialState, action) {
+export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case 'SET_MATRIX':
             if (!Array.isArray(action.matrix) || !action.matrix.every((row, i, matrix) => {
@@ -148,4 +162,4 @@ export default function (state = initialState, action) {
         default:
             return state;
     }
-}
+};
