@@ -84,7 +84,7 @@ class SettingsBlank extends Component {
             </Popup>
         );
     }
-};
+}
 
 export default connect(
     (state) => {
