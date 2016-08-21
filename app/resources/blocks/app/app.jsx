@@ -36,13 +36,11 @@ class App extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        isActivePopup: state.isActivePopup,
-        game: state.game
-    };
-}
-
 export default connect(
-    mapStateToProps
+    (state) => {
+        return {
+            isActivePopup: state.isActivePopup,
+            game: state.game
+        };
+    }
 )(App);

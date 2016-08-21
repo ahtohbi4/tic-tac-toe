@@ -36,12 +36,10 @@ class Score extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        history: state.history
-    };
-}
-
 export default connect(
-    mapStateToProps
+    (state) => {
+        return {
+            history: state.history
+        };
+    }
 )(Score);
