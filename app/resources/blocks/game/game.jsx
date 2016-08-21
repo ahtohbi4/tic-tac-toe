@@ -6,7 +6,7 @@ import Matrix from 'matrix-slicer';
 
 import {changePlayer, setAWinner, setMatrixValue} from '../../../actions/';
 
-import Board from '../board/board';
+import Board, {BoardCell, BoardRow} from '../board/board';
 
 /**
  * @class
@@ -79,8 +79,16 @@ class Game extends Component {
 
     render() {
         return (
-            <div className="game">
-                <Board matrix={this.props.game.matrix} makeAMove={this.makeAMove}/>
+            <div className="game">{this.props.game.hasAWinner ? 'Yep! We have a Winner!' : null}
+                <Board>
+                    {this.props.game.matrix.map((row, y) => {
+                        return <BoardRow key={y}>
+                            {row.map((value, x) => {
+                                return <BoardCell key={x} x={x} y={y} isClickable={(value === 0)} type={value} onClick={this.makeAMove}/>;
+                            })}
+                        </BoardRow>;
+                    })}
+                </Board>
             </div>
         );
     }

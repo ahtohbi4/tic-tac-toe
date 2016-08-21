@@ -10,15 +10,7 @@ import classnames from 'classnames';
 export default class Board extends Component {
     render() {
         return (
-            <div className="board">
-                {this.props.matrix.map((row, y) => {
-                    return <BoardRow key={y}>
-                        {row.map((cell, x) => {
-                            return <BoardCell key={x} x={x} y={y} makeAMove={this.props.makeAMove}/>
-                        })}
-                    </BoardRow>;
-                })}
-            </div>
+            <div className="board">{this.props.children}</div>
         );
     }
 };
@@ -41,38 +33,38 @@ export class BoardRow extends Component {
  *
  * @props {number} x
  * @props {number} y
+ * @props {number} isClickable
+ * @props {number} type - Type of cell. Possible values is -1 or 1.
  */
 class BoardCellBlank extends Component {
-    constructor() {
-        super();
-
-        this.state = {
-            clickable: true
-        };
+    constructor(props) {
+        super(props);
 
         this.handleClick = this.handleClick.bind(this);
     }
 
+    get type() {
+        const TYPES = {
+            '-1': 'board__cell_type_o',
+            1: 'board__cell_type_x'
+        };
+
+        return TYPES[this.props.type] || undefined;
+    }
+
     handleClick() {
-        if (this.state.clickable) {
+        if (this.props.isClickable) {
             const {x, y} = this.props;
 
-            this.props.makeAMove(x, y);
-
-            this.setState({
-                ...this.state,
-                clickable: false,
-                type: this.props.game.player
-            });
+            this.props.onClick(x, y);
         }
     }
 
     render() {
         return (
             <div className={classnames('board__cell', {
-                board__cell_clickable: this.state.clickable,
-                board__cell_type_x: (this.state.type === 1),
-                board__cell_type_o: (this.state.type === -1)
+                board__cell_clickable: this.props.isClickable,
+                [this.type]: this.type
             })} onClick={this.handleClick}></div>
         );
     }
