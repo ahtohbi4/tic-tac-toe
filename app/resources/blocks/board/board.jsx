@@ -40,7 +40,19 @@ class BoardCellBlank extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            isClickable: props.isClickable
+        };
+
         this.handleClick = this.handleClick.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            ...this.state,
+            isClickable: nextProps.isClickable,
+            type: nextProps.type
+        });
     }
 
     get type() {
@@ -49,11 +61,11 @@ class BoardCellBlank extends Component {
             1: 'board__cell_type_x'
         };
 
-        return TYPES[this.props.type] || undefined;
+        return TYPES[this.state.type] || undefined;
     }
 
     handleClick() {
-        if (this.props.isClickable) {
+        if (this.state.isClickable) {
             const {x, y} = this.props;
 
             this.props.onClick(x, y);
@@ -63,7 +75,7 @@ class BoardCellBlank extends Component {
     render() {
         return (
             <div className={classnames('board__cell', {
-                board__cell_clickable: this.props.isClickable,
+                board__cell_clickable: this.state.isClickable,
                 [this.type]: this.type
             })} onClick={this.handleClick}></div>
         );
