@@ -9,9 +9,11 @@
 }
 
 /* @mod with-popup */
+.app__content {
+    transition: all .25s linear;
+}
 .app_with-popup .app__content {
     /* @todo remove this hard code */
     -webkit-filter: blur(10px);
     filter: blur(10px);
-    transition: all .5s linear;
 }

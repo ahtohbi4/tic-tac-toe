@@ -4,6 +4,7 @@
     right: 0;
     bottom: 0;
     left: 0;
+    overflow: hidden;
 }
 
 .popup__cover {
@@ -20,4 +21,15 @@
 .popup__box {
     position: relative;
     z-index: 150;
+    transition: all .25s linear;
+    transform: scale(1.5);
+    -webkit-filter: blur(10px);
+    filter: blur(10px);
+}
+
+/* @mod mounted */
+.popup_mounted .popup__box {
+    transform: scale(1);
+    -webkit-filter: blur(0);
+    filter: blur(0);
 }
