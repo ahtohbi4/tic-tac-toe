@@ -24,6 +24,9 @@ export const setMatrixValue = (x, y, value) => {
     };
 };
 
+/**
+ * @returns {object}
+ */
 export const resetMatrix = () => {
     return {
         type: 'RESET_MATRIX'
