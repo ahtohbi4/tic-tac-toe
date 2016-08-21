@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import classnames from 'classnames';
+
+import {resetMatrix} from '../../../actions/';
 
 import Game from '../game/game';
 import Score from '../score/score';
@@ -12,14 +15,21 @@ import Settings, {SettingsControl} from '../settings/settings';
  * @extends Component
  */
 class App extends Component {
+    constructor() {
+        super();
+
+        this.startNewGame = this.startNewGame.bind(this);
+    }
+
+    startNewGame() {
+        this.props.resetMatrix();
+    }
+
     render() {
         return (
-            <div className={classnames(
-                'app',
-                {
-                    'app_with-popup': this.props.isActivePopup
-                }
-            )}>
+            <div className={classnames('app', {
+                'app_with-popup': this.props.isActivePopup
+            })}>
                 <div className="app__content">
                     <SettingsControl/>
 
@@ -30,7 +40,7 @@ class App extends Component {
                     <Game/>
                 </div>
 
-                {this.props.isActivePopup ? <Settings/> : null}
+                {this.props.isActivePopup ? <Settings onSubmit={this.startNewGame}/> : null}
             </div>
         );
     }
@@ -41,6 +51,11 @@ export default connect(
         return {
             isActivePopup: state.isActivePopup,
             game: state.game
+        };
+    },
+    (dispatch) => {
+        return {
+            resetMatrix: bindActionCreators(resetMatrix, dispatch)
         };
     }
 )(App);

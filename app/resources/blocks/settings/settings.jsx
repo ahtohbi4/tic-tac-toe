@@ -33,6 +33,7 @@ class SettingsBlank extends Component {
 
         this.props.setMatrix(matrix.get());
         this.props.setVictoryChainsLength(this._inputVictoryChainsLength.state.value);
+        this.props.onSubmit();
 
         this.props.activatePopup(false);
     }

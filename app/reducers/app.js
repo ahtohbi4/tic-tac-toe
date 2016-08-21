@@ -58,6 +58,19 @@ export default function (state = initialState, action) {
                 }
             };
 
+        case 'RESET_MATRIX':
+            return {
+                ...state,
+                game: {
+                    ...state.game,
+                    matrix: state.game.matrix.map((row) => {
+                        return row.map((value) => {
+                            return 0;
+                        });
+                    })
+                }
+            };
+
         case 'SET_VICTORY_CHAINS_LENGTH':
             if (action.value < 3) {
                 // Not valid

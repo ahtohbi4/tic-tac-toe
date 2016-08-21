@@ -24,6 +24,12 @@ export const setMatrixValue = (x, y, value) => {
     };
 }
 
+export const resetMatrix = () => {
+    return {
+        type: 'RESET_MATRIX'
+    };
+};
+
 /**
  * @param {object} matrix
  * @returns {object}
