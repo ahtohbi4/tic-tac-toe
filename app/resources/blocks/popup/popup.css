@@ -1,4 +1,7 @@
 .popup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     position: absolute;
     top: 0;
     right: 0;
@@ -21,6 +24,8 @@
 .popup__box {
     position: relative;
     z-index: 150;
+    max-width: 500px;
+    margin: 0 auto;
     transition: all .25s linear;
     transform: scale(1.5);
     -webkit-filter: blur(10px);
