@@ -8,7 +8,6 @@ import Matrix from 'matrix-slicer';
 
 import InputNumber from '../input-number/input-number';
 import Popup from '../popup/popup';
-import Radio, {RadioItem} from '../radio/radio';
 
 /**
  * @class
@@ -59,20 +58,6 @@ class SettingsBlank extends Component {
                     <div>
                         <label>Length of the wins Chain:</label>
                         <InputNumber value={victoryChainsLength} minValue={3} maxValue={10} ref={c => this._inputVictoryChainsLength = c}/>
-                    </div>
-
-                    <div>
-                        <label>Rival:</label>
-                        <Radio name="rival" items={[
-                            {
-                                value: 'cpu',
-                                label: 'CPU'
-                            },
-                            {
-                                value: 'man',
-                                label: 'MAN'
-                            }
-                        ]}/>
                     </div>
 
                     <div>
