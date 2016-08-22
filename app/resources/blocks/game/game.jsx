@@ -15,10 +15,41 @@ import Board, {BoardCell, BoardRow} from '../board/board';
  * @props {array} matrix
  */
 class Game extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            player: props.game.player
+        };
+
+        this.cpuMove = this.cpuMove.bind(this);
         this.makeAMove = this.makeAMove.bind(this);
+    }
+
+    componentWillReceiveProps(newProps) {
+        this.setState({
+            player: newProps.game.player
+        });
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        if (nextState.player === -1) {
+            setTimeout(this.cpuMove, 1000);
+        }
+    }
+
+    cpuMove() {
+        this.makeClick(2, 2);
+    }
+
+    /**
+     * Makes a click.
+     *
+     * @param {number} x - Zero-based coordinate.
+     * @param {number} y - Zero-based coordinate.
+     */
+    makeClick(x, y) {
+        document.querySelector(`.board__row:nth-child(${(y + 1)}) .board__cell:nth-child(${(x + 1)})`).click();
     }
 
     /**
