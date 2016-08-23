@@ -22,6 +22,7 @@ class Game extends Component {
             player: props.game.player
         };
 
+        this.calculation = this.calculation.bind(this);
         this.cpuMove = this.cpuMove.bind(this);
         this.makeAMove = this.makeAMove.bind(this);
     }
@@ -39,7 +40,25 @@ class Game extends Component {
     }
 
     cpuMove() {
-        this.makeClick(2, 2);
+        this.makeClick.apply(this, this.calculation());
+    }
+
+    calculation() {
+        let result;
+
+        this.props.game.matrix.forEach((row, y, matrix) => {
+            row.forEach((value, x) => {
+                if (value === 0) {
+                    if (result === undefined) {
+                        result = [x, y];
+                    } else {
+                        result = [2, 2];
+                    }
+                }
+            });
+        });
+
+        return result;
     }
 
     /**
