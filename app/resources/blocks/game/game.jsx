@@ -75,6 +75,7 @@ class Game extends Component {
                     if (result === undefined) {
                         result = [x, y];
                     } else {
+                        // @todo Algorithm is under construction.
                         result = [2, 2];
                     }
                 }
@@ -143,7 +144,7 @@ class Game extends Component {
 
     render() {
         return (
-            <div className="game">{this.props.game.hasAWinner ? 'Yep! We have a Winner!' : null}
+            <div className="game">
                 <Board>
                     {this.props.game.matrix.map((row, y) => {
                         return <BoardRow key={y}>

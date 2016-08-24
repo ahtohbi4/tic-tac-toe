@@ -39,6 +39,12 @@ class App extends Component {
 
                     <Score/>
 
+                    {this.props.game.hasAWinner ? (
+                        <div>
+                            <p>Yep! We have a Winner!</p>
+                            <button onClick={this.startNewGame}>New</button>
+                        </div>) : null}
+
                     <Game/>
                 </div>
 
