@@ -134,7 +134,9 @@ class Game extends Component {
                     {this.props.game.matrix.map((row, y) => {
                         return <BoardRow key={y}>
                             {row.map((value, x) => {
-                                return <BoardCell key={x} x={x} y={y} isClickable={(value === 0)} type={value} onClick={this.makeAMove}/>;
+                                const isClickable = (value === 0 && this.props.game.player === 1);
+
+                                return <BoardCell key={x} x={x} y={y} isClickable={isClickable} type={value} onClick={this.makeAMove}/>;
                             })}
                         </BoardRow>;
                     })}
