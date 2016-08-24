@@ -22,8 +22,8 @@ class Game extends Component {
             player: props.game.player
         };
 
-        this.calculation = this.calculation.bind(this);
-        this.cpuMove = this.cpuMove.bind(this);
+        this.coordinateСalculation = this.coordinateСalculation.bind(this);
+        this.pcMove = this.pcMove.bind(this);
         this.makeAMove = this.makeAMove.bind(this);
     }
 
@@ -33,17 +33,34 @@ class Game extends Component {
         });
     }
 
-    componentWillUpdate(nextProps, nextState) {
-        if (nextState.player === -1) {
-            setTimeout(this.cpuMove, 1000);
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.player !== prevState.player && this.props.game.player === -1) {
+            setTimeout(this.pcMove, 1000);
         }
     }
 
-    cpuMove() {
-        this.makeClick.apply(this, this.calculation());
+    shouldComponentUpdate(newProps, newState) {
+        return (this.props.game.matrix !== newProps.game.matrix || this.state.player !== newState.player);
     }
 
-    calculation() {
+    /**
+     * PC makes a move.
+     */
+    pcMove() {
+        let args = this.coordinateСalculation();
+        args.push(this.props.game.player);
+
+        this.props.setMatrixValue.apply(this, args);
+
+        this.props.changePlayer();
+    }
+
+    /**
+     * Сalculation of a coordinates for the next PC's move.
+     *
+     * @returns {array} - Coordinates for move in case [x, y]
+     */
+    coordinateСalculation() {
         let result;
 
         this.props.game.matrix.forEach((row, y, matrix) => {
@@ -62,17 +79,7 @@ class Game extends Component {
     }
 
     /**
-     * Makes a click.
-     *
-     * @param {number} x - Zero-based coordinate.
-     * @param {number} y - Zero-based coordinate.
-     */
-    makeClick(x, y) {
-        document.querySelector(`.board__row:nth-child(${(y + 1)}) .board__cell:nth-child(${(x + 1)})`).click();
-    }
-
-    /**
-     * Make a move.
+     * Human makes a move.
      *
      * @param {number} x
      * @param {number} y
