@@ -34,7 +34,7 @@ class Game extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.hasAWinner) {
+        if (this.hasAWinner && !this.props.game.hasAWinner) {
             this.props.setAWinner(true);
         } else if (this.state.player !== prevState.player && this.props.game.player === -1) {
             setTimeout(this.pcMove, 1000);
