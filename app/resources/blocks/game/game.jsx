@@ -34,13 +34,19 @@ class Game extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.state.player !== prevState.player && this.props.game.player === -1) {
+        if (this.hasAWinner) {
+            this.props.setAWinner(true);
+        } else if (this.state.player !== prevState.player && this.props.game.player === -1) {
             setTimeout(this.pcMove, 1000);
         }
     }
 
     shouldComponentUpdate(newProps, newState) {
-        return (this.props.game.matrix !== newProps.game.matrix || this.state.player !== newState.player);
+        return (
+            this.props.game.matrix !== newProps.game.matrix ||
+            this.props.game.hasAWinner !== newProps.game.hasAWinner ||
+            this.state.player !== newState.player
+        );
     }
 
     /**
@@ -87,10 +93,6 @@ class Game extends Component {
     makeAMove(x, y) {
         this.props.setMatrixValue(x, y, this.props.game.player);
 
-        if (this.hasAWinner) {
-            this.props.setAWinner(true);
-        }
-
         this.props.changePlayer();
     }
 
@@ -103,7 +105,12 @@ class Game extends Component {
         let result;
         const matrix = new Matrix(this.props.game.matrix);
 
-        result = [].concat(matrix.getRows(), matrix.getColumns(), matrix.getDiagonalsMaj(), matrix.getDiagonalsMin());
+        result = [].concat(
+            matrix.getRows(),
+            matrix.getColumns(),
+            matrix.getDiagonalsMaj(),
+            matrix.getDiagonalsMin()
+        );
         result = result.filter((line) => {
             return (line.length >= this.props.game.victoryChainsLength);
         });
