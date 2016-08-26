@@ -68,19 +68,108 @@ class Game extends Component {
      */
     coordinateСalculation() {
         let result;
+        let maxCoefficient = [0, 0];
 
-        this.props.game.matrix.forEach((row, y, matrix) => {
-            row.forEach((value, x) => {
+        rowsIterator: for (let j = 0; j < this.props.game.matrix.length; j++) {
+            const row = this.props.game.matrix[j];
+
+            for (let i = 0; i < row.length; i++) {
+                const value = row[i];
+
                 if (value === 0) {
+                    const coefficient = this.coefficientСalculation(i, j);
+
                     if (result === undefined) {
-                        result = [x, y];
+                        result = [i, j];
+                        maxCoefficient = coefficient;
                     } else {
-                        // @todo Algorithm is under construction.
-                        result = [2, 2];
+                        if ((this.props.game.victoryChainsLength - coefficient[0]) <= 1) {
+                            result = [i, j];
+                            maxCoefficient = coefficient;
+
+                            break rowsIterator;
+                        } else if (
+                            coefficient[0] > maxCoefficient[0] ||
+                            coefficient[0] === maxCoefficient[0] && coefficient[1] > maxCoefficient[1]
+                        ) {
+                            result = [i, j];
+                            maxCoefficient = coefficient;
+                        }
                     }
                 }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Calculates a coefficient of element with coordinates (x, y).
+     *
+     * @param {number} x
+     * @param {number} y
+     * @returns {number}
+     */
+    coefficientСalculation(x, y) {
+        let result = [];
+
+        const assumedMatrix = (assumedValue, x, y) => {
+            return this.props.game.matrix.map((row, j) => {
+                return row.map((value, i) => {
+                    return (j === y && i === x) ? assumedValue : value;
+                });
             });
-        });
+        };
+
+        const coefficientOfAssume = function (matrix, x, y) {
+            let coefficients = [];
+            let coefficient,
+                i,
+                j;
+
+            // In column
+            j = y;
+
+            while (matrix[j - 1] !== undefined && matrix[j - 1][x] === matrix[y][x]) {
+                j--;
+            }
+
+            coefficient = 0;
+
+            while (matrix[j] !== undefined && matrix[j][x] === matrix[y][x]) {
+                coefficient++;
+                j++;
+            }
+
+            coefficients.push(coefficient);
+
+            // In row
+            i = x;
+
+            while (matrix[y][i - 1] !== undefined && matrix[y][i - 1] === matrix[y][x]) {
+                i--;
+            }
+
+            coefficient = 0;
+
+            while (matrix[y][i] !== undefined && matrix[y][i] === matrix[y][x]) {
+                coefficient++;
+                i++;
+            }
+
+            coefficients.push(coefficient);
+
+            // In major diagonal
+            // In minor diagonal
+
+            return Math.max.apply(this, coefficients);
+        };
+
+        // Assumption #1: value = 1 (to win).
+        result.push(coefficientOfAssume(assumedMatrix(1, x, y), x, y));
+
+        // Assumption #2: value = -1 (not to lose).
+        result.push(coefficientOfAssume(assumedMatrix(-1, x, y), x, y));
 
         return result;
     }
