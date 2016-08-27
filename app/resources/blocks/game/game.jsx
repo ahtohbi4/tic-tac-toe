@@ -126,11 +126,11 @@ class Game extends Component {
             });
         });
 
-        if (coordinateOneStepFromLosing !== undefined) {
-            return coordinateOneStepFromLosing;
-
-        } else if (coordinateOneStepFromWin !== undefined) {
+        if (coordinateOneStepFromWin !== undefined) {
             return coordinateOneStepFromWin;
+
+        } else if (coordinateOneStepFromLosing !== undefined) {
+            return coordinateOneStepFromLosing;
 
         } else if (coordinateTwoStepsFromLosing !== undefined) {
             return coordinateTwoStepsFromLosing;
