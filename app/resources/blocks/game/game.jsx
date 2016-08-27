@@ -170,6 +170,116 @@ class Game extends Component {
             });
         }
 
+        /**
+         * Gets an array of arrays with nearest elements with empty values or with  values opposite by sign
+         * for the element with coordinate (x, y).
+         *
+         * @param {number} matrix
+         * @param {number} x
+         * @param {number} y
+         * @returns {Array}
+         */
+        function getCoordinatesLines(matrix, x, y) {
+            let result = [];
+            const value = matrix[y][x];
+            let i, j,
+                line;
+
+            // By row
+            i = x;
+
+            while (
+                matrix[y][i - 1] !== undefined &&
+                matrix[y][i - 1] !== (-1) * value
+            ) {
+                i--;
+            }
+
+            line = [];
+
+            while (
+                matrix[y][i + 1] !== undefined &&
+                matrix[y][i + 1] !== (-1) * value
+            ) {
+                i++;
+                line.push(matrix[y][i]);
+            }
+
+            result.push(line);
+
+            // By column
+            j = y;
+
+            while (
+                matrix[j - 1] !== undefined &&
+                matrix[j - 1][x] !== (-1) * value
+            ) {
+                j--;
+            }
+
+            line = [];
+
+            while (
+                matrix[j + 1] !== undefined &&
+                matrix[j + 1][x] !== (-1) * value
+            ) {
+                j++;
+                line.push(matrix[j][x]);
+            }
+
+            result.push(line);
+
+            // By major diagonal
+            i = x; j = y;
+
+            while (
+                matrix[j - 1] !== undefined &&
+                matrix[j - 1][i - 1] !== undefined &&
+                matrix[j - 1][i - 1] !== (-1) * value
+            ) {
+                i--; j--;
+            }
+
+            line = [];
+
+            while (
+                matrix[j + 1] !== undefined &&
+                matrix[j + 1][i + 1] !== undefined &&
+                matrix[j + 1][i + 1] !== (-1) * value
+            ) {
+                i++; j++;
+                line.push(matrix[j][i]);
+            }
+
+            result.push(line);
+
+            // By minor diagonal
+            i = x; j = y;
+
+            while (
+                matrix[j + 1] !== undefined &&
+                matrix[j + 1][i - 1] !== undefined &&
+                matrix[j + 1][i - 1] !== (-1) * value
+            ) {
+                i--; j++;
+            }
+
+            line = [];
+
+            while (
+                matrix[j - 1] !== undefined &&
+                matrix[j - 1][i + 1] !== undefined &&
+                matrix[j - 1][i + 1] !== (-1) * value
+            ) {
+                i++; j--;
+                line.push(matrix[j][i]);
+            }
+
+            result.push(line);
+
+            return result;
+        }
+
         const coefficientOfAssume = function (matrix, x, y) {
             let coefficients = [];
             let coefficient,
