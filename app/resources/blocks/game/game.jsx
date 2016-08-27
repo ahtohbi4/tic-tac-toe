@@ -67,6 +67,8 @@ class Game extends Component {
      * @returns {array} - Coordinates for move in case [x, y]
      */
     coordinateСalculation() {
+        const MATRIX = this.props.game.matrix;
+
         let coordinateOneStepFromLosing;
         let coordinateTwoStepsFromLosing;
         let coordinateOneStepFromWin;
@@ -74,49 +76,55 @@ class Game extends Component {
         let coordinateCommon;
         let coefficientPositiveCommon;
 
+        while (
+            coordinateCommon === undefined ||
+            MATRIX[coordinateCommon[0]][coordinateCommon[1]] !== 0
+        ) {
+            const x = Math.floor(Math.random() * MATRIX[0].length);
+            const y = Math.floor(Math.random() * MATRIX.length);
+
+            coordinateCommon = [x, y];
+            coefficientPositiveCommon = this.coefficientСalculation(x, y)[1];
+        }
+
         const VICTORY_CHAINS_LENGTH = this.props.game.victoryChainsLength;
 
-        for (let j = 0; j < this.props.game.matrix.length; j++) {
-            const row = this.props.game.matrix[j];
-
-            for (let i = 0; i < row.length; i++) {
-                if (row[i] === 0) {
-                    const coefficient = this.coefficientСalculation(i, j);
+        MATRIX.forEach((row, y) => {
+            row.forEach((value, x) => {
+                if (value === 0) {
+                    const coefficient = this.coefficientСalculation(x, y);
 
                     if (/* If the only one step separates PC from the losing. */
                         coordinateOneStepFromLosing === undefined &&
                         coefficient[0] === VICTORY_CHAINS_LENGTH
                     ) {
-                        coordinateOneStepFromLosing = [i, j];
+                        coordinateOneStepFromLosing = [x, y];
 
                     } else if (/* If two steps separate PC from the losing. */
                         coordinateTwoStepsFromLosing === undefined &&
                         coefficient[0] + 1 === VICTORY_CHAINS_LENGTH
                     ) {
-                        coordinateTwoStepsFromLosing = [i, j];
+                        coordinateTwoStepsFromLosing = [x, y];
 
                     } else if (/* If the only one step separates PC from the victory. */
                         coordinateOneStepFromWin === undefined &&
                         coefficient[1] === VICTORY_CHAINS_LENGTH
                     ) {
-                        coordinateOneStepFromWin = [i, j];
+                        coordinateOneStepFromWin = [x, y];
 
                     } else if (/* If two steps separate PC from the victory. */
                         coordinateTwoStepsFromWin === undefined &&
                         coefficient[1] + 1 === VICTORY_CHAINS_LENGTH
                     ) {
-                        coordinateTwoStepsFromWin = [i, j];
+                        coordinateTwoStepsFromWin = [x, y];
 
-                    } else if (/* The most profitable coordinate in a common situation. */
-                        coordinateCommon === undefined ||
-                        coefficient[1] > coefficientPositiveCommon
-                    ) {
-                        coordinateCommon = [i, j];
+                    } else if (coefficient[1] > coefficientPositiveCommon) {
+                        coordinateCommon = [x, y];
                         coefficientPositiveCommon = coefficient[1];
                     }
                 }
-            }
-        }
+            });
+        });
 
         if (coordinateOneStepFromLosing !== undefined) {
             return coordinateOneStepFromLosing;
