@@ -153,19 +153,27 @@ class Game extends Component {
     getCoordinatesCoefficient(x, y) {
         let result = [];
 
-        const assumedMatrix = (assumedValue, x, y) => {
-            return this.props.game.matrix.map((row, j) => {
+        /**
+         * Creates an assumed matrix by assumed value.
+         *
+         * @param {array} matrix - Original matrix.
+         * @param {number} assumedValue - The assumed value.
+         * @param {number} x - Coordinate X of assumed value.
+         * @param {number} y - Coordinate Y of assumed value.
+         * @returns {array} - New matrix.
+         */
+        function createAssumedMatrix(matrix, assumedValue, x, y) {
+            return matrix.map((row, j) => {
                 return row.map((value, i) => {
                     return (j === y && i === x) ? assumedValue : value;
                 });
             });
-        };
+        }
 
         const coefficientOfAssume = function (matrix, x, y) {
             let coefficients = [];
             let coefficient,
-                i,
-                j;
+                i, j;
 
             // In column
             j = y;
@@ -206,10 +214,10 @@ class Game extends Component {
         };
 
         // Assumption #1: value = 1 (to win).
-        result.push(coefficientOfAssume(assumedMatrix(1, x, y), x, y));
+        result.push(coefficientOfAssume(createAssumedMatrix(this.props.game.matrix, 1, x, y), x, y));
 
         // Assumption #2: value = -1 (not to lose).
-        result.push(coefficientOfAssume(assumedMatrix(-1, x, y), x, y));
+        result.push(coefficientOfAssume(createAssumedMatrix(this.props.game.matrix, -1, x, y), x, y));
 
         return result;
     }
