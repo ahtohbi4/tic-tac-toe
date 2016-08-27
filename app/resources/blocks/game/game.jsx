@@ -84,7 +84,7 @@ class Game extends Component {
             const y = Math.floor(Math.random() * MATRIX.length);
 
             coordinateCommon = [x, y];
-            coefficientPositiveCommon = this.coefficientСalculation(x, y)[1];
+            coefficientPositiveCommon = this.getCoordinatesCoefficient(x, y)[1];
         }
 
         const VICTORY_CHAINS_LENGTH = this.props.game.victoryChainsLength;
@@ -92,7 +92,7 @@ class Game extends Component {
         MATRIX.forEach((row, y) => {
             row.forEach((value, x) => {
                 if (value === 0) {
-                    const coefficient = this.coefficientСalculation(x, y);
+                    const coefficient = this.getCoordinatesCoefficient(x, y);
 
                     if (/* If the only one step separates PC from the losing. */
                         coordinateOneStepFromLosing === undefined &&
@@ -150,7 +150,7 @@ class Game extends Component {
      * @param {number} y
      * @returns {number}
      */
-    coefficientСalculation(x, y) {
+    getCoordinatesCoefficient(x, y) {
         let result = [];
 
         const assumedMatrix = (assumedValue, x, y) => {
