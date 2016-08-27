@@ -82,19 +82,22 @@ class Game extends Component {
                     if (result === undefined) {
                         result = [i, j];
                         maxCoefficient = coefficient;
-                    } else {
-                        if ((this.props.game.victoryChainsLength - coefficient[0]) <= 1) {
-                            result = [i, j];
-                            maxCoefficient = coefficient;
+                    }
 
-                            break rowsIterator;
-                        } else if (
-                            coefficient[0] > maxCoefficient[0] ||
-                            coefficient[0] === maxCoefficient[0] && coefficient[1] > maxCoefficient[1]
-                        ) {
-                            result = [i, j];
-                            maxCoefficient = coefficient;
-                        }
+                    if (this.props.game.victoryChainsLength === coefficient[0]) {
+                        result = [i, j];
+
+                        break rowsIterator;
+                    } else if (this.props.game.victoryChainsLength === coefficient[1]) {
+                        result = [i, j];
+
+                        break rowsIterator;
+                    } else if (
+                        coefficient[0] > maxCoefficient[0] ||
+                        coefficient[0] === maxCoefficient[0] && coefficient[1] > maxCoefficient[1]
+                    ) {
+                        result = [i, j];
+                        maxCoefficient = coefficient;
                     }
                 }
             }
