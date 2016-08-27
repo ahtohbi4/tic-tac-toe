@@ -177,9 +177,10 @@ class Game extends Component {
          * @param {number} matrix
          * @param {number} x
          * @param {number} y
+         * @param {number} maxLength
          * @returns {Array}
          */
-        function getCoordinatesLines(matrix, x, y) {
+        function getCoordinatesLines(matrix, x, y, maxLength) {
             let result = [];
             const value = matrix[y][x];
             let i, j,
@@ -190,16 +191,18 @@ class Game extends Component {
 
             while (
                 matrix[y][i - 1] !== undefined &&
-                matrix[y][i - 1] !== (-1) * value
+                matrix[y][i - 1] !== (-1) * value &&
+                (x - i + 1) < maxLength
             ) {
                 i--;
             }
 
-            line = [];
+            line = [matrix[y][i]];
 
             while (
                 matrix[y][i + 1] !== undefined &&
-                matrix[y][i + 1] !== (-1) * value
+                matrix[y][i + 1] !== (-1) * value &&
+                (i + 1 - x) < maxLength
             ) {
                 i++;
                 line.push(matrix[y][i]);
@@ -212,16 +215,18 @@ class Game extends Component {
 
             while (
                 matrix[j - 1] !== undefined &&
-                matrix[j - 1][x] !== (-1) * value
+                matrix[j - 1][x] !== (-1) * value &&
+                (y - j + 1) < maxLength
             ) {
                 j--;
             }
 
-            line = [];
+            line = [matrix[j][x]];
 
             while (
                 matrix[j + 1] !== undefined &&
-                matrix[j + 1][x] !== (-1) * value
+                matrix[j + 1][x] !== (-1) * value &&
+                (j + 1 - y) < maxLength
             ) {
                 j++;
                 line.push(matrix[j][x]);
@@ -235,17 +240,21 @@ class Game extends Component {
             while (
                 matrix[j - 1] !== undefined &&
                 matrix[j - 1][i - 1] !== undefined &&
-                matrix[j - 1][i - 1] !== (-1) * value
+                matrix[j - 1][i - 1] !== (-1) * value &&
+                (x - i + 1) < maxLength &&
+                (y - j + 1) < maxLength
             ) {
                 i--; j--;
             }
 
-            line = [];
+            line = [matrix[j][i]];
 
             while (
                 matrix[j + 1] !== undefined &&
                 matrix[j + 1][i + 1] !== undefined &&
-                matrix[j + 1][i + 1] !== (-1) * value
+                matrix[j + 1][i + 1] !== (-1) * value &&
+                (i + 1 - x) < maxLength &&
+                (j + 1 - y) < maxLength
             ) {
                 i++; j++;
                 line.push(matrix[j][i]);
@@ -259,17 +268,21 @@ class Game extends Component {
             while (
                 matrix[j + 1] !== undefined &&
                 matrix[j + 1][i - 1] !== undefined &&
-                matrix[j + 1][i - 1] !== (-1) * value
+                matrix[j + 1][i - 1] !== (-1) * value &&
+                (x - i + 1) < maxLength &&
+                (j - 1 - y) < maxLength
             ) {
                 i--; j++;
             }
 
-            line = [];
+            line = [matrix[j][i]];
 
             while (
                 matrix[j - 1] !== undefined &&
                 matrix[j - 1][i + 1] !== undefined &&
-                matrix[j - 1][i + 1] !== (-1) * value
+                matrix[j - 1][i + 1] !== (-1) * value &&
+                (i + 1 - x) < maxLength &&
+                (y - j + 1) < maxLength
             ) {
                 i++; j--;
                 line.push(matrix[j][i]);
@@ -280,54 +293,36 @@ class Game extends Component {
             return result;
         }
 
-        const coefficientOfAssume = function (matrix, x, y) {
-            let coefficients = [];
-            let coefficient,
-                i, j;
+        /**
+         * Calculates the coefficient.
+         *
+         * @param {array} matrix
+         * @param {number} x
+         * @param {number} y
+         * @param {number} minLength
+         * @returns {number}
+         */
+        function calculateCoefficient(matrix, x, y, minLength) {
+            let lines = getCoordinatesLines(matrix, x, y, minLength);
 
-            // In column
-            j = y;
+            lines = lines.filter((line) => {
+                return (line.length >= minLength);
+            });
 
-            while (matrix[j - 1] !== undefined && matrix[j - 1][x] === matrix[y][x]) {
-                j--;
-            }
+            return lines.reduce((result, line) => {
+                return Math.max(result, line.reduce((result, value) => {
+                    return (result + Math.abs(value));
+                }, 0));
+            }, 0);
+        }
 
-            coefficient = 0;
+        // Assumption #1: value = 1 (positive).
+        const assumedNegativeMatrix = createAssumedMatrix(this.props.game.matrix, 1, x, y);
+        result.push(calculateCoefficient(assumedNegativeMatrix, x, y, this.props.game.victoryChainsLength));
 
-            while (matrix[j] !== undefined && matrix[j][x] === matrix[y][x]) {
-                coefficient++;
-                j++;
-            }
-
-            coefficients.push(coefficient);
-
-            // In row
-            i = x;
-
-            while (matrix[y][i - 1] !== undefined && matrix[y][i - 1] === matrix[y][x]) {
-                i--;
-            }
-
-            coefficient = 0;
-
-            while (matrix[y][i] !== undefined && matrix[y][i] === matrix[y][x]) {
-                coefficient++;
-                i++;
-            }
-
-            coefficients.push(coefficient);
-
-            // In major diagonal
-            // In minor diagonal
-
-            return Math.max.apply(this, coefficients);
-        };
-
-        // Assumption #1: value = 1 (to win).
-        result.push(coefficientOfAssume(createAssumedMatrix(this.props.game.matrix, 1, x, y), x, y));
-
-        // Assumption #2: value = -1 (not to lose).
-        result.push(coefficientOfAssume(createAssumedMatrix(this.props.game.matrix, -1, x, y), x, y));
+        // Assumption #2: value = -1 (negative).
+        const assumedPositiveMatrix = createAssumedMatrix(this.props.game.matrix, -1, x, y);
+        result.push(calculateCoefficient(assumedPositiveMatrix, x, y, this.props.game.victoryChainsLength));
 
         return result;
     }
