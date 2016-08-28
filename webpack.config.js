@@ -13,6 +13,7 @@ let extractHTML = new ExtractTextPlugin('index.html');
 let extractCSS = new ExtractTextPlugin('[name].css');
 
 const autoprefixer = require('autoprefixer');
+const csso = require('postcss-csso');
 const atImport = require('postcss-import');
 const url = require('postcss-url');
 
@@ -110,6 +111,10 @@ module.exports = {
             browsers: [
                 'last 2 versions'
             ]
+        }),
+        csso({
+            debug: 3,
+            restructure: true
         })
     ],
 
