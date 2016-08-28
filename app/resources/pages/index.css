@@ -1,15 +1,9 @@
-@import url(~normalize.css/normalize.css);
+@import url(normalize.css);
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-}
-
-@import url(../blocks/app/app.css);
-@import url(../blocks/board/board.css);
-@import url(../blocks/game/game.css);
-@import url(../blocks/input-number/input-number.css);
-@import url(../blocks/popup/popup.css);
-@import url(../blocks/score/score.css);
-@import url(../blocks/settings/settings.css);
+@import url(app/app.css);
+@import url(board/board.css);
+@import url(game/game.css);
+@import url(input-number/input-number.css);
+@import url(popup/popup.css);
+@import url(score/score.css);
+@import url(settings/settings.css);

@@ -20,11 +20,11 @@
 }
 .score__wins::before {
     margin-right: 5px;
-    background: url(./score__wins.svg) 50% 50% no-repeat;
+    background: url(blocks/score/score__wins.svg) 50% 50% no-repeat;
 }
 .score__defeats::after {
     margin-left: 5px;
-    background: url(./score__defeats.svg) 50% 50% no-repeat;
+    background: url(blocks/score/score__defeats.svg) 50% 50% no-repeat;
 }
 
 .score__delimiter {

@@ -13,6 +13,8 @@ let extractHTML = new ExtractTextPlugin('index.html');
 let extractCSS = new ExtractTextPlugin('[name].css');
 
 const autoprefixer = require('autoprefixer');
+const atImport = require('postcss-import');
+const url = require('postcss-url');
 
 const HOST = 'localhost';
 const PORT = 8080;
@@ -72,7 +74,7 @@ if (__DEV__) {
             path.join(__dirname, 'node_modules/matrix-slicer/')
         ]
     });
-}
+};
 
 module.exports = {
     devtool: __DEV__ ? 'eval' : false,
@@ -94,6 +96,16 @@ module.exports = {
     },
 
     postcss: [
+        atImport({
+            path: [
+                path.join(__dirname, 'app/resources/blocks/'),
+                path.join(__dirname, 'app/resources/pages/')
+            ]
+        }),
+        url({
+            basePath: path.join(__dirname, 'app/resources/'),
+            url: 'inline'
+        }),
         autoprefixer({
             browsers: [
                 'last 2 versions'
