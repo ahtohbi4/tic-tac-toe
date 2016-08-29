@@ -47,6 +47,24 @@ export const setVictoryChainsLength = (value) => {
 /**
  * @returns {object}
  */
+export const gameStart = () => {
+    return {
+        type: 'GAME_START'
+    };
+};
+
+/**
+ * @returns {object}
+ */
+export const gameStop = () => {
+    return {
+        type: 'GAME_STOP'
+    };
+};
+
+/**
+ * @returns {object}
+ */
 export const changePlayer = () => {
     return {
         type: 'CHANGE_PLAYER'

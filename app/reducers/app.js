@@ -16,13 +16,14 @@ const INITIAL_STATE = {
     isActivePopup: false,
     game: {
         hasAWinner: false,
+        isGoing: true,
         matrix: [
             [0, 0, 0],
             [0, 0, 0],
             [0, 0, 0]
         ],
-        victoryChainsLength: 3,
-        player: 1
+        player: 1,
+        victoryChainsLength: 3
     },
     history: {
         defeats: 0,
@@ -96,6 +97,24 @@ export default function (state = INITIAL_STATE, action) {
                 game: {
                     ...state.game,
                     victoryChainsLength: action.value
+                }
+            };
+
+        case 'GAME_START':
+            return {
+                ...state,
+                game: {
+                    ...state.game,
+                    isGoing: true
+                }
+            };
+
+        case 'GAME_STOP':
+            return {
+                ...state,
+                game: {
+                    ...state.game,
+                    isGoing: false
                 }
             };
 

@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 
 import classnames from 'classnames';
 
-import {resetMatrix, resetPlayer, resetWinner} from '../../../actions/';
+import {gameStart, resetMatrix, resetPlayer, resetWinner} from '../../../actions/';
 
 import Game from '../game/game';
 import Score from '../score/score';
@@ -25,6 +25,7 @@ class App extends Component {
         this.props.resetMatrix();
         this.props.resetPlayer();
         this.props.resetWinner();
+        this.props.gameStart();
     }
 
     render() {
@@ -39,11 +40,16 @@ class App extends Component {
 
                     <Score/>
 
-                    {this.props.game.hasAWinner ? (
+                    {!this.props.game.isGoing ? (
                         <div>
-                            <p>Yep! We have a Winner!</p>
-                            <button onClick={this.startNewGame}>New</button>
-                        </div>) : null}
+                            {this.props.game.hasAWinner ? (
+                                <p>{(this.props.game.player === -1) ? 'You are the Winner!' : 'PC is the Winner!'}</p>
+                            ) : (
+                                <p>There are on a Winner. Try again!</p>
+                            )}
+                            <button onClick={this.startNewGame}>New Game</button>
+                        </div>
+                    ) : null}
 
                     <Game/>
                 </div>
@@ -63,6 +69,7 @@ export default connect(
     },
     (dispatch) => {
         return {
+            gameStart: bindActionCreators(gameStart, dispatch),
             resetMatrix: bindActionCreators(resetMatrix, dispatch),
             resetPlayer: bindActionCreators(resetPlayer, dispatch),
             resetWinner: bindActionCreators(resetWinner, dispatch)

@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 
 import Matrix from 'matrix-slicer';
 
-import {changePlayer, setAWinner, setMatrixValue} from '../../../actions/';
+import {changePlayer, gameStop, setAWinner, setMatrixValue} from '../../../actions/';
 
 import Board, {BoardCell, BoardRow} from '../board/board';
 
@@ -36,6 +36,9 @@ class Game extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (this.hasAWinner && !this.props.game.hasAWinner) {
             this.props.setAWinner(true);
+            this.props.gameStop();
+        } else if (!this.hasEmptyCells) {
+            this.props.gameStop();
         } else if (this.state.player !== prevState.player && this.props.game.player === -1) {
             setTimeout(this.pcMove, 1000);
         }
@@ -45,6 +48,7 @@ class Game extends Component {
         return (
             this.props.game.matrix !== newProps.game.matrix ||
             this.props.game.hasAWinner !== newProps.game.hasAWinner ||
+            this.props.game.isGoing !== newProps.game.isGoing ||
             this.state.player !== newState.player
         );
     }
@@ -362,6 +366,19 @@ class Game extends Component {
     }
 
     /**
+     * Determines if it has empty cells.
+     *
+     * @returns {boolean}
+     */
+    get hasEmptyCells() {
+        return this.props.game.matrix.some((row) => {
+            return row.some((value) => {
+                return (value === 0);
+            });
+        });
+    }
+
+    /**
      * Getter of the winner flag.
      *
      * @returns {boolean} True if there is a winner of the Game.
@@ -412,6 +429,7 @@ export default connect(
     (dispatch) => {
         return {
             changePlayer: bindActionCreators(changePlayer, dispatch),
+            gameStop: bindActionCreators(gameStop, dispatch),
             setAWinner: bindActionCreators(setAWinner, dispatch),
             setMatrixValue: bindActionCreators(setMatrixValue, dispatch)
         };
