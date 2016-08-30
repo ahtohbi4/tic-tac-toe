@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 
 import Matrix from 'matrix-slicer';
 
-import {changePlayer, gameStop, setAWinner, setMatrixValue} from '../../../actions/';
+import * as actions from '../../../actions/';
 
 import Board, {BoardCell, BoardRow} from '../board/board';
 
@@ -35,10 +35,10 @@ class Game extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (this.hasAWinner && !this.props.game.hasAWinner) {
-            this.props.setAWinner(true);
-            this.props.gameStop();
+            this.props.actions.setAWinner(true);
+            this.props.actions.gameStop();
         } else if (!this.hasEmptyCells) {
-            this.props.gameStop();
+            this.props.actions.gameStop();
         } else if (this.state.player !== prevState.player && this.props.game.player === -1) {
             setTimeout(this.pcMove, 1000);
         }
@@ -60,9 +60,9 @@ class Game extends Component {
         let args = this.coordinateСalculation();
         args.push(this.props.game.player);
 
-        this.props.setMatrixValue.apply(this, args);
+        this.props.actions.setMatrixValue.apply(this, args);
 
-        this.props.changePlayer();
+        this.props.actions.changePlayer();
     }
 
     /**
@@ -338,9 +338,9 @@ class Game extends Component {
      * @param {number} y
      */
     makeAMove(x, y) {
-        this.props.setMatrixValue(x, y, this.props.game.player);
+        this.props.actions.setMatrixValue(x, y, this.props.game.player);
 
-        this.props.changePlayer();
+        this.props.actions.changePlayer();
     }
 
     /**
@@ -428,10 +428,7 @@ export default connect(
     },
     (dispatch) => {
         return {
-            changePlayer: bindActionCreators(changePlayer, dispatch),
-            gameStop: bindActionCreators(gameStop, dispatch),
-            setAWinner: bindActionCreators(setAWinner, dispatch),
-            setMatrixValue: bindActionCreators(setMatrixValue, dispatch)
+            actions: bindActionCreators(actions, dispatch)
         };
     }
 )(Game);
