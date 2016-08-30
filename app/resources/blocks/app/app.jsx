@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 
 import classnames from 'classnames';
 
-import {gameStart, resetMatrix, resetPlayer, resetWinner} from '../../../actions/';
+import * as actions from '../../../actions/';
 
 import Game from '../game/game';
 import Score from '../score/score';
@@ -22,10 +22,10 @@ class App extends Component {
     }
 
     startNewGame() {
-        this.props.resetMatrix();
-        this.props.resetPlayer();
-        this.props.resetWinner();
-        this.props.gameStart();
+        this.props.actions.resetMatrix();
+        this.props.actions.resetPlayer();
+        this.props.actions.resetWinner();
+        this.props.actions.gameStart();
     }
 
     render() {
@@ -69,10 +69,7 @@ export default connect(
     },
     (dispatch) => {
         return {
-            gameStart: bindActionCreators(gameStart, dispatch),
-            resetMatrix: bindActionCreators(resetMatrix, dispatch),
-            resetPlayer: bindActionCreators(resetPlayer, dispatch),
-            resetWinner: bindActionCreators(resetWinner, dispatch)
+            actions: bindActionCreators(actions, dispatch)
         };
     }
 )(App);
