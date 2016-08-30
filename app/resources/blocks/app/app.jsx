@@ -24,7 +24,17 @@ class App extends Component {
     startNewGame() {
         this.props.actions.resetMatrix();
         this.props.actions.resetPlayer();
-        this.props.actions.resetWinner();
+
+        if (this.props.game.hasAWinner) {
+            if (this.props.game.player === -1) {
+                this.props.actions.increaseCounterOfWins();
+            } else {
+                this.props.actions.increaseCounterOfDefeats();
+            }
+
+            this.props.actions.resetWinner();
+        }
+
         this.props.actions.gameStart();
     }
 
