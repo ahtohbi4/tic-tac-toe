@@ -12,13 +12,13 @@ Tic-Tac-Toe
 The Tic-tac-toe game.
 
 #### Architecture
- * [GitHub](https://github.com/) to host repository;
+ * [GitHub](https://github.com/ahtohbi4/tic-tac-toe) to host repository;
  * [BEM methodology](https://en.bem.info/method/) for architecture of app;
- * [Webpack](http://webpack.github.io/docs/) to build JSX and
- * [Gulp](http://gulpjs.com/) to build and compile CSS.
+ * [Webpack](http://webpack.github.io/docs/) to build aplication (html, JSX and CSS).
 
 #### Technologies
  * [React](https://facebook.github.io/react/) for JavaScript modules;
+ * [Redux](https://github.com/reactjs/redux) for states;
  * [Normalize.css](https://necolas.github.io/normalize.css/) as reset CSS.
 
 #### Quality
