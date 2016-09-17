@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -64,7 +65,13 @@ class App extends Component {
                     <Game/>
                 </div>
 
-                {this.props.isActivePopup ? <Settings onSubmit={this.startNewGame}/> : null}
+                <ReactCSSTransitionGroup
+                    component="div"
+                    transitionName="popup__action"
+                    transitionEnterTimeout={250}
+                    transitionLeaveTimeout={250}>
+                    {this.props.isActivePopup ? <Settings key={0} onSubmit={this.startNewGame}/> : null}
+                </ReactCSSTransitionGroup>
             </div>
         );
     }

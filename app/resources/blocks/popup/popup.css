@@ -26,15 +26,34 @@
     z-index: 150;
     max-width: 500px;
     margin: 0 auto;
-    transition: all .25s linear;
-    transform: scale(1.5);
-    filter: blur(10px);
-    opacity: 0;
 }
 
-/* @mod mounted */
-.popup_mounted .popup__box {
+/* @mod action-enter */
+.popup__action-enter .popup__box {
+    transform: scale(1.5);
+    filter: blur(10px);
+    opacity: .01;
+}
+
+/* @mod action-enter-active */
+.popup__action-enter-active .popup__box {
     transform: scale(1);
     filter: blur(0);
     opacity: 1;
+    transition: all .25s linear;
+}
+
+/* @mod action-leave */
+.popup__action-leave .popup__box {
+    transform: scale(1);
+    filter: blur(0);
+    opacity: 1;
+}
+
+/* @mod action-leave-active */
+.popup__action-leave-active .popup__box {
+    transform: scale(1.5);
+    filter: blur(10px);
+    opacity: 0;
+    transition: all .25s linear;
 }
