@@ -8,8 +8,7 @@ Tic-Tac-Toe
 [bithound-img]: https://www.bithound.io/github/ahtohbi4/tic-tac-toe/badges/score.svg
 [bithound]: https://www.bithound.io/github/ahtohbi4/tic-tac-toe
 
-#### About
-The Tic-tac-toe game.
+> The Tic-tac-toe game.
 
 #### Architecture
  * [GitHub](https://github.com/ahtohbi4/tic-tac-toe) to host repository;
