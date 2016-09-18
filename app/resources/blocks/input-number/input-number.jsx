@@ -8,6 +8,7 @@ import React, {Component, PropTypes} from 'react';
  * @props {number} [value=0]
  * @props {number} [minValue]
  * @props {number} [maxValue]
+ * @props {function} [onChange]
  */
 export default class InputNumber extends Component {
     constructor(props) {
@@ -24,10 +25,21 @@ export default class InputNumber extends Component {
     }
 
     static propTypes = {
+        maxValue: PropTypes.number,
         minValue: PropTypes.number,
-        maxValue: PropTypes.number
+        name: PropTypes.string,
+        onChange: PropTypes.func
     }
 
+    componentWillUpdate(nextProps, nextState) {
+        if (nextState.value !== this.state.value) {
+            this.props.onChange();
+        }
+    }
+
+    /**
+     * Decrease value
+     */
     decreaseValue() {
         if (this.state.minValue === undefined || this.state.value > this.state.minValue) {
             this.setState({
@@ -36,6 +48,9 @@ export default class InputNumber extends Component {
         }
     }
 
+    /**
+     * Increase value
+     */
     increaseValue() {
         if (this.state.maxValue === undefined || this.state.value < this.state.maxValue) {
             this.setState({
@@ -47,13 +62,25 @@ export default class InputNumber extends Component {
     render() {
         return (
             <span className="input-number">
-                <input className="input-number__input" type="hidden" name={this.props.name} value={this.state.value}/>
+                <input
+                    className="input-number__input"
+                    type="hidden"
+                    name={this.props.name}
+                    value={this.state.value}/>
 
-                <button className="input-number__control input-number__control_down" onClick={this.decreaseValue} disabled={this.state.value <= this.state.minValue} type="button">Down</button>
+                <button
+                    className="input-number__control input-number__control_down"
+                    onClick={this.decreaseValue}
+                    disabled={this.state.value <= this.state.minValue}
+                    type="button">Down</button>
 
                 <span className="input-number__value">{this.state.value}</span>
 
-                <button className="input-number__control input-number__control_up" onClick={this.increaseValue} disabled={this.state.value >= this.state.maxValue} type="button">Up</button>
+                <button
+                    className="input-number__control input-number__control_up"
+                    onClick={this.increaseValue}
+                    disabled={this.state.value >= this.state.maxValue}
+                    type="button">Up</button>
             </span>
         );
     }
