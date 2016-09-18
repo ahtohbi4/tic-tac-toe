@@ -41,7 +41,7 @@ class SettingsBlank extends Component {
     /**
      * Apply new settings and start a new game
      *
-     * @param      {<type>}  e       { parameter_description }
+     * @param {object} e
      */
     handleApply(e) {
         e.preventDefault();
