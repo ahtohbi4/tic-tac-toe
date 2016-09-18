@@ -17,14 +17,32 @@ class SettingsBlank extends Component {
     constructor() {
         super();
 
+        this.handleStartNewGame = this.handleStartNewGame.bind(this);
         this.handleResume = this.handleResume.bind(this);
         this.handleApply = this.handleApply.bind(this);
     }
 
+    /**
+     * Start a new game
+     */
+    handleStartNewGame() {
+        this.props.startNewGame();
+
+        this.props.activatePopup(false);
+    }
+
+    /**
+     * Resume a game
+     */
     handleResume() {
         this.props.activatePopup(false);
     }
 
+    /**
+     * Apply new settings and start a new game
+     *
+     * @param      {<type>}  e       { parameter_description }
+     */
     handleApply(e) {
         e.preventDefault();
 
@@ -32,7 +50,7 @@ class SettingsBlank extends Component {
 
         this.props.setMatrix(matrix.get());
         this.props.setVictoryChainsLength(this._inputVictoryChainsLength.state.value);
-        this.props.onSubmit();
+        this.props.startNewGame();
 
         this.props.activatePopup(false);
     }
@@ -45,6 +63,10 @@ class SettingsBlank extends Component {
         return (
             <Popup title="Game Settings">
                 <form action="">
+                    <div>
+                        <button type="button" onClick={this.handleStartNewGame}>New Game</button>
+                    </div>
+
                     <div>
                         <label>Width:</label>
                         <InputNumber value={width} minValue={3} maxValue={10} ref={c => this._inputWidth = c}/>

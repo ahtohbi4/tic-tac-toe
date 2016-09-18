@@ -70,7 +70,7 @@ class App extends Component {
                     transitionName="popup__action"
                     transitionEnterTimeout={250}
                     transitionLeaveTimeout={250}>
-                    {this.props.isActivePopup ? <Settings key={0} onSubmit={this.startNewGame}/> : null}
+                    {this.props.isActivePopup ? <Settings key={0} startNewGame={this.startNewGame}/> : null}
                 </ReactCSSTransitionGroup>
             </div>
         );
