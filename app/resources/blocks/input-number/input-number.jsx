@@ -8,17 +8,17 @@ import React, {Component, PropTypes} from 'react';
  * @props {number} [value=0]
  * @props {number} [minValue]
  * @props {number} [maxValue]
- * @props {function} [onChange]
+ * @props {function} [onChange] - Callback function with a single parameter - input object.
  */
 export default class InputNumber extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            value: props.value || 0,
-            minValue: props.minValue,
-            maxValue: props.maxValue
+            value: props.value || 0
         };
+
+        this.name = props.name;
 
         this.decreaseValue = this.decreaseValue.bind(this);
         this.increaseValue = this.increaseValue.bind(this);
@@ -31,9 +31,23 @@ export default class InputNumber extends Component {
         onChange: PropTypes.func
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.minValue > this.state.value) {
+            this.setState({
+                value: nextProps.minValue
+            });
+        }
+
+        if (nextProps.maxValue < this.state.value) {
+            this.setState({
+                value: nextProps.maxValue
+            });
+        }
+    }
+
     componentDidUpdate(nextProps, nextState) {
         if (nextState.value !== this.state.value && typeof this.props.onChange === 'function') {
-            this.props.onChange();
+            this.props.onChange(this);
         }
     }
 
@@ -41,7 +55,7 @@ export default class InputNumber extends Component {
      * Decrease value
      */
     decreaseValue() {
-        if (this.state.minValue === undefined || this.state.value > this.state.minValue) {
+        if (this.props.minValue === undefined || this.state.value > this.props.minValue) {
             this.setState({
                 value: this.state.value - 1
             });
@@ -52,7 +66,7 @@ export default class InputNumber extends Component {
      * Increase value
      */
     increaseValue() {
-        if (this.state.maxValue === undefined || this.state.value < this.state.maxValue) {
+        if (this.props.maxValue === undefined || this.state.value < this.props.maxValue) {
             this.setState({
                 value: this.state.value + 1
             });
@@ -71,7 +85,7 @@ export default class InputNumber extends Component {
                 <button
                     className="input-number__control input-number__control_down"
                     onClick={this.decreaseValue}
-                    disabled={this.state.value <= this.state.minValue}
+                    disabled={this.state.value <= this.props.minValue}
                     type="button">Down</button>
 
                 <span className="input-number__value">{this.state.value}</span>
@@ -79,7 +93,7 @@ export default class InputNumber extends Component {
                 <button
                     className="input-number__control input-number__control_up"
                     onClick={this.increaseValue}
-                    disabled={this.state.value >= this.state.maxValue}
+                    disabled={this.state.value >= this.props.maxValue}
                     type="button">Up</button>
             </span>
         );
