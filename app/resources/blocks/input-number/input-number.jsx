@@ -31,8 +31,8 @@ export default class InputNumber extends Component {
         onChange: PropTypes.func
     }
 
-    componentWillUpdate(nextProps, nextState) {
-        if (nextState.value !== this.state.value) {
+    componentDidUpdate(nextProps, nextState) {
+        if (nextState.value !== this.state.value && typeof this.props.onChange === 'function') {
             this.props.onChange();
         }
     }
