@@ -18,6 +18,7 @@ class SettingsBlank extends Component {
         super();
 
         this.state = {
+            maxVictoryChainsLength: 3,
             wasChanged: false
         };
 
@@ -60,24 +61,28 @@ class SettingsBlank extends Component {
         this.props.activatePopup(false);
     }
 
-    onSettingsUpdate() {
+    onSettingsUpdate(e) {
         if (
-            this._inputWidth.state.value === this.props.game.matrix[0].length &&
-            this._inputHeight.state.value === this.props.game.matrix.length &&
-            this._inputVictoryChainsLength.state.value === this.props.game.victoryChainsLength
+            this._inputWidth.state.value !== this.props.game.matrix[0].length ||
+            this._inputHeight.state.value !== this.props.game.matrix.length ||
+            this._inputVictoryChainsLength.state.value !== this.props.game.victoryChainsLength
         ) {
-            if (this.state.wasChanged) {
-                this.setState({
-                    wasChanged: false
-                });
-            }
-        } else {
             if (!this.state.wasChanged) {
                 this.setState({
                     wasChanged: true
                 });
             }
+        } else {
+            if (this.state.wasChanged) {
+                this.setState({
+                    wasChanged: false
+                });
+            }
         }
+
+        this.setState({
+            maxVictoryChainsLength: Math.min(this._inputWidth.state.value, this._inputHeight.state.value)
+        });
     }
 
     render() {
@@ -95,31 +100,34 @@ class SettingsBlank extends Component {
                     <div>
                         <label>Width:</label>
                         <InputNumber
-                            value={width}
-                            minValue={3}
                             maxValue={10}
+                            minValue={3}
+                            name="width"
+                            onChange={this.onSettingsUpdate}
                             ref={c => this._inputWidth = c}
-                            onChange={this.onSettingsUpdate}/>
+                            value={width}/>
                     </div>
 
                     <div>
                         <label>Height:</label>
                         <InputNumber
-                            value={height}
-                            minValue={3}
                             maxValue={10}
+                            minValue={3}
+                            name="height"
+                            onChange={this.onSettingsUpdate}
                             ref={c => this._inputHeight = c}
-                            onChange={this.onSettingsUpdate}/>
+                            value={height}/>
                     </div>
 
                     <div>
                         <label>Length of the wins Chain:</label>
                         <InputNumber
-                            value={victoryChainsLength}
+                            maxValue={this.state.maxVictoryChainsLength}
                             minValue={3}
-                            maxValue={10}
+                            name="victoryChainsLength"
+                            onChange={this.onSettingsUpdate}
                             ref={c => this._inputVictoryChainsLength = c}
-                            onChange={this.onSettingsUpdate}/>
+                            value={victoryChainsLength}/>
                     </div>
 
                     <div>
