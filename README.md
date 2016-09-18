@@ -15,10 +15,11 @@ Tic-Tac-Toe
  * [BEM methodology](https://en.bem.info/method/) for architecture of app;
  * [Webpack](http://webpack.github.io/docs/) to build aplication (html, JSX and CSS).
 
-#### Technologies
+#### Technologies and libraries
  * [React](https://facebook.github.io/react/) for JavaScript modules;
  * [Redux](https://github.com/reactjs/redux) for states;
- * [Normalize.css](https://necolas.github.io/normalize.css/) as reset CSS.
+ * [Normalize.css](https://necolas.github.io/normalize.css/) as reset CSS;
+ * [matrix-slicer](https://github.com/ahtohbi4/matrix-slicer) to operation with the Game matrix.
 
 #### Quality
  * [Travis CI](https://travis-ci.org/) for automatically validation HTML code;
