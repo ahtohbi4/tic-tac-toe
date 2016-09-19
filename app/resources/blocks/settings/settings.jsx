@@ -61,6 +61,9 @@ class SettingsBlank extends Component {
         this.props.activatePopup(false);
     }
 
+    /**
+     * Callback function for inputs update
+     */
     onSettingsUpdate(e) {
         if (
             this._inputWidth.state.value !== this.props.game.matrix[0].length ||

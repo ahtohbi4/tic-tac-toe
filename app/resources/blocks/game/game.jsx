@@ -82,7 +82,7 @@ class Game extends Component {
 
         while (
             coordinateCommon === undefined ||
-            MATRIX[coordinateCommon[0]][coordinateCommon[1]] !== 0
+            MATRIX[coordinateCommon[1]][coordinateCommon[0]] !== 0
         ) {
             const x = Math.floor(Math.random() * MATRIX[0].length);
             const y = Math.floor(Math.random() * MATRIX.length);
