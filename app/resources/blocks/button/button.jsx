@@ -16,11 +16,11 @@ export default class Button extends Component {
         className: React.PropTypes.string,
         disabled: React.PropTypes.bool,
         name: React.PropTypes.string,
-        type: React.PropTypes.oneOf[
+        type: React.PropTypes.oneOf([
             'button',
             'reset',
             'submit'
-        ]
+        ])
     }
 
     /**
@@ -41,7 +41,8 @@ export default class Button extends Component {
                     this.props.className
                 )}
                 disabled={this.props.disabled}
-                name={this}
+                name={this.props.name}
+                onClick={this.props.onClick}
                 type={this.props.type}>
                 {this.props.children}
             </button>

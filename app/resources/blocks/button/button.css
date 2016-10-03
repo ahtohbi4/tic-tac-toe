@@ -6,4 +6,9 @@
     font: 100 ;
     text-transform: uppercase;
     font: 100 18px/36px Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    transition: background .2s linear;
+}
+
+.button:disabled {
+    background: #363d46;
 }
