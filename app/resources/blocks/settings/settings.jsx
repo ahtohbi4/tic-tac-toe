@@ -6,6 +6,7 @@ import {activatePopup, setMatrix, setVictoryChainsLength} from '../../../actions
 
 import Matrix from 'matrix-slicer';
 
+import Button from '../button/button';
 import InputNumber from '../input-number/input-number';
 import Popup from '../popup/popup';
 
@@ -134,14 +135,14 @@ class SettingsBlank extends Component {
                     </div>
 
                     <div>
-                        <button
+                        <Button
                             onClick={this.handleResume}
-                            type="reset">Resume</button>
+                            type="reset">Resume</Button>
 
-                        <button
+                        <Button
                             onClick={this.handleApply}
                             disabled={!this.state.wasChanged}
-                            type="submit">Apply</button>
+                            type="submit">Apply</Button>
                     </div>
                 </form>
             </Popup>
@@ -181,7 +182,7 @@ class SettingsControlBlank extends Component {
 
     render() {
         return (
-            <button className="settings__control" onClick={this.handleClick} type="button"></button>
+            <button className="settings__control" onClick={this.handleClick} type="button">Settings</button>
         );
     }
 }

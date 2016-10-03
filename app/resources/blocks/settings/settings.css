@@ -1,7 +1,18 @@
 .settings__control {
-    float: left;
-    width: 36px;
-    height: 36px;
-    background: transparent url(blocks/settings/settings__control.svg) 50% 50% no-repeat;
+    height: 40px;
+    padding-left: 50px;
+    background: transparent url(blocks/settings/settings__control.svg) 0 50% no-repeat;
     border: 0;
+    font: 100 18px/36px Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    color: #fff;
+}
+
+.settings__control:active,
+.settings__control:hover {
+    outline: 0;
+    color: #b5cc32;
+}
+
+.settings__control:focus {
+    outline: 0;
 }

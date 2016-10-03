@@ -1,0 +1,35 @@
+.logo {
+    display: block;
+}
+
+.logo__opacity {
+    opacity: .27;
+}
+
+.logo__white {
+    fill: #fff;
+}
+
+.logo__yellow {
+    fill: #b5cc32;
+}
+
+.logo__purple {
+    fill: #c02d46;
+}
+
+.logo__pink {
+    fill: #e04e48;
+}
+
+.logo__green {
+    fill: #60933e;
+}
+
+.logo__grid {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 0;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}

@@ -8,8 +8,9 @@ import classnames from 'classnames';
 import * as actions from '../../../actions/';
 
 import Game from '../game/game';
+import Header from '../header/header';
 import Score from '../score/score';
-import Settings, {SettingsControl} from '../settings/settings';
+import Settings from '../settings/settings';
 
 /**
  * @class
@@ -45,9 +46,7 @@ class App extends Component {
                 'app_with-popup': this.props.isActivePopup
             })}>
                 <div className="app__content">
-                    <SettingsControl/>
-
-                    <h1 className="app__title">Tic-Tac-Toe</h1>
+                    <Header/>
 
                     <Score/>
 

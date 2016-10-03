@@ -1,0 +1,7 @@
+@import url(logo/logo.css);
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
