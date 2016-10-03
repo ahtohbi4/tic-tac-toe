@@ -33,7 +33,7 @@ config.entry = (() => {
     result.push('./app/resources/pages/index');
 
     return result;
-}());
+})();
 
 // Output
 config.output = {
@@ -68,7 +68,7 @@ config.module = {
                 result.push('babel');
 
                 return result;
-            }()),
+            })(),
             include: [
                 path.join(__dirname, 'app/'),
                 path.join(__dirname, 'node_modules/matrix-slicer/')
@@ -103,7 +103,7 @@ config.plugins = (() => {
     }
 
     return result;
-}());
+})();
 
 // PostCSS
 const autoprefixer = require('autoprefixer');
@@ -138,7 +138,7 @@ config.postcss = (() => {
     }
 
     return result;
-}());
+})();
 
 // Resolve
 config.resolve = {
