@@ -2,8 +2,6 @@
 
 @import url(app/app.css);
 @import url(header/header.css);
-@import url(board/board.css);
-@import url(game/game.css);
 @import url(input-number/input-number.css);
 @import url(popup/popup.css);
 @import url(score/score.css);

@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import classnames from 'classnames';
 
+import './board.css';
+
 /**
  * @class
  * @extends Component
@@ -74,10 +76,13 @@ class BoardCellBlank extends Component {
 
     render() {
         return (
-            <div className={classnames('board__cell', {
+            <div className={classnames(
+                'board__cell', {
                 board__cell_clickable: this.state.isClickable,
                 [this.type]: this.type
-            })} onClick={this.handleClick}></div>
+            })} onClick={this.handleClick}>
+                <div className="board__cell-spacer"></div>
+            </div>
         );
     }
 }
