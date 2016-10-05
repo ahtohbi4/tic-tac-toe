@@ -1,6 +1,7 @@
 .board {
     max-width: 500px;
     margin: 0 auto 18px;
+    background: rgba(255, 255, 255, .02);
 }
 
 /* @elem row */
@@ -12,7 +13,9 @@
 .board__cell {
     position: relative;
     flex-grow: 1;
-    background: #555;
+    background-color: #555;
+    background-size: 0;
+    transition: background-size .2s cubic-bezier(.58, .19, .8, 1.6);
 }
 
 /* @elem cell-spacer */
@@ -72,13 +75,15 @@
 /* @elem cell; @mod clickable */
 .board__cell_clickable {
     cursor: pointer;
-    background: transparent;
+    background-color: transparent;
 }
 
 /* @elem cell; @mod type */
 .board__cell_type_x {
-    background: green;
+    background: url(blocks/board/board__cell_type_x.svg) 50% 50% no-repeat;
+    background-size: 100%;
 }
 .board__cell_type_o {
-    background: red;
+    background: url(blocks/board/board__cell_type_o.svg) 50% 50% no-repeat;
+    background-size: 100%;
 }

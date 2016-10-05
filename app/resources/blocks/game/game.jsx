@@ -8,8 +8,6 @@ import * as actions from '../../../actions/';
 
 import Board, {BoardCell, BoardRow} from '../board/board';
 
-import './game.css';
-
 /**
  * @class
  * @extends Component
