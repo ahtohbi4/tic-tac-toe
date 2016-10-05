@@ -13,6 +13,7 @@
 }
 .settings__control:active,
 .settings__control:hover {
+    background-image: url(blocks/settings/settings__control-hover.svg);
     outline: 0;
     color: #b5cc32;
 }
