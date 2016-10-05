@@ -1,6 +1,6 @@
 {
   "name": "tic-tac-toe",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Tic-tac-toe game",
   "main": "index.html",
   "scripts": {
