@@ -1,18 +1,31 @@
 .settings__control {
     height: 40px;
-    padding-left: 50px;
+    padding: 0 0 0 50px;
     background: transparent url(blocks/settings/settings__control.svg) 0 50% no-repeat;
     border: 0;
     font: 100 18px/36px Arial, 'Helvetica Neue', Helvetica, sans-serif;
     color: #fff;
 }
-
+@media screen and (max-width: 400px) {
+    .settings__control {
+        padding-left: 40px;
+    }
+}
 .settings__control:active,
 .settings__control:hover {
     outline: 0;
     color: #b5cc32;
 }
-
 .settings__control:focus {
     outline: 0;
+}
+
+/* @elem control-label */
+.settings__control-label {
+    display: inline-block;
+}
+@media screen and (max-width: 400px) {
+    .settings__control-label {
+        display: none;
+    }
 }

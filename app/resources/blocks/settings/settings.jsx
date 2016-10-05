@@ -10,6 +10,8 @@ import Button from '../button/button';
 import InputNumber from '../input-number/input-number';
 import Popup from '../popup/popup';
 
+import './settings.css';
+
 /**
  * @class
  * @extends Component
@@ -182,7 +184,9 @@ class SettingsControlBlank extends Component {
 
     render() {
         return (
-            <button className="settings__control" onClick={this.handleClick} type="button">Settings</button>
+            <button className="settings__control" onClick={this.handleClick} type="button">
+                <span className="settings__control-label">Settings</span>
+            </button>
         );
     }
 }
