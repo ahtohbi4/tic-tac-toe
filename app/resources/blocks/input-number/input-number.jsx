@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
+import './input-number.css';
+
 /**
  * @class
  * @extends Component
@@ -86,7 +88,11 @@ export default class InputNumber extends Component {
                     className="input-number__control input-number__control_down"
                     onClick={this.decreaseValue}
                     disabled={this.state.value <= this.props.minValue}
-                    type="button">Down</button>
+                    type="button">
+                        <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg">
+                            <path className="input-number__control-sign" d="M0 5h11v1h-11z"/>
+                        </svg>
+                </button>
 
                 <span className="input-number__value">{this.state.value}</span>
 
@@ -94,7 +100,11 @@ export default class InputNumber extends Component {
                     className="input-number__control input-number__control_up"
                     onClick={this.increaseValue}
                     disabled={this.state.value >= this.props.maxValue}
-                    type="button">Up</button>
+                    type="button">
+                    <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg">
+                        <path className="input-number__control-sign" d="M0 5h5v-5h1v5h5v1h-5v5h-1v-5h-5z"/>
+                    </svg>
+                </button>
             </span>
         );
     }

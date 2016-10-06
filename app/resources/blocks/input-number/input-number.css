@@ -1,3 +1,38 @@
 .input-number {
-    display: inline-block;
+    display: inline-flex;
+    width: 98px;
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, .5);
+    border-radius: 3px;
+}
+
+/* @elem control */
+.input-number__control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 25px;
+    background: transparent;
+    border: 0;
+}
+.input-number__control:focus {
+    outline: 0;
+}
+
+/* @elem value */
+.input-number__value {
+    flex: 1 0 auto;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* @elem control-sign */
+.input-number__control-sign {
+    fill: #b5cc32;
+    transition: fill .2s linear;
+}
+.input-number__control:disabled .input-number__control-sign {
+    fill: #63656c;
 }
