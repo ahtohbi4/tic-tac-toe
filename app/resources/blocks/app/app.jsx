@@ -12,6 +12,8 @@ import Header from '../header/header';
 import Score from '../score/score';
 import Settings from '../settings/settings';
 
+import './app.css';
+
 /**
  * @class
  * @extends Component
