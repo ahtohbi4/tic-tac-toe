@@ -1,4 +1,7 @@
 .button {
+    padding: 0 10px;
+    box-sizing: border-box;
+    min-width: 100px;
     background: #b5cd34;
     border: 0;
     border-radius: 3px;
@@ -11,4 +14,8 @@
 
 .button:disabled {
     background: #363d46;
+}
+
+.button + .button {
+    margin-left: 10px;
 }
