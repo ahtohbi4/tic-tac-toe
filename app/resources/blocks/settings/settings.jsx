@@ -123,7 +123,7 @@ class SettingsBlank extends Component {
                         <button
                             className="settings__item-button"
                             onClick={this.handleOpenSettings}
-                            type="button">New Game with Settings</button>
+                            type="button">Settings for a New Game</button>
                     </li>
 
                     <li className="settings__item">
@@ -137,8 +137,8 @@ class SettingsBlank extends Component {
                 <form
                     className="settings__form hidden"
                     ref={c => this._formSettings = c}>
-                    <div>
-                        <label>Width:</label>
+                    <div className="settings__field">
+                        <label className="settings__label">Width:</label>
                         <InputNumber
                             maxValue={10}
                             minValue={3}
@@ -148,8 +148,8 @@ class SettingsBlank extends Component {
                             value={width}/>
                     </div>
 
-                    <div>
-                        <label>Height:</label>
+                    <div className="settings__field">
+                        <label className="settings__label">Height:</label>
                         <InputNumber
                             maxValue={10}
                             minValue={3}
@@ -159,8 +159,8 @@ class SettingsBlank extends Component {
                             value={height}/>
                     </div>
 
-                    <div>
-                        <label>Length of Chain to win:</label>
+                    <div className="settings__field">
+                        <label className="settings__label">Length<span className="settings__sub-label"> of Chain to win</span>:</label>
                         <InputNumber
                             maxValue={this.state.maxVictoryChainsLength}
                             minValue={3}
@@ -170,7 +170,7 @@ class SettingsBlank extends Component {
                             value={victoryChainsLength}/>
                     </div>
 
-                    <div>
+                    <div className="settings__controls-field">
                         <Button
                             onClick={this.handleResume}
                             type="reset">Resume</Button>
