@@ -13,8 +13,9 @@
   },
   "keywords": [
     "Tic-tac-toe",
+    "Game",
     "React",
-    "JavaScript"
+    "ES6"
   ],
   "author": "Alexandr Antonov",
   "license": "MIT",
@@ -45,7 +46,6 @@
     "redux-devtools": "^3.3.1",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.0.11",
-    "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
