@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import classnames from 'classnames';
 
+import './popup.css';
+
 /**
  * @class
  * @extends Component

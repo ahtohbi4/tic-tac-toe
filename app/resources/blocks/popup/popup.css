@@ -9,6 +9,7 @@
     left: 0;
 }
 
+/* @elem cover */
 .popup__cover {
     position: absolute;
     top: 0;
@@ -20,11 +21,22 @@
     opacity: .3;
 }
 
+/* @elem box */
 .popup__box {
     position: relative;
     z-index: 150;
     max-width: 500px;
     margin: 0 auto;
+}
+
+/* @elem title */
+.popup__title {
+    margin: 0 0 45px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 100;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 /* @mod action-enter */
