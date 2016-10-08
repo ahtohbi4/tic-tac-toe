@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import {SettingsControl} from '../settings/settings';
 import Logo from '../logo/logo';
 
+import './header.css';
+
 /**
  * @class
  * @extends Component
