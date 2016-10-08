@@ -1,3 +1,4 @@
+/* @elem control */
 .settings__control {
     height: 40px;
     padding: 0 0 0 50px;
@@ -29,6 +30,49 @@
     .settings__control-label {
         display: none;
     }
+}
+
+/* @elem items */
+.settings__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* @elem item */
+.settings__item {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.settings__item::after {
+    position: absolute;
+    right: 15%;
+    bottom: 0;
+    left: 15%;
+    height: 1px;
+    background: #5b6168;
+    content: '';
+}
+
+/* @elem item-button */
+.settings__item-button {
+    margin: 9px 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    color: #b5cc32;
+    font: 100 24px/36px Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+.settings__item-button:active,
+.settings__item-button:hover {
+    color: #e04e48;
+}
+.settings__item-button:focus {
+    outline: 0;
 }
 
 /* @elem form */

@@ -106,19 +106,28 @@ class SettingsBlank extends Component {
 
         return (
             <Popup title="Game Settings">
-                <div className="">
-                    <button
-                        onClick={this.handleStartNewGame}
-                        type="button">Start a New Game</button>
+                <ul className="settings__items">
+                    <li className="settings__item">
+                        <button
+                            className="settings__item-button"
+                            onClick={this.handleStartNewGame}
+                            type="button">Start a New Game</button>
+                    </li>
 
-                    <button
-                        onClick={this.handleOpenSettings}
-                        type="button">New Game with Settings</button>
+                    <li className="settings__item">
+                        <button
+                            className="settings__item-button"
+                            onClick={this.handleOpenSettings}
+                            type="button">New Game with Settings</button>
+                    </li>
 
-                    <button
-                        onClick={this.handleResume}
-                        type="button">Resume Game</button>
-                </div>
+                    <li className="settings__item">
+                        <button
+                            className="settings__item-button"
+                            onClick={this.handleResume}
+                            type="button">Resume Game</button>
+                    </li>
+                </ul>
 
                 <form
                     className="settings__form"
