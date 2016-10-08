@@ -10,7 +10,6 @@ const store = createStore(reducers, DevTools.instrument());
 import App from '../blocks/app/app';
 
 import './index.html';
-import './index.css';
 
 /**
  * @class

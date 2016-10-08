@@ -7,6 +7,8 @@
     text-align: center;
 }
 
+/* @elem wins */
+/* @elem defeats */
 .score__wins,
 .score__defeats {
     display: inline-block;
@@ -28,6 +30,7 @@
     background: url(blocks/score/score__defeats.svg) 50% 50% no-repeat;
 }
 
+/* @emel delimiter */
 .score__delimiter {
     margin: 0 5px;
 }

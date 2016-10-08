@@ -56,6 +56,9 @@
     background: #5b6168;
     content: '';
 }
+.settings__item:last-child::after {
+    content: none;
+}
 
 /* @elem item-button */
 .settings__item-button {

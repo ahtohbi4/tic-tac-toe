@@ -72,17 +72,18 @@
     right: -5px;
 }
 
-/* @elem cell; @mod clickable */
+/* @elem cell @mod clickable */
 .board__cell_clickable {
     cursor: pointer;
     background-color: transparent;
 }
 
-/* @elem cell; @mod type */
+/* @elem cell @mod type=x */
 .board__cell_type_x {
     background: url(blocks/board/board__cell_type_x.svg) 50% 50% no-repeat;
     background-size: 100%;
 }
+/* @elem cell @mod type=o */
 .board__cell_type_o {
     background: url(blocks/board/board__cell_type_o.svg) 50% 50% no-repeat;
     background-size: 100%;
