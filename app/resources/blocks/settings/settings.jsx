@@ -25,10 +25,11 @@ class SettingsBlank extends Component {
             wasChanged: false
         };
 
+        this.handleApply = this.handleApply.bind(this);
+        this.handleOpenSettings = this.handleOpenSettings.bind(this);
+        this.handleResume = this.handleResume.bind(this);
         this.handleStartNewGame = this.handleStartNewGame.bind(this);
         this.onSettingsUpdate = this.onSettingsUpdate.bind(this);
-        this.handleResume = this.handleResume.bind(this);
-        this.handleApply = this.handleApply.bind(this);
     }
 
     /**
@@ -38,6 +39,13 @@ class SettingsBlank extends Component {
         this.props.startNewGame();
 
         this.props.activatePopup(false);
+    }
+
+    /**
+     * Display settings form
+     */
+    handleOpenSettings() {
+        this._formSettings.className += ' settings__form_active';
     }
 
     /**
@@ -98,11 +106,23 @@ class SettingsBlank extends Component {
 
         return (
             <Popup title="Game Settings">
-                <form action="">
-                    <div>
-                        <button type="button" onClick={this.handleStartNewGame}>New Game</button>
-                    </div>
+                <div className="">
+                    <button
+                        onClick={this.handleStartNewGame}
+                        type="button">Start a New Game</button>
 
+                    <button
+                        onClick={this.handleOpenSettings}
+                        type="button">New Game with Settings</button>
+
+                    <button
+                        onClick={this.handleResume}
+                        type="button">Resume Game</button>
+                </div>
+
+                <form
+                    className="settings__form"
+                    ref={c => this._formSettings = c}>
                     <div>
                         <label>Width:</label>
                         <InputNumber

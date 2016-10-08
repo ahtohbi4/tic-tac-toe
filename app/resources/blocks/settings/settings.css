@@ -30,3 +30,13 @@
         display: none;
     }
 }
+
+/* @elem form */
+.settings__form {
+    display: none;
+}
+
+/* @elem form @mod active */
+.settings__form_active {
+    display: block;
+}
