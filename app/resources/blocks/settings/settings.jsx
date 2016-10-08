@@ -11,6 +11,7 @@ import InputNumber from '../input-number/input-number';
 import Popup from '../popup/popup';
 
 import './settings.css';
+import '../hidden/hidden.css';
 
 /**
  * @class
@@ -45,7 +46,9 @@ class SettingsBlank extends Component {
      * Display settings form
      */
     handleOpenSettings() {
-        this._formSettings.className += ' settings__form_active';
+        this._formSettings.classList.remove('hidden');
+
+        this._items.classList.add('hidden');
     }
 
     /**
@@ -106,7 +109,9 @@ class SettingsBlank extends Component {
 
         return (
             <Popup title="Game Settings">
-                <ul className="settings__items">
+                <ul
+                    className="settings__items"
+                    ref={c => this._items = c}>
                     <li className="settings__item">
                         <button
                             className="settings__item-button"
@@ -130,7 +135,7 @@ class SettingsBlank extends Component {
                 </ul>
 
                 <form
-                    className="settings__form"
+                    className="settings__form hidden"
                     ref={c => this._formSettings = c}>
                     <div>
                         <label>Width:</label>
@@ -155,7 +160,7 @@ class SettingsBlank extends Component {
                     </div>
 
                     <div>
-                        <label>Length of the wins Chain:</label>
+                        <label>Length of Chain to win:</label>
                         <InputNumber
                             maxValue={this.state.maxVictoryChainsLength}
                             minValue={3}

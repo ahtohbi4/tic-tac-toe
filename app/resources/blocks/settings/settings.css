@@ -74,13 +74,3 @@
 .settings__item-button:focus {
     outline: 0;
 }
-
-/* @elem form */
-.settings__form {
-    display: none;
-}
-
-/* @elem form @mod active */
-.settings__form_active {
-    display: block;
-}
