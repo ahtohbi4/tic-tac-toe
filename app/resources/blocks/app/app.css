@@ -23,7 +23,7 @@ body {
 
 /* @mod with-popup */
 .app__content {
-    min-width: 320px;
+    min-width: 280px;
     max-width: 700px;
     margin: 0 auto;
     transition: all .25s linear;
