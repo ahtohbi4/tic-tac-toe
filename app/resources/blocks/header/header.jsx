@@ -4,7 +4,6 @@ import {SettingsControl} from '../settings/settings';
 import Logo from '../logo/logo';
 
 import './header.css';
-import '../logo/logo.css';
 
 /**
  * @class
