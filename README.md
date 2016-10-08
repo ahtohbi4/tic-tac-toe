@@ -24,3 +24,5 @@ Tic-Tac-Toe
 #### Quality
  * [Travis CI](https://travis-ci.org/) for automatically validation HTML code;
  * [bitHound](https://www.bithound.io/) for analysis JS and JSX code.
+
+Also, see [known issues](https://github.com/ahtohbi4/tic-tac-toe/issues).
