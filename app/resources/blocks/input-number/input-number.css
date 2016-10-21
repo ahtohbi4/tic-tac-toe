@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
-    width: 25px;
+    padding: 0 10px;
     background: transparent;
     border: 0;
 }
