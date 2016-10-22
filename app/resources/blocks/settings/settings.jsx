@@ -21,68 +21,77 @@ class SettingsBlank extends Component {
     constructor() {
         super();
 
+        this.defaultTitle = 'Main Menu';
+
         this.state = {
             maxVictoryChainsLength: 3,
+            title: this.defaultTitle,
             wasChanged: false
         };
+    }
 
-        this.handleApply = this.handleApply.bind(this);
-        this.handleOpenSettings = this.handleOpenSettings.bind(this);
-        this.handleResume = this.handleResume.bind(this);
-        this.handleStartNewGame = this.handleStartNewGame.bind(this);
-        this.onSettingsUpdate = this.onSettingsUpdate.bind(this);
+    componentWillMount = () => {
+        this.ghButtonScript = document.createElement('script');
+        this.ghButtonScript.src = 'https://buttons.github.io/buttons.js';
+        document.body.appendChild(this.ghButtonScript);
+    }
+
+    componentWillUnmount = () => {
+        /* @todo Need in refactoring. */
+        document.body.removeChild(this.ghButtonScript);
     }
 
     /**
-     * Start a new game
+     * Start a new game.
      */
-    handleStartNewGame() {
+    handleStartNewGame = () => {
         this.props.startNewGame();
-
         this.props.activatePopup(false);
     }
 
     /**
      * Display settings form
      */
-    handleOpenSettings() {
-        this._formSettings.classList.remove('hidden');
-
-        this._items.classList.add('hidden');
+    handleOpenSettings = () => {
+        this.setState({
+            title: 'Game settings'
+        });
+        this.$items.classList.add('hidden');
+        this.$settingsForm.classList.remove('hidden');
     }
 
     /**
-     * Resume a game
+     * Resume a game.
      */
-    handleResume() {
+    handleResume = () => {
         this.props.activatePopup(false);
     }
 
     /**
-     * Apply new settings and start a new game
+     * Apply new settings and start a new game.
      *
      * @param {object} e
      */
-    handleApply(e) {
+    handleApply = (e) => {
         e.preventDefault();
 
-        const matrix = new Matrix(this._inputWidth.state.value, this._inputHeight.state.value);
+        const matrix = new Matrix(this.$inputWidth.state.value, this.$inputHeight.state.value);
 
         this.props.setMatrix(matrix.get());
-        this.props.setVictoryChainsLength(this._inputVictoryChainsLength.state.value);
+        this.props.setVictoryChainsLength(this.$inputVictoryChainsLength.state.value);
         this.props.startNewGame();
 
         this.props.activatePopup(false);
     }
 
     /**
-     * Callback function for inputs update
+     * Callback function for inputs update.
      */
-    onSettingsUpdate(e) {
+    onSettingsUpdate = () => {
         if (
-            this._inputWidth.state.value !== this.props.game.matrix[0].length ||
-            this._inputHeight.state.value !== this.props.game.matrix.length ||
-            this._inputVictoryChainsLength.state.value !== this.props.game.victoryChainsLength
+            this.$inputWidth.state.value !== this.props.game.matrix[0].length ||
+            this.$inputHeight.state.value !== this.props.game.matrix.length ||
+            this.$inputVictoryChainsLength.state.value !== this.props.game.victoryChainsLength
         ) {
             if (!this.state.wasChanged) {
                 this.setState({
@@ -98,8 +107,30 @@ class SettingsBlank extends Component {
         }
 
         this.setState({
-            maxVictoryChainsLength: Math.min(this._inputWidth.state.value, this._inputHeight.state.value)
+            maxVictoryChainsLength: Math.min(this.$inputWidth.state.value, this.$inputHeight.state.value)
         });
+    }
+
+    /**
+     * Display information about the game.
+     */
+    handleOpenAbout = () => {
+        this.setState({
+            title: 'About the Game'
+        });
+        this.$items.classList.add('hidden');
+        this.$about.classList.remove('hidden');
+    }
+
+    /**
+     * Back to menu.
+     */
+    backToMenu = () => {
+        this.setState({
+            title: this.defaultTitle
+        });
+        this.$about.classList.add('hidden');
+        this.$items.classList.remove('hidden');
     }
 
     render() {
@@ -108,10 +139,10 @@ class SettingsBlank extends Component {
         const victoryChainsLength = this.props.game.victoryChainsLength;
 
         return (
-            <Popup title="Game Settings">
+            <Popup title={this.state.title}>
                 <ul
                     className="settings__items"
-                    ref={c => this._items = c}>
+                    ref={c => this.$items = c}>
                     <li className="settings__item">
                         <button
                             className="settings__item-button"
@@ -129,6 +160,13 @@ class SettingsBlank extends Component {
                     <li className="settings__item">
                         <button
                             className="settings__item-button"
+                            onClick={this.handleOpenAbout}
+                            type="button">About the Game</button>
+                    </li>
+
+                    <li className="settings__item">
+                        <button
+                            className="settings__item-button"
                             onClick={this.handleResume}
                             type="button">Resume Game</button>
                     </li>
@@ -136,7 +174,7 @@ class SettingsBlank extends Component {
 
                 <form
                     className="settings__form hidden"
-                    ref={c => this._formSettings = c}>
+                    ref={c => this.$settingsForm = c}>
                     <div className="settings__field">
                         <label className="settings__label">Width:</label>
                         <InputNumber
@@ -144,7 +182,7 @@ class SettingsBlank extends Component {
                             minValue={3}
                             name="width"
                             onChange={this.onSettingsUpdate}
-                            ref={c => this._inputWidth = c}
+                            ref={c => this.$inputWidth = c}
                             value={width}/>
                     </div>
 
@@ -155,7 +193,7 @@ class SettingsBlank extends Component {
                             minValue={3}
                             name="height"
                             onChange={this.onSettingsUpdate}
-                            ref={c => this._inputHeight = c}
+                            ref={c => this.$inputHeight = c}
                             value={height}/>
                     </div>
 
@@ -166,7 +204,7 @@ class SettingsBlank extends Component {
                             minValue={3}
                             name="victoryChainsLength"
                             onChange={this.onSettingsUpdate}
-                            ref={c => this._inputVictoryChainsLength = c}
+                            ref={c => this.$inputVictoryChainsLength = c}
                             value={victoryChainsLength}/>
                     </div>
 
@@ -181,6 +219,25 @@ class SettingsBlank extends Component {
                             type="submit">Apply</Button>
                     </div>
                 </form>
+
+                <div
+                    className="settings__about hidden"
+                    ref={c => this.$about = c}>
+                    <p>The Game was created using React+Redux.</p>
+                    <p>Please create an issue on GitHub<br/> to report a bug.</p>
+
+                    <p>
+                        <a
+                            aria-label="@ahtohbi4 on GitHub"
+                            className="github-button"
+                            data-style="mega"
+                            href="https://github.com/ahtohbi4">@ahtohbi4</a>
+                    </p>
+
+                    <Button
+                        onClick={this.backToMenu}
+                        type="button">Back</Button>
+                </div>
             </Popup>
         );
     }

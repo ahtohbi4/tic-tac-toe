@@ -106,3 +106,10 @@
     font-size: 14px;
     line-height: 18px;
 }
+
+/* @elem about */
+.settings__about {
+    color: #fff;
+    line-height: 27px;
+    text-align: center;
+}
