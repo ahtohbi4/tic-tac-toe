@@ -13,6 +13,7 @@ import Score from '../score/score';
 import Settings from '../settings/settings';
 
 import './app.css';
+import '../text/text.css';
 
 /**
  * @class
