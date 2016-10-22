@@ -12,6 +12,7 @@ body {
     margin: 0;
     padding: 0;
     font: 100 18px/36px Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    color: #fff;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -31,4 +32,22 @@ body {
 .app_with-popup .app__content {
     transform: scale(.8);
     filter: blur(10px);
+}
+
+/* @elem message */
+.app__message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+}
+
+/* @elem message-content */
+.app__message-content {
+    text-align: center;
 }

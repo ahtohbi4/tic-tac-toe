@@ -7,6 +7,7 @@ import classnames from 'classnames';
 
 import * as actions from '../../../actions/';
 
+import Button from '../button/button';
 import Game from '../game/game';
 import Header from '../header/header';
 import Score from '../score/score';
@@ -54,13 +55,16 @@ class App extends Component {
                     <Score/>
 
                     {!this.props.game.isGoing ? (
-                        <div>
-                            {this.props.game.hasAWinner ? (
-                                <p>{(this.props.game.player === -1) ? 'You are the Winner!' : 'PC is the Winner!'}</p>
-                            ) : (
-                                <p>There are on a Winner. Try again!</p>
-                            )}
-                            <button onClick={this.startNewGame}>New Game</button>
+                        <div className="app__message">
+                            <div className="app__message-content">
+                                {this.props.game.hasAWinner ? (
+                                    <p>{(this.props.game.player === -1) ? 'You are the Winner!' : 'PC is the Winner!'}</p>
+                                ) : (
+                                    <p>There are on a Winner. Try again!</p>
+                                )}
+
+                                <Button onClick={this.startNewGame}>New Game</Button>
+                            </div>
                         </div>
                     ) : null}
 
