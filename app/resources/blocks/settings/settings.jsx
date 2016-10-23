@@ -231,7 +231,7 @@ class SettingsBlank extends Component {
                             aria-label="@ahtohbi4 on GitHub"
                             className="github-button"
                             data-style="mega"
-                            href="https://github.com/ahtohbi4">@ahtohbi4</a>
+                            href="https://github.com/ahtohbi4/tic-tac-toe">@ahtohbi4</a>
                     </p>
 
                     <Button
