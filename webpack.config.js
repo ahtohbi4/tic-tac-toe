@@ -3,7 +3,9 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const __DEV__ = JSON.stringify(JSON.parse(process.env.DEBUG || 'false')) === 'true';
+const isDev = process.env.NODE_ENV !== 'production';
+
+// const __DEV__ = JSON.stringify(JSON.parse(process.env.DEBUG || 'false')) === 'true';
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractHTML = new ExtractTextPlugin('index.html');
@@ -15,16 +17,16 @@ const PORT = 8080;
 let config = {};
 
 // Dev Tool
-config.devtool = __DEV__ ? 'eval' : false;
+config.devtool = isDev ? 'eval' : false;
 
 // Watch
-config.watch = __DEV__;
+config.watch = isDev;
 
 // Entry
 config.entry = (() => {
     let result = [];
 
-    if (__DEV__) {
+    if (isDev) {
         result = [].concat(result, [
             `webpack-dev-server/client?http://${HOST}:${PORT}`,
             'webpack/hot/only-dev-server'
@@ -39,7 +41,7 @@ config.entry = (() => {
 config.output = {
     filename: '[name].js',
     path: path.join(__dirname, 'build'),
-    publicPath: '/build/'
+    publicPath: '/build/',
 };
 
 // Module
@@ -47,22 +49,22 @@ config.module = {
     loaders: [
         {
             test: /\.css$/,
-            loader: extractCSS.extract('css!postcss')
+            loader: extractCSS.extract('css!postcss'),
         },
         {
             test: /\.html$/,
-            loader: extractHTML.extract('raw!html-minify')
+            loader: extractHTML.extract('raw!html-minify'),
         },
         {
             test: /\.(jpg|png|svg)$/,
-            loader: 'file?name=[hash].[ext]'
+            loader: 'file?name=[hash].[ext]',
         },
         {
             test: /\.(js|jsx)$/,
             loaders: (() => {
                 let result = [];
 
-                if (__DEV__) {
+                if (isDev) {
                     result.push('react-hot');
                 }
                 result.push('babel');
@@ -71,33 +73,33 @@ config.module = {
             })(),
             include: [
                 path.join(__dirname, 'app/'),
-                path.join(__dirname, 'node_modules/matrix-slicer/')
-            ]
-        }
-    ]
+                path.join(__dirname, 'node_modules/matrix-slicer/'),
+            ],
+        },
+    ],
 };
 
 // Plugin
 config.plugins = (() => {
     let result = [
         new webpack.DefinePlugin({
-            __DEV__: __DEV__
+            __DEV__: isDev,
         }),
         extractHTML,
-        extractCSS
+        extractCSS,
     ];
 
-    if (__DEV__) {
+    if (isDev) {
         result = [].concat(result, [
             new webpack.HotModuleReplacementPlugin(),
-            new webpack.NoErrorsPlugin()
+            new webpack.NoErrorsPlugin(),
         ]);
     } else {
         result = [].concat(result, [
             new webpack.optimize.DedupePlugin(),
             new webpack.optimize.OccurenceOrderPlugin(),
             new webpack.optimize.UglifyJsPlugin({
-                acorn: true
+                acorn: true,
             })
         ]);
     }
@@ -116,24 +118,24 @@ config.postcss = (() => {
         atImport({
             path: [
                 path.join(__dirname, 'app/resources/blocks/'),
-                path.join(__dirname, 'app/resources/pages/')
-            ]
+                path.join(__dirname, 'app/resources/pages/'),
+            ],
         }),
         url({
             basePath: path.join(__dirname, 'app/resources/'),
-            url: 'inline'
+            url: 'inline',
         }),
         autoprefixer({
             browsers: [
-                'last 2 versions'
-            ]
-        })
+                'last 2 versions',
+            ],
+        }),
     ];
 
-    if (__DEV__) {
+    if (isDev) {
         result.push(csso({
             debug: 3,
-            restructure: true
+            restructure: true,
         }));
     }
 
@@ -145,14 +147,14 @@ config.resolve = {
     extensions: [
         '',
         '.js',
-        '.jsx'
+        '.jsx',
     ]
 };
 
 // Dev Server
-config.devServer = (__DEV__ ? {
+config.devServer = {
     host: HOST,
-    port: PORT
-} : null);
+    port: PORT,
+};
 
 module.exports = config;
