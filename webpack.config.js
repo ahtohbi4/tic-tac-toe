@@ -3,7 +3,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const isDev = process.env.NODE_ENV !== 'production';
+const NODE_ENV = process.env.NODE_ENV;
+const isDev = NODE_ENV !== 'production';
 
 // const __DEV__ = JSON.stringify(JSON.parse(process.env.DEBUG || 'false')) === 'true';
 
@@ -29,7 +30,7 @@ config.entry = (() => {
     if (isDev) {
         result = [].concat(result, [
             `webpack-dev-server/client?http://${HOST}:${PORT}`,
-            'webpack/hot/only-dev-server'
+            'webpack/hot/only-dev-server',
         ]);
     }
     result.push('./app/resources/pages/index');
@@ -84,6 +85,9 @@ config.plugins = (() => {
     let result = [
         new webpack.DefinePlugin({
             __DEV__: isDev,
+            'process.env': {
+                NODE_ENV: JSON.stringify(NODE_ENV),
+            },
         }),
         extractHTML,
         extractCSS,
