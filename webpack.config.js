@@ -1,12 +1,10 @@
-'use strict'
+'use strict';
 
 const path = require('path');
 const webpack = require('webpack');
 
 const NODE_ENV = process.env.NODE_ENV;
 const isDev = NODE_ENV !== 'production';
-
-// const __DEV__ = JSON.stringify(JSON.parse(process.env.DEBUG || 'false')) === 'true';
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractHTML = new ExtractTextPlugin('index.html');
