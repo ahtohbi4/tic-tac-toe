@@ -6,9 +6,8 @@
     border: 0;
     border-radius: 3px;
     color: #151e28;
-    font: 100 ;
-    text-transform: uppercase;
     font: 100 18px/36px Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    text-transform: uppercase;
     transition: background .2s linear;
 }
 

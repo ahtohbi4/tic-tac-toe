@@ -36,15 +36,19 @@
     background: #fff;
     content: '';
 }
+
 .board__cell:last-child::before {
     content: none;
 }
+
 .board__cell:last-child .board__cell-spacer {
     border-right: 0;
 }
+
 .board__row:first-child .board__cell::before {
     top: -5px;
 }
+
 .board__row:last-child .board__cell::before {
     bottom: -5px;
 }
@@ -59,15 +63,19 @@
     background: #fff;
     content: '';
 }
+
 .board__row:last-child .board__cell::after {
     content: none;
 }
+
 .board__row:last-child .board__cell-spacer {
     border-bottom: 0;
 }
+
 .board__cell:first-child::after {
     left: -5px;
 }
+
 .board__cell:last-child::after {
     right: -5px;
 }
@@ -83,6 +91,7 @@
     background: url(blocks/board/board__cell_type_x.svg) 50% 50% no-repeat;
     background-size: 100%;
 }
+
 /* @elem cell @mod type=o */
 .board__cell_type_o {
     background: url(blocks/board/board__cell_type_o.svg) 50% 50% no-repeat;

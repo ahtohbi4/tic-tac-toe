@@ -16,6 +16,7 @@
     background: transparent;
     border: 0;
 }
+
 .input-number__control:focus {
     outline: 0;
 }
@@ -33,6 +34,7 @@
     fill: #b5cc32;
     transition: fill .2s linear;
 }
+
 .input-number__control:disabled .input-number__control-sign {
     fill: #63656c;
 }

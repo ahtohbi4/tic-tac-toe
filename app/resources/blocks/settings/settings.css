@@ -7,17 +7,20 @@
     font: 100 18px/36px Arial, 'Helvetica Neue', Helvetica, sans-serif;
     color: #fff;
 }
+
 @media screen and (max-width: 400px) {
     .settings__control {
         padding-left: 40px;
     }
 }
+
 .settings__control:active,
 .settings__control:hover {
     background-image: url(blocks/settings/settings__control-hover.svg);
     outline: 0;
     color: #b5cc32;
 }
+
 .settings__control:focus {
     outline: 0;
 }
@@ -26,6 +29,7 @@
 .settings__control-label {
     display: inline-block;
 }
+
 @media screen and (max-width: 400px) {
     .settings__control-label {
         display: none;
@@ -47,6 +51,7 @@
     padding: 0;
     text-align: center;
 }
+
 .settings__item::after {
     position: absolute;
     right: 15%;
@@ -56,6 +61,7 @@
     background: #5b6168;
     content: '';
 }
+
 .settings__item:last-child::after {
     content: none;
 }
@@ -70,10 +76,12 @@
     font: 100 24px/36px Arial, 'Helvetica Neue', Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
 }
+
 .settings__item-button:active,
 .settings__item-button:hover {
     color: #e04e48;
 }
+
 .settings__item-button:focus {
     outline: 0;
 }

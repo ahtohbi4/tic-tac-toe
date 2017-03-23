@@ -29,6 +29,7 @@ body {
     margin: 0 auto;
     transition: all .25s linear;
 }
+
 .app_with-popup .app__content {
     transform: scale(.8);
     filter: blur(10px);

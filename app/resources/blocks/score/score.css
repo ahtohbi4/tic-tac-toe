@@ -7,12 +7,15 @@
     text-align: center;
 }
 
-/* @elem wins */
-/* @elem defeats */
+/**
+ * @elem wins
+ * @elem defeats
+ */
 .score__wins,
 .score__defeats {
     display: inline-block;
 }
+
 .score__wins::before,
 .score__defeats::after {
     display: inline-block;
@@ -21,10 +24,12 @@
     vertical-align: bottom;
     content: '';
 }
+
 .score__wins::before {
     margin-right: 30px;
     background: url(blocks/score/score__wins.svg) 50% 50% no-repeat;
 }
+
 .score__defeats::after {
     margin-left: 30px;
     background: url(blocks/score/score__defeats.svg) 50% 50% no-repeat;
