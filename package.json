@@ -4,7 +4,7 @@
   "description": "Tic-tac-toe game",
   "main": "index.html",
   "scripts": {
-    "lint:js": "node_modules/.bin/eslint app/**/*.jsx",
+    "lint:js": "node_modules/.bin/eslint app/**/*.js app/**/*.jsx",
     "lint:css": "stylelint ./app/**/*.css",
     "start": "node server.js",
     "start:prod": "NODE_ENV=production nodejs server.js",
@@ -64,7 +64,6 @@
     "postcss-loader": "^0.9.1",
     "postcss-url": "^5.1.2",
     "raw-loader": "^0.5.1",
-    "react-addons-css-transition-group": "^15.3.1",
     "react-hot-loader": "^1.3.1",
     "stylelint": "^7.9.0",
     "stylelint-config-standard": "^16.0.0",
@@ -76,8 +75,10 @@
     "matrix-slicer": "^2.4.0",
     "normalize.css": "^4.1.1",
     "react": "^15.3.1",
+    "react-addons-css-transition-group": "^15.3.1",
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.5",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "shortid": "^2.2.8"
   }
 }
