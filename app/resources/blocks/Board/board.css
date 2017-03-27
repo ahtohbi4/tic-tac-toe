@@ -12,9 +12,12 @@
 /* @elem cell */
 .board__cell {
     position: relative;
+    margin: 0;
+    padding: 0;
     flex-grow: 1;
     background-color: rgba(255, 255, 255, .1);
     background-size: 0;
+    border: 0;
     transition: background-size .2s cubic-bezier(.58, .19, .8, 1.6);
 }
 
@@ -60,7 +63,7 @@
     bottom: 0;
     left: 0;
     height: 1px;
-    background: #fff;
+    background-color: #fff;
     content: '';
 }
 
@@ -70,6 +73,10 @@
 
 .board__row:last-child .board__cell-spacer {
     border-bottom: 0;
+}
+
+.board__cell:focus {
+    outline: 0;
 }
 
 .board__cell:first-child::after {
@@ -88,12 +95,12 @@
 
 /* @elem cell @mod type=x */
 .board__cell_type_x {
-    background: url(blocks/Board/board__cell_type_x.svg) 50% 50% no-repeat;
+    background: url(blocks/Board/board__cell_type_x.svg) 50% no-repeat;
     background-size: 100%;
 }
 
 /* @elem cell @mod type=o */
 .board__cell_type_o {
-    background: url(blocks/Board/board__cell_type_o.svg) 50% 50% no-repeat;
+    background: url(blocks/Board/board__cell_type_o.svg) 50% no-repeat;
     background-size: 100%;
 }

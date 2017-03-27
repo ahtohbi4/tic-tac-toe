@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 
-import './board.css';
-
 /**
  * @class
  * @extends Component
