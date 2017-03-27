@@ -14,5 +14,5 @@ install:
     - pip install html5validator
 
 script:
-    - node run lint:js
+    - npm run lint:js
     - html5validator --root ./app/
