@@ -27,12 +27,12 @@
 
 .score__wins::before {
     margin-right: 30px;
-    background: url(blocks/score/score__wins.svg) 50% 50% no-repeat;
+    background: url(blocks/Score/score__wins.svg) 50% 50% no-repeat;
 }
 
 .score__defeats::after {
     margin-left: 30px;
-    background: url(blocks/score/score__defeats.svg) 50% 50% no-repeat;
+    background: url(blocks/Score/score__defeats.svg) 50% 50% no-repeat;
 }
 
 /* @emel delimiter */

@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-
+import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import './button.css';
@@ -9,28 +8,29 @@ import './button.css';
  * @extends Component
  */
 export default class Button extends Component {
-    /**
-     * @static
-     */
     static propTypes = {
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node),
+        ]),
         className: React.PropTypes.string,
         disabled: React.PropTypes.bool,
         name: React.PropTypes.string,
         type: React.PropTypes.oneOf([
             'button',
             'reset',
-            'submit'
-        ])
+            'submit',
+        ]),
+
+        onClick: PropTypes.func.isRequired,
     }
 
-    /**
-     * @static
-     */
     static defaultProps = {
+        children: null,
         className: null,
         disabled: false,
         name: null,
-        type: 'button'
+        type: 'button',
     }
 
     render() {
@@ -38,12 +38,14 @@ export default class Button extends Component {
             <button
                 className={classnames(
                     'button',
-                    this.props.className
+                    this.props.className,
                 )}
                 disabled={this.props.disabled}
                 name={this.props.name}
+                type={this.props.type}
+
                 onClick={this.props.onClick}
-                type={this.props.type}>
+            >
                 {this.props.children}
             </button>
         );

@@ -20,23 +20,26 @@ const INITIAL_STATE = {
         matrix: [
             [0, 0, 0],
             [0, 0, 0],
-            [0, 0, 0]
+            [0, 0, 0],
         ],
         player: 1,
-        victoryChainsLength: 3
+        victoryChainsLength: 3,
     },
     history: {
         defeats: 0,
-        wins: 0
-    }
+        wins: 0,
+    },
 };
 
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case 'SET_MATRIX':
-            if (!Array.isArray(action.matrix) || !action.matrix.every((row, i, matrix) => {
-                return Array.isArray(row) && matrix[0].length === row.length;
-            })) {
+            if (
+                !Array.isArray(action.matrix) ||
+                !action.matrix.every(
+                    (row, i, matrix) => (Array.isArray(row) && matrix[0].length === row.length),
+                )
+            ) {
                 // Not valid
                 return state;
             }
@@ -45,8 +48,8 @@ export default function (state = INITIAL_STATE, action) {
                 ...state,
                 game: {
                     ...state.game,
-                    matrix: action.matrix
-                }
+                    matrix: action.matrix,
+                },
             };
 
         case 'SET_MATRIX_VALUE':
@@ -61,16 +64,18 @@ export default function (state = INITIAL_STATE, action) {
                 ...state,
                 game: {
                     ...state.game,
-                    matrix: state.game.matrix.map((row, y) => {
-                        return row.map((value, x) => {
-                            if (y === action.y && x === action.x) {
-                                return action.value;
-                            } else {
+                    matrix: state.game.matrix.map(
+                        (row, y) => row.map(
+                            (value, x) => {
+                                if (y === action.y && x === action.x) {
+                                    return action.value;
+                                }
+
                                 return value;
-                            }
-                        });
-                    })
-                }
+                            },
+                        ),
+                    ),
+                },
             };
 
         case 'RESET_MATRIX':
@@ -78,12 +83,12 @@ export default function (state = INITIAL_STATE, action) {
                 ...state,
                 game: {
                     ...state.game,
-                    matrix: state.game.matrix.map((row) => {
-                        return row.map((value) => {
-                            return 0;
-                        });
-                    })
-                }
+                    matrix: state.game.matrix.map(
+                        (row) => row.map(
+                            () => 0,
+                        ),
+                    ),
+                },
             };
 
         case 'SET_VICTORY_CHAINS_LENGTH':
@@ -96,8 +101,8 @@ export default function (state = INITIAL_STATE, action) {
                 ...state,
                 game: {
                     ...state.game,
-                    victoryChainsLength: action.value
-                }
+                    victoryChainsLength: action.value,
+                },
             };
 
         case 'GAME_START':
@@ -105,8 +110,8 @@ export default function (state = INITIAL_STATE, action) {
                 ...state,
                 game: {
                     ...state.game,
-                    isGoing: true
-                }
+                    isGoing: true,
+                },
             };
 
         case 'GAME_STOP':
@@ -114,8 +119,8 @@ export default function (state = INITIAL_STATE, action) {
                 ...state,
                 game: {
                     ...state.game,
-                    isGoing: false
-                }
+                    isGoing: false,
+                },
             };
 
         case 'CHANGE_PLAYER':
@@ -123,8 +128,8 @@ export default function (state = INITIAL_STATE, action) {
                 ...state,
                 game: {
                     ...state.game,
-                    player: state.game.player * (-1)
-                }
+                    player: state.game.player * (-1),
+                },
             };
 
         case 'RESET_PLAYER':
@@ -132,8 +137,8 @@ export default function (state = INITIAL_STATE, action) {
                 ...state,
                 game: {
                     ...state.game,
-                    player: 1
-                }
+                    player: 1,
+                },
             };
 
         case 'SET_A_WINNER':
@@ -141,8 +146,8 @@ export default function (state = INITIAL_STATE, action) {
                 ...state,
                 game: {
                     ...state.game,
-                    hasAWinner: Boolean(action.value)
-                }
+                    hasAWinner: Boolean(action.value),
+                },
             };
 
         case 'RESET_WINNER':
@@ -150,8 +155,8 @@ export default function (state = INITIAL_STATE, action) {
                 ...state,
                 game: {
                     ...state.game,
-                    hasAWinner: false
-                }
+                    hasAWinner: false,
+                },
             };
 
         case 'INCREASE_COUNTER_OF_WINS':
@@ -159,8 +164,8 @@ export default function (state = INITIAL_STATE, action) {
                 ...state,
                 history: {
                     ...state.history,
-                    wins: state.history.wins + 1
-                }
+                    wins: state.history.wins + 1,
+                },
             };
 
         case 'INCREASE_COUNTER_OF_DEFEATS':
@@ -168,17 +173,17 @@ export default function (state = INITIAL_STATE, action) {
                 ...state,
                 history: {
                     ...state.history,
-                    defeats: state.history.defeats + 1
-                }
+                    defeats: state.history.defeats + 1,
+                },
             };
 
         case 'ACTIVATE_POPUP':
             return {
                 ...state,
-                isActivePopup: (action.activate === null || action.activate === undefined) ? true : action.activate
+                isActivePopup: (action.activate === null || action.activate === undefined) ? true : action.activate,
             };
 
         default:
             return state;
     }
-};
+}

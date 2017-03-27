@@ -2,12 +2,12 @@
  * @param {object} matrix
  * @returns {object}
  */
-export const setMatrix = (matrix) => {
+export function setMatrix(matrix) {
     return {
         type: 'SET_MATRIX',
-        matrix
+        matrix,
     };
-};
+}
 
 /**
  * @param {number} x
@@ -15,115 +15,115 @@ export const setMatrix = (matrix) => {
  * @param {number} value
  * @returns {object}
  */
-export const setMatrixValue = (x, y, value) => {
+export function setMatrixValue(x, y, value) {
     return {
         type: 'SET_MATRIX_VALUE',
         x,
         y,
-        value
+        value,
     };
-};
+}
 
 /**
  * @returns {object}
  */
-export const resetMatrix = () => {
+export function resetMatrix() {
     return {
-        type: 'RESET_MATRIX'
+        type: 'RESET_MATRIX',
     };
-};
+}
 
 /**
  * @param {object} matrix
  * @returns {object}
  */
-export const setVictoryChainsLength = (value) => {
+export function setVictoryChainsLength(value) {
     return {
         type: 'SET_VICTORY_CHAINS_LENGTH',
-        value
+        value,
     };
-};
+}
 
 /**
  * @returns {object}
  */
-export const gameStart = () => {
+export function gameStart() {
     return {
-        type: 'GAME_START'
+        type: 'GAME_START',
     };
-};
+}
 
 /**
  * @returns {object}
  */
-export const gameStop = () => {
+export function gameStop() {
     return {
-        type: 'GAME_STOP'
+        type: 'GAME_STOP',
     };
-};
+}
 
 /**
  * @returns {object}
  */
-export const changePlayer = () => {
+export function changePlayer() {
     return {
-        type: 'CHANGE_PLAYER'
+        type: 'CHANGE_PLAYER',
     };
-};
+}
 
 /**
  * @returns {object}
  */
-export const resetPlayer = () => {
+export function resetPlayer() {
     return {
-        type: 'RESET_PLAYER'
+        type: 'RESET_PLAYER',
     };
-};
+}
 
 /**
  * @returns {object}
  */
-export const setAWinner = (value) => {
+export function setAWinner(value) {
     return {
         type: 'SET_A_WINNER',
-        value
+        value,
     };
-};
+}
 
 /**
  * @returns {object}
  */
-export const resetWinner = () => {
+export function resetWinner() {
     return {
-        type: 'RESET_WINNER'
+        type: 'RESET_WINNER',
     };
-};
+}
 
 /**
  * @returns {object}
  */
-export const increaseCounterOfWins = () => {
+export function increaseCounterOfWins() {
     return {
-        type: 'INCREASE_COUNTER_OF_WINS'
+        type: 'INCREASE_COUNTER_OF_WINS',
     };
-};
+}
 
 /**
  * @returns {object}
  */
-export const increaseCounterOfDefeats = () => {
+export function increaseCounterOfDefeats() {
     return {
-        type: 'INCREASE_COUNTER_OF_DEFEATS'
+        type: 'INCREASE_COUNTER_OF_DEFEATS',
     };
-};
+}
 
 /**
  * @param {boolean} activate
  * @returns {object}
  */
-export const activatePopup = (activate) => {
+export function activatePopup(activate) {
     return {
         type: 'ACTIVATE_POPUP',
-        activate
+        activate,
     };
-};
+}
