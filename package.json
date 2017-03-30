@@ -60,7 +60,7 @@
     "file-loader": "^0.9.0",
     "html-minify-loader": "^1.1.0",
     "postcss-csso": "^1.1.2",
-    "postcss-import": "^8.1.2",
+    "postcss-import": "^9.1.0",
     "postcss-loader": "^0.9.1",
     "postcss-url": "^5.1.2",
     "raw-loader": "^0.5.1",
