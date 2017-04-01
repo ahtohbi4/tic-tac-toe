@@ -49,11 +49,11 @@ config.module = {
     loaders: [
         {
             test: /\.css$/,
-            loader: extractCSS.extract('css!postcss'),
+            loader: extractCSS.extract('css-loader!postcss-loader'),
         },
         {
             test: /\.html$/,
-            loader: extractHTML.extract('raw!html-minify'),
+            loader: extractHTML.extract('raw-loader!html-minify-loader'),
         },
         {
             test: /\.(jpg|png|svg)$/,
@@ -65,9 +65,9 @@ config.module = {
                 const result = [];
 
                 if (isDev) {
-                    result.push('react-hot');
+                    result.push('react-hot-loader');
                 }
-                result.push('babel');
+                result.push('babel-loader');
 
                 return result;
             })(),
@@ -95,12 +95,11 @@ config.plugins = (() => {
     if (isDev) {
         result = [].concat(result, [
             new webpack.HotModuleReplacementPlugin(),
-            new webpack.NoErrorsPlugin(),
+            new webpack.NoEmitOnErrorsPlugin(),
         ]);
     } else {
         result = [].concat(result, [
-            new webpack.optimize.DedupePlugin(),
-            new webpack.optimize.OccurenceOrderPlugin(),
+            new webpack.optimize.OccurrenceOrderPlugin(),
             new webpack.optimize.UglifyJsPlugin({
                 acorn: true,
             }),
@@ -110,45 +109,9 @@ config.plugins = (() => {
     return result;
 })();
 
-// PostCSS
-const autoprefixer = require('autoprefixer');
-const csso = require('postcss-csso');
-const atImport = require('postcss-import');
-const url = require('postcss-url');
-
-config.postcss = (() => {
-    const result = [
-        atImport({
-            path: [
-                path.join(__dirname, 'app/resources/blocks/'),
-                path.join(__dirname, 'app/resources/pages/'),
-            ],
-        }),
-        url({
-            basePath: path.join(__dirname, 'app/resources/'),
-            url: 'inline',
-        }),
-        autoprefixer({
-            browsers: [
-                'last 2 versions',
-            ],
-        }),
-    ];
-
-    if (isDev) {
-        result.push(csso({
-            debug: 3,
-            restructure: true,
-        }));
-    }
-
-    return result;
-})();
-
 // Resolve
 config.resolve = {
     extensions: [
-        '',
         '.js',
         '.jsx',
     ],
