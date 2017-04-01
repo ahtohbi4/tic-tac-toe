@@ -14,11 +14,11 @@ new WebpackDevServer(webpack(config), {
     port: PORT,
     publicPath: config.output.publicPath,
     stats: {
-        colors: true
-    }
-}).listen(PORT, HOST, (err, result) => {
-    if (err) {
-        console.log(err);
+        colors: true,
+    },
+}).listen(PORT, HOST, (error) => {
+    if (error) {
+        console.log(error);
     }
 
     console.log(`Listening at ${HOST}:${PORT}.`);
