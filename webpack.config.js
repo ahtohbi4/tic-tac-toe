@@ -7,13 +7,14 @@ const NODE_ENV = process.env.NODE_ENV;
 const isDev = NODE_ENV !== 'production';
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 const extractHTML = new ExtractTextPlugin('index.html');
 const extractCSS = new ExtractTextPlugin('[name].css');
 
 const HOST = 'localhost';
 const PORT = 8080;
 
-let config = {};
+const config = {};
 
 // Dev Tool
 config.devtool = isDev ? 'eval' : false;
@@ -61,7 +62,7 @@ config.module = {
         {
             test: /\.(js|jsx)$/,
             loaders: (() => {
-                let result = [];
+                const result = [];
 
                 if (isDev) {
                     result.push('react-hot');
@@ -102,7 +103,7 @@ config.plugins = (() => {
             new webpack.optimize.OccurenceOrderPlugin(),
             new webpack.optimize.UglifyJsPlugin({
                 acorn: true,
-            })
+            }),
         ]);
     }
 
@@ -116,7 +117,7 @@ const atImport = require('postcss-import');
 const url = require('postcss-url');
 
 config.postcss = (() => {
-    let result = [
+    const result = [
         atImport({
             path: [
                 path.join(__dirname, 'app/resources/blocks/'),
@@ -150,7 +151,7 @@ config.resolve = {
         '',
         '.js',
         '.jsx',
-    ]
+    ],
 };
 
 // Dev Server
