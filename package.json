@@ -4,6 +4,7 @@
   "description": "Tic-tac-toe game",
   "main": "index.html",
   "scripts": {
+    "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "node_modules/.bin/eslint -- .",
     "lint:css": "stylelint ./app/**/*.css",
     "start": "node server.js",
