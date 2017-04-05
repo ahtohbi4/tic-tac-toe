@@ -68,15 +68,14 @@ class Settings extends Component {
      */
     onSettingsUpdate() {
         if (
-            (this.$inputWidth.state.value !== this.props.game.matrix[0].length ||
+            this.$inputWidth.state.value !== this.props.game.matrix[0].length ||
             this.$inputHeight.state.value !== this.props.game.matrix.length ||
-            this.$inputVictoryChainsLength.state.value !== this.props.game.victoryChainsLength) &&
-            !this.state.wasChanged
+            this.$inputVictoryChainsLength.state.value !== this.props.game.victoryChainsLength
         ) {
             this.setState({
                 wasChanged: true,
             });
-        } else if (this.state.wasChanged) {
+        } else {
             this.setState({
                 wasChanged: false,
             });
