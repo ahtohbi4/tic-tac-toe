@@ -10,31 +10,31 @@ const isDev = NODE_ENV !== 'production';
 
 module.exports = {
     plugins: (() => {
-      const result = [
-          atImport({
-              path: [
-                  path.join(__dirname, 'app/resources/blocks/'),
-                  path.join(__dirname, 'app/resources/pages/'),
-              ],
-          }),
-          url({
-              basePath: path.join(__dirname, 'app/resources/'),
-              url: 'inline',
-          }),
-          autoprefixer({
-              browsers: [
-                  'last 2 versions',
-              ],
-          }),
-      ];
+        const result = [
+            atImport({
+                path: [
+                    path.join(__dirname, 'app/resources/blocks/'),
+                    path.join(__dirname, 'app/resources/pages/'),
+                ],
+            }),
+            url({
+                basePath: path.join(__dirname, 'app/resources/'),
+                url: 'inline',
+            }),
+            autoprefixer({
+                browsers: [
+                    'last 2 versions',
+                ],
+            }),
+        ];
 
-      if (!isDev) {
-          result.push(csso({
-              debug: 3,
-              restructure: true,
-          }));
-      }
+        if (!isDev) {
+            result.push(csso({
+                debug: 3,
+                restructure: true,
+            }));
+        }
 
-      return result;
-  })(),
+        return result;
+    })(),
 };

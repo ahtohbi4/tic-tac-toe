@@ -60,7 +60,7 @@ config.module = {
             loader: 'file?name=[hash].[ext]',
         },
         {
-            test: /\.(js|jsx)$/,
+            test: /\.js$/,
             loaders: (() => {
                 const result = [];
 
@@ -113,7 +113,6 @@ config.plugins = (() => {
 config.resolve = {
     extensions: [
         '.js',
-        '.jsx',
     ],
 };
 
