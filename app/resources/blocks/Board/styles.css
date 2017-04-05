@@ -95,12 +95,12 @@
 
 /* @elem cell @mod type=x */
 .board__cell_type_x {
-    background: url(blocks/Board/board__cell_type_x.svg) 50% no-repeat;
+    background: url(blocks/Board/images/board__cell_type_x.svg) 50% no-repeat;
     background-size: 100%;
 }
 
 /* @elem cell @mod type=o */
 .board__cell_type_o {
-    background: url(blocks/Board/board__cell_type_o.svg) 50% no-repeat;
+    background: url(blocks/Board/images/board__cell_type_o.svg) 50% no-repeat;
     background-size: 100%;
 }
