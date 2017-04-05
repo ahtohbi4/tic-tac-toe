@@ -1,0 +1,16 @@
+{
+    "extends": "stylelint-config-standard",
+    "rules": {
+        "color-hex-case": "lower",
+        "string-quotes": "single",
+        "font-family-name-quotes": "always-where-recommended",
+        "number-leading-zero": "never",
+        "selector-pseudo-class-no-unknown": [
+            true
+        ],
+        "property-no-unknown": [
+            true
+        ],
+        "indentation": 4
+    }
+}
