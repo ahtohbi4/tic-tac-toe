@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import './board.css';
+import './styles.css';
 
 /**
  * @class

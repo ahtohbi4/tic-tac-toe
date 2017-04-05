@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import './popup.css';
+import './styles.css';
 
 /**
  * @function

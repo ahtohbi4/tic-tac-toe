@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import './input-number.css';
+import './styles.css';
 
 /**
  * @class

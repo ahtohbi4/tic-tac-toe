@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
-import './button.css';
+import './styles.css';
 
 /**
  * @class

@@ -3,7 +3,7 @@ import React from 'react';
 import SettingsControl from '../SettingsControl';
 import Logo from '../Logo';
 
-import './header.css';
+import './styles.css';
 
 /**
  * @class

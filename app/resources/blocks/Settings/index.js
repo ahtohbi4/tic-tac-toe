@@ -13,8 +13,8 @@ import Button from '../Button';
 import InputNumber from '../InputNumber';
 import Popup from '../Popup';
 
-import './settings.css';
-import '../Hidden/hidden.css';
+import './styles.css';
+import '../Hidden/styles.css';
 
 /**
  * @class

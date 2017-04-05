@@ -12,8 +12,8 @@ import Header from '../Header';
 import Score from '../Score';
 import Settings from '../Settings';
 
-import './app.css';
-import '../Text/text.css';
+import './styles.css';
+import '../Text/styles.css';
 
 /**
  * @class
