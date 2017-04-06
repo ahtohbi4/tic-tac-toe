@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "node_modules/.bin/eslint -- .",
+    "lint:js": "node_modules/.bin/eslint .",
     "lint:css": "node_modules/.bin/stylelint app/**/*.css",
     "lint:staged": "lint-staged",
     "start": "node server.js",
