@@ -8,9 +8,10 @@
     "lint:js": "node_modules/.bin/eslint .",
     "lint:css": "node_modules/.bin/stylelint app/**/*.css",
     "lint:staged": "lint-staged",
-    "start": "node server.js",
-    "start:prod": "NODE_ENV=production nodejs server.js",
-    "build": "rm -rf build/ && NODE_ENV=production webpack"
+    "start": "node internals/server",
+    "start:prod": "NODE_ENV=production node internals/server",
+    "clean": "rm -rf build",
+    "build": "npm run clean && NODE_ENV=production node_modules/.bin/webpack --config internals/webpack.config.prod.js --color"
   },
   "repository": {
     "type": "git",
@@ -36,7 +37,7 @@
   "devDependencies": {
     "babel-core": "^6.11.4",
     "babel-eslint": "^7.2.1",
-    "babel-loader": "^6.2.4",
+    "babel-loader": "^7.0.0-beta.1",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
