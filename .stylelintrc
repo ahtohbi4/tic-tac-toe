@@ -12,5 +12,8 @@
             true
         ],
         "indentation": 4
-    }
+    },
+    "ignoreFiles": [
+        "build/**"
+    ]
 }
