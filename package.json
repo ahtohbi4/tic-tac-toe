@@ -13,10 +13,7 @@
     "clean": "rm -rf build",
     "build": "npm run clean && NODE_ENV=production node_modules/.bin/webpack --config internals/webpack.config.prod.js --color"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ahtohbi4/tic-tac-toe.git"
-  },
+  "repository": "git+https://github.com/ahtohbi4/tic-tac-toe.git",
   "keywords": [
     "Tic-tac-toe",
     "Game",
